@@ -1191,3 +1191,27 @@ person.sayYourName = function(){
 delete shahar.sayYourName;
 shahar.sayYourName();
 ```
+
+---
+### @color[#e49436](Prototype) - *new* keyword
+
+```js
+function Person(name, age){
+    this.name = name;
+    this.age = age;
+}
+
+let me = new Person('Shahar', 27);
+console.log(me.name, me.age);
+
+let him = new Person('Yeled', 4);
+```
+We can use prototype like so
+```js
+Person.prototype.details = function(){
+    console.log(`Name: ${this.name}, Age: ${this.age}`);
+}
+him.details();
+
+```
+---
