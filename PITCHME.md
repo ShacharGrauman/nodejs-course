@@ -396,3 +396,36 @@ console.log(calcF(3));
 ```
 
 ---
+### @color[#e49436](functions)
+
+#### Function statement vs. Expressions
+
+@snap[west sidebar]
+```js
+function calc(num) {
+    return num * 2;
+}
+
+let calcF = calc;
+
+console.log(calcF(3));
+console.log(calc(3));
+```
+@snapend
+
+@snap[east sidebar]
+```js
+let calcF2 = function calc2(num) {
+    return num * 3;
+}
+
+console.log(calcF2(3));
+//console.log(calc2(2));
+```
+@snapend
+
+---
+
+
+
+---
