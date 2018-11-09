@@ -294,7 +294,6 @@ loopsi();
 ### @color[#e49436](var scope - hoisting)
 
 This solution is very commonly used
-It uses *Closure* and *IIFE*
 
 ```js
 function loopsi2(){
@@ -311,6 +310,7 @@ function loopsi2(){
 
 loopsi2();
 ```
+It uses *Closure* and *IIFE*
 
 ---
 ### @color[#e49436](let - not hoisted)
@@ -345,5 +345,54 @@ loopsi3();
 - If const is reference, it can't be assigned a new one
 - But we can modify the data it points to
 
+---
+
+### @color[#e49436](functions)
+#### It's all about functions!
+
+@ul
+- Functions are objects
+- Function constructors
+- Can be assigned to a variable
+- Can be passed as an argument
+- Closure - Can be nested inside another function
+- Can get more/less arguments than declared
+- Can invoke itself (uh?!)
+- Lambda (Arrow functions)
+@ulend
+
+---
+
+### @color[#e49436](functions)
+
+#### Functions are objects
+
+```js
+function imAnObject(){
+    console.log('Hi there' + imAnObject.whatsup);    
+}
+
+imAnObject.whatsup = 'Whasssaaaa?';
+imAnObject();
+```
+
+---
+### @color[#e49436](functions)
+
+#### Function Expressions
+
+- JS functions are flexible structure, for example:
+- You can name a function as usual and assign it to a variable like so:
+
+```js
+function calc(num) {
+    return num * 2;
+}
+
+//Function expression
+let calcF = calc;
+
+console.log(calcF(3));
+```
 
 ---
