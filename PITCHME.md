@@ -1143,3 +1143,51 @@ Object.setPrototypeOf(shahar, person);
 shahar.sayYourName();
 ```
 ---
+### @color[#e49436](Prototype) chaining
+
+```js
+const person = {
+    sayYourName
+}
+const shahar = {
+    myName: 'Shahar'
+}
+const son = {
+    myName: 'Hanoch'
+}
+
+Object.setPrototypeOf(shahar, person);
+Object.setPrototypeOf(son, shahar);
+shahar.sayYourName();
+son.sayYourName();
+```
+---
+### @color[#e49436](Prototype) chaining
+
+```js
+const person = { };
+
+const shahar = {
+    myName: 'Shahar',
+    sayYourName
+};
+
+Object.setPrototypeOf(shahar, person);
+
+//Now shahar has it too!
+person.stateYourName = function(){
+    console.log(`Please state your name: ${this.myName}`);
+}
+
+shahar.sayYourName();
+shahar.stateYourName();
+
+//Override by implement the same function down the chain
+
+person.sayYourName = function(){
+    console.log(`My name is: ${this.myName}`);
+}
+
+delete shahar.sayYourName;
+shahar.sayYourName();
+```
