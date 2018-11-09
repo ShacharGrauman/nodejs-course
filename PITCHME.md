@@ -1016,7 +1016,7 @@ function Car(){
 }
 ```
 ---
-### Understanding the @color[#e49436](this context) 
+#### Understanding the @color[#e49436](this context) 
 
 ```js
 function sayYourName() {
@@ -1025,14 +1025,76 @@ function sayYourName() {
 
 sayYourName();
 ```
-- myName belongs to?
-@ul
+- myName belongs to...
 - The global context
-@ulend
+
 ```js
 myName = 'Shahar';
 sayYourName();
 ```
+---
+#### Understanding the @color[#e49436](this context) 
+
+Attaching outer function to behave like methods
+
+```js
+function sayYourName() {
+    console.log(this.myName);
+}
+const person = {
+    myName: 'Shahar',
+    sayYourName
+}
+
+person.sayYourName();
+```
+
+---
+#### Understanding the @color[#e49436](this context) 
+
+- Use call/apply to set the 'this' object as the first argument
+- Pass arguments if necessary
+- call gets variadic arguments
+- apply gets arguments in array
+
+```js
+myName = 'Shahar'; //or global.myName = 'Shahar'
+sayYourName.call({ myName }, 'lala');
+sayYourName.apply(global, ['lala']);
+```
+
+---
+#### Understanding the @color[#e49436](this context) 
+
+@color[#e49436](bind) the person context to the function for later invokation
+
+```js
+function sayYourName() {
+    console.log(this.myName);
+}
+
+const person = {
+    myName: 'Shahar'
+}
+
+const saySomething = sayYourName.bind(person);
+saySomething();
+```
+
+---
+#### Understanding the @color[#e49436](this context) 
+
+```js
+const person = {
+    myName: 'Shahar'
+}
+
+person.saySomething = sayYourName;
+
+//now person is the context of saySomething
+person.saySomething();
+```
+
 ---
 
 ### @color[#e49436](Prototypes) 
@@ -1047,6 +1109,37 @@ The *Object.prototype* is on the top of the **prototype inheritance chain**:
 - All the above inherit from **Object.prototype**
 
 ---
+#### @color[#e49436](Prototypes) - Object.setPrototypeOf 
 
+```js
+function sayYourName() {
+    console.log(this.myName);
+}
+const person = {
+    myName: 'Shahar'
+}
+//Set the prototype of person
+Object.setPrototypeOf(person, {saySomething: sayYourName});
+person.saySomething();
+console.log(person);
+```
 
+---
+### @color[#e49436](Prototypes)
+
+- So by setting the prototype, we're actually delegating the functionality to a higher object
+- If the current object doesn't have the method, it's being looked up the *'protorype chain'*
+
+```js
+const person = {
+    sayYourName
+}
+
+const shahar = {
+    myName: 'Shahar'
+}
+
+Object.setPrototypeOf(shahar, person);
+shahar.sayYourName();
+```
 ---
