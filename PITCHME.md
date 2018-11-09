@@ -10,7 +10,7 @@ VSCode, Browser
 
 ## Node.js @ Wobi
 
-GRAUMAN dev courses for R&D teams
+@color[#e49436](GRAUMAN) dev courses for R&D teams
 https://www.grauman.co.il
 
 ---
@@ -20,14 +20,12 @@ https://www.grauman.co.il
 
 ---
 
----
-
 ## In order to know @color[#e49436](Node)
 ## understand @color[#e49436](JavaScript)
 
 ---
 
-### JavaScript History
+### @color[#e49436](JavaScript History)
 
 - Netscape
 
@@ -43,7 +41,7 @@ https://www.grauman.co.il
 
 ---
 
-### JavaScript in a nutshell
+### @color[#e49436](JavaScript in a nutshell)
 
 - All browser support JS - After all, JS is the language of the browsers
 - Client Side
@@ -52,14 +50,14 @@ https://www.grauman.co.il
 
 ---
 
-### JavaScript in a nutshell
+### @color[#e49436](JavaScript in a nutshell)
 
 - Prototype based, as opposed to classical OO with classes
 - Function is First-Class - Meaning it’s an object! It can be passed around, assigned to variables, create objects
 
 ---
 
-### JavaScript on the Server?
+### @color[#e49436](JavaScript on the Server?)
 
 * Node.js revolutionized the way JS can be used
 
@@ -69,7 +67,7 @@ https://www.grauman.co.il
 
 ---
 
-### JavaScript on the Server?
+### @color[#e49436](JavaScript on the Server?)
 
 
 * NPM - The worlds’ biggest open-source ecosystem
@@ -81,7 +79,7 @@ https://www.grauman.co.il
 
 ---
 
-### ECMAScript
+### @color[#e49436](ECMAScript)
 
 
 In 2015, the 6th version (referred as ES6 or ES2015) was released
@@ -89,7 +87,7 @@ In 2015, the 6th version (referred as ES6 or ES2015) was released
 ES6 brought a lot of new features and improvements, most notably
 
 ---
-### ES6
+### @color[#e49436](ES6)
 @ol
 - Block scoped variables (let, const)
 - Arrow functions (lambda)
@@ -105,7 +103,7 @@ ES6 brought a lot of new features and improvements, most notably
 
 ---
 
-### Variables
+### @color[#e49436](Variables)
 
 - var was used more than 20 years
 
@@ -152,7 +150,7 @@ console.log("null === undefined", null === undefined); // false
 
 ---
 
-### typeof operator
+### @color[#e49436](typeof operator)
 
 ```js
 console.log('\ntypeof operator');
@@ -194,7 +192,7 @@ function test(x) {
 
 ---
 
-### var scope
+### @color[#e49436](var scope)
 
 ```js
 
@@ -208,7 +206,7 @@ console.log(i); //?
 
 ---
 
-### var scope - hoisting
+### @color[#e49436](var scope - hoisting)
 
 var is raised to the top of its scope before execution
 
@@ -232,13 +230,18 @@ hoist();
 
 ---
 
-### var scope
+### @color[#e49436](var scope)
 
 JS interpreter reorganizes the code and hoist notOK to the top of the function:
 
 ```js
 function hoist(){
     var notOK;
+    var ok = true;
+
+    if (ok) {
+        var notOK = false;
+        
     ...
 ```
 
