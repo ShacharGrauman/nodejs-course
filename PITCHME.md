@@ -1295,3 +1295,143 @@ class Student extends Person {
 ```
 
 ---
+#### @color[#e49436](Callbacks) - *I'll call you back*
+
+Callbacks were here since the beginning
+
+```js
+try {
+  const data = getData();
+  const manipulated = manipulateData(data);
+  const result = finalize(manipulated);
+  console.log('Result: ' + result);
+} catch(err) {
+  failedCallback(err);
+}
+```
+
+We start off nicely, but time goes by and...
+
+---
+#### @color[#e49436](Callbacks) - Callback Hell
+
+```js
+getData(function(data) {
+    manipulateData(data, function(manipulated) {
+        finalize(manipulated, function(result) {
+            console.log('Result: ' + result);
+    }, failedCallback);
+  }, failedCallback);
+}, failedCallback);
+
+```
+They were good till a point where nesting callbacks was hillarious
+
+---
+### @color[#e49436](Promise) (preview)
+
+Promises let us chain those functions more easily
+
+```js
+getData().then(function(data) {
+  return manipulateData(data);
+})
+.then(function(manipulated) {
+  return finalize(manipulated);
+})
+.then(function(result) {
+  console.log('Result: ' + result);
+})
+.catch(failedCallback);
+```
+---
+### @color[#e49436](Promise) (preview)
+
+We can even shorten this by using lambdas
+
+```js
+getData().then(data => manipulateData(data))
+	 .then(manipulated => finalize(manipulated))
+	 .then(result => console.log('Result: ' + result))
+	 .catch(faileCallback);
+```
+
+---
+### @color[#e49436](Promise) - (preview)
+
+**async/await** let us use promises like synchronous coding
+
+```js
+async () => {
+  try {
+    const data = await getData();
+    const manipulated = await manipulateData(data);
+    const result = await finalize(manipulated);
+    console.log('Result: ' + result);
+  } catch(err) {
+    failedCallback(err);
+  }
+}
+```
+---
+### @color[#e49436](Promise) - break it apart
+
+- Promise object is what its name implies
+  - A promise to complete at some later point in time
+- Promise can complete or fail
+- Promise may return a value
+
+```js
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => resolve('timed out'), 1000);
+});
+console.log('Promise fired');
+promise.then(res => console.log(res));
+console.log('Promise done');
+```
+---
+### @color[#e49436](Promise) - break it apart
+
+rejecting the promise usualy used when an error occur
+
+```js
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => reject('timed out'), 1000);
+});
+console.log('Promise fired');
+promise.then(res => console.log('Completed: ' + res), rej => console.log('Rejected: ' + rej));
+console.log('Promise done');
+```
+---
+### @color[#e49436](Promise) - break it apart
+
+- If an error is thrown inside the promise
+  - It's automatically rejected
+  - And the return value is ignored
+
+```js
+const promise = new Promise((resolve, reject) => {
+  throw new Error('OMG!');
+});
+console.log('Promise fired');
+promise
+  .then(res => console.log('Completed: ' + res), rej => console.log('Rejected: ' + rej))
+  .catch(err => console.log(err));
+console.log('Promise done');
+```
+---
+### @color[#e49436](Promise) - Ex
+
+@ol
+- Extract data from Github public repositories
+- https://api.github.com/repositories
+- Let's grab some repositories from github and print for each one (For example):
+- {
+    id: 210, //repository id
+    full_name: 'polanski/fred', 
+    avatar_url: 'https://avatars0.githubusercontent.com/u/75?v=4', 
+    html_url: 'https://github.com/fred'    
+  }
+@olend
+
+---
