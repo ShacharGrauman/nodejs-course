@@ -291,32 +291,10 @@ loopsi();
 
 ---
 
-### @color[#e49436](var scope - hoisting)
-
-This solution is very commonly used
-
-```js
-function loopsi2(){
-    var numbers = [];
-
-    for(var i = 0; i < 5; i++){
-        numbers.push((function(n){
-            return function () { return n; }
-        })(i));
-    }
-
-    numbers.forEach(item => console.log(item()));
-}
-
-loopsi2();
-```
-It uses *Closure* and *IIFE* (discussed later on)
-
----
 ### @color[#e49436](let - not hoisted)
 
 ```js
-function loopsi3(){
+function loopsi2(){
     var numbers = [];
 
     for(let i = 0; i < 5; i++){
@@ -326,7 +304,7 @@ function loopsi3(){
     numbers.forEach(item => console.log(item()));
 }
 
-loopsi3();
+loopsi2();
 ```
 
 ---
@@ -844,11 +822,104 @@ var images = (function countImgs(element) {
     return count;
 })(document.body);
 ```
-@ol
+@ul
 - Invoking IIFE with argument
 - The name, countImgs, is neccessary here
   - To be able to call it recursively
   - Notice - the name can be called ONLY within the scope of the IIFE
-@olend
+@ulend
+
+---
+
+Remember this?
+
+```js
+function func(){
+    let funcs = [];
+
+    for(var i = 0; i < 5; i++) {
+        var res = function(){
+            console.log(i);
+        }         
+        funcs.push(res);
+    }
+ 
+    funcs.forEach(f => f());
+}
+func();
+```
+
+- Short Ex - Fix the problem with:
+  - Closure
+  - IIFE
+
+---
+
+Here is one solution
+
+```js
+function func(){
+    let funcs = [];
+
+    for(var i = 0; i < 5; i++) {
+        function outer(){
+            let num = i;
+            function res(){
+                console.log(num);
+            }
+            return res;
+        }
+        funcs.push(outer());
+    }
+ 
+    funcs.forEach(f => f());
+}
+func();
+```
+---
+
+Here is the same solution using IIFE
+
+```js
+function func(){
+    let funcs = [];
+
+    for(var i = 0; i < 5; i++) {
+        funcs.push((function(){
+            let num = i;
+            function res(){
+                console.log(num);
+            }
+            return res;
+        })());        
+    }
+ 
+    funcs.forEach((f, i) => f());
+}
+func();
+```
+---
+The same, but passing parameter
+
+```js
+function func(){
+    var numbers = [];
+
+    for(var i = 0; i < 5; i++){
+        numbers.push((function(n){
+            return function () { console.log(n); }
+        })(i));
+    }
+
+    numbers.forEach(f => f());
+}
+
+func();
+```
+So *Closure* and *IIFE*. Got that?
+<br>
+Or just use *let* @fa[thumbs-o-up]
+
+---
 
 ---

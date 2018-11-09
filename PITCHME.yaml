@@ -1,11 +1,13 @@
 
 logo : assets/images/grauman.png
+footnote : "2018 SHAHAR GRAUMAN"
 
 # Look-and-Feel
 theme : night
 
 # Behavior
-transition : none
+transition : slide
+mousewheel : true
 
 # Code Syntax
 
