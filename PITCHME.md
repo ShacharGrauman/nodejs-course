@@ -310,7 +310,7 @@ function loopsi2(){
 
 loopsi2();
 ```
-It uses *Closure* and *IIFE*
+It uses *Closure* and *IIFE* (discussed later on)
 
 ---
 ### @color[#e49436](let - not hoisted)
@@ -672,8 +672,7 @@ foo(6); // [6, 12]
 ---
 ### @color[#e49436](Default values)
 
-@size[0.5em](Let's say we need to assign some default values to each of the parameters)<br>
-@size[0.5em](This is one option we may take:)
+@size[0.5em](Let's say we need to assign some default values to each of the parameters)
 ```js
 function stam() { return 'lala'; }
 
@@ -714,3 +713,142 @@ function notSoBad(a, b = 5, c = b, d = stam(),
 
 notSoBad.call({ num: 101 });
 ```
+
+---
+### @color[#e49436](Default values)
+
+Let's turn this to use default values
+
+```js
+function createElement (tag, config) {
+  tag = tag || 'div';
+  config = config || {};
+  
+  const element = document.createElement(tag);
+  const content = config.content || 'Default Content';
+  const text = document.createTextNode(content);
+  let classNames = config.classNames;
+  
+  if (classNames === undefined) {
+    classNames = ['module-text', 'default'];
+  }
+  
+  element.classList.add(...classNames);
+  element.appendChild(text);
+  
+  return element;
+}
+```
+---
+
+```js
+function createElement (tag = 'div', {
+            content = 'Default Content',
+            classNames = ['module-text', 'special']
+          } = {}) {
+  const element = document.createElement(tag);
+  const text = document.createTextNode(content);
+  
+  element.classList.add(...classNames);
+  element.appendChild(text);
+  
+  return element;
+}
+```
+
+@size[0.5em](Not only we set the config parameter to empty object, we disect this parameter using *desctructuring* syntax, extracting content and classNames, with default values!)
+
+---
+### @color[#e49436](Labmda) - Fat Arrow Functions
+
+- Allow cleaner syntax.
+- Preserve the 'this' context in which they operate in
+
+```js
+let add1 = function(x, y) {
+    return x + y;
+}
+
+console.log(add1(3,4));
+```
+```js
+let add2 = (x, y) => x + y;
+
+console.log(add2(3,4));
+```
+
+---
+### @color[#e49436](Labmda) - Fat Arrow Functions
+
+```js
+var strings = [
+  'Lala',
+  'Wawa',
+  'Babala',
+  'Sababa'
+];
+
+var arr = strings.map(function(str) { return str.length; });
+console.log(arr);
+
+var arr2 = strings.map(str => str.length);
+console.log(arr2);
+```
+
+---
+### @color[#e49436](IIFE) - Immediate Invoked Function Expression
+
+- Function can be self invoked. Yes. Why?
+- It can create closure out of it, making modules possible
+
+```js
+var res = (function () { 
+    var name = 'Shahar'; 
+    return name; 
+})(); 
+console.log(res);
+```
+---
+### @color[#e49436](IIFE)
+
+```js
+var config = (function (){
+    //Get data from somewhere
+    var server = 'server-address',
+        database = 'database-name',
+        userid = 'username',
+        pwd = 'password';
+    
+    return {
+        getSQLConnectionString() {
+            return `Server=${server}; Database=${database};  User Id=${userid}; Password=${pwd}`;               
+        }
+        //more config stuff...
+    };
+})();
+```
+
+Voila! - config is ready
+
+---
+### @color[#e49436](IIFE)
+
+```js
+var images = (function countImgs(element) {
+    if (element.nodeName.toLowerCase() === 'img') return 1;
+    
+    var count = 0;
+    for (var i = 0, child; child = element.childNodes[i]; i++) {
+        count += countImgs(child);
+    }
+    return count;
+})(document.body);
+```
+@
+- ol Invoking IIFE with argument
+- The name, countImgs, is neccessary here
+  - To be able to call it recursively
+  - Notice - the name can be called ONLY within the scope of the IIFE
+@olend
+
+---
