@@ -992,3 +992,61 @@ console.log(`Car ${myCar.model} has ${myCar.wheels} wheels`);
 ```
 
 ---
+
+1- Using local variable to 'cache' the this reference for later use
+
+```js
+function Car(){
+  var self = this;  
+  self.model = 'Volvo';
+  
+  setTimeout(function() {
+    self.model = 'BMW';
+  }, 2500);
+}
+```
+2- With lambdas it's straight forward
+```js
+function Car(){
+  this.model = 'Volvo';
+  
+  setTimeout(() => {
+    this.model = 'BMW';
+  }, 2500);
+}
+```
+---
+### Understanding the @color[#e49436](this context) 
+
+```js
+function sayYourName() {
+    console.log(this.myName);
+}
+
+sayYourName();
+```
+- myName belongs to?
+@ul
+- The global context
+@ulend
+```js
+myName = 'Shahar';
+sayYourName();
+```
+---
+
+### @color[#e49436](Prototypes) 
+
+#### All JavaScript objects inherit properties and methods from a prototype
+
+The *Object.prototype* is on the top of the **prototype inheritance chain**:
+
+- Array objects inherit from Array.prototype
+- Date objects inherit from Date.prototype
+- Car objects inherit from Car.prototype
+- All the above inherit from **Object.prototype**
+
+---
+
+
+---
