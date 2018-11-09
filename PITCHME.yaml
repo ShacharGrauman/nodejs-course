@@ -1,6 +1,5 @@
 
-background : assets/images/grauman.png
-background-position : top left
+logo : assets/images/grauman.png
 
 # Look-and-Feel
 theme : night
