@@ -1215,3 +1215,83 @@ him.details();
 
 ```
 ---
+### @color[#e49436](Prototype) - Object.create
+
+Create a new object, using an existing object as the prototype of the newly created object
+
+```js
+Student.prototype = Object.create(Person.prototype);
+Student.prototype.constructor = Person;
+
+function Student(name, age, course){
+    Person.call(this, name, age);
+    this.course = course;
+}
+
+let student = new Student('Ace', 25, 'JavaScript');
+student.details();
+
+Student.prototype.details = function(){
+    Person.prototype.details.call(this);
+    console.log(`Studying ${this.course}`);
+};
+
+student.details();
+```
+---
+### @color[#e49436](Prototype) - Common practice
+
+properties will be defined in the constructor
+
+```js
+function Ctor(x, y){
+    //properties...    
+}
+```
+methods will be defined on the prototype
+```js
+Ctor.prototype.method1 = function() {};
+```
+---
+#### ES6 @color[#e49436](Classes) - a spoon of sugar
+
+```js
+class Person {
+  //Only 1 constructor is allowed
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+    Person.counter++;
+  }
+  //getter
+  get details(){
+    return `${this.name}, ${this.age}`;
+  }
+  //Static methods can be defined inside the class
+  static Counter() { 
+    return Person.counter; 
+  }
+}
+//Static properties - must be defined outside 
+Person.counter = 0;
+```
+---
+#### ES6 @color[#e49436](Classes) - inheritance
+
+```js
+class Student extends Person {
+  constructor(name, age, course){
+    //First line should call super ctor
+    super(name, age);
+    //Before accessing 'this'
+    this.course = course;
+  }
+  
+  //Override super method
+  get details() {
+    return `${super.details}, studying ${this.course}`;
+  }
+}
+```
+
+---

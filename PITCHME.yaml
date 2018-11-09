@@ -1,6 +1,6 @@
 
 logo : assets/images/grauman.png
-footnote : "2018 <a style='text-decoration: none; color: white;' href="https://grauman.co.il>SHAHAR GRAUMAN</a>"
+footnote : "2018 <a style='text-decoration: none; color: white;' href='https://grauman.co.il'>SHAHAR GRAUMAN</a>"
 
 # Look-and-Feel
 theme : night
