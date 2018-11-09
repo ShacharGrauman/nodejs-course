@@ -844,8 +844,8 @@ var images = (function countImgs(element) {
     return count;
 })(document.body);
 ```
-@
-- ol Invoking IIFE with argument
+@ ol
+- Invoking IIFE with argument
 - The name, countImgs, is neccessary here
   - To be able to call it recursively
   - Notice - the name can be called ONLY within the scope of the IIFE
