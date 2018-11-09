@@ -921,5 +921,74 @@ So *Closure* and *IIFE*. Got that?
 Or just use *let* @fa[thumbs-o-up]
 
 ---
+### @color[#e49436](Function constructor)
+
+Functions can be used to construct objects
+
+```js
+function person(name, age, address = 'Some Address...'){
+    return {
+        name: name || 'john doe',
+        age: age || 0,
+        address,
+        getAddress: function () { return this.address; },
+        details: function(){
+            return `Person ${this.name} is ${this.age} years old, leaving in ${this.getAddress()}`;        
+        }
+    };
+}
+
+const me = person('Shahar', 27, 'Karkur');
+const anonymous = person();
+console.log(me.details(), anonymous.details());
+```
+
+---
+### @color[#e49436](Function constructor)
+
+Although it's damn simple, the problem is each object contains a copy of the functions!
+<br>
+This can quickly lead to memory bloat
+<br>
+But this is not a constructor as we're familiared with
+<br>
+So we can use 'new'
+
+---
+### @color[#e49436](Function constructor)
+
+- new Func(args) will create a new object
+- 'this' will reffer to the newly created object
+
+```js
+function Car(model){
+  this.model = model;
+  this.wheels = 4;  
+}
+
+var myCar = new Car('Volvo');
+console.log(`Car ${myCar.model} has ${myCar.wheels} wheels`);
+
+myCar.constructor.name //"Car"
+```
+
+---
+### @color[#e49436](Function constructor)
+
+The this problem. Consider 'this' :)
+
+```js
+function Car(){
+  this.model;
+  this.wheels = 4;  
+  
+  setTimeout(function() {
+    this.model = 'BMW';
+  }, 2500);
+}
+
+var myCar = new Car();
+console.log(`Car ${myCar.model} has ${myCar.wheels} wheels`);
+```
 
 ---
