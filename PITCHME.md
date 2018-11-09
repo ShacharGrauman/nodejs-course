@@ -8,7 +8,7 @@ VSCode, Browser
 
 ---
 
-# Node.js at Wobi
+## Node.js @ Wobi
 
 GRAUMAN dev courses for R&D teams
 https://www.grauman.co.il
@@ -17,6 +17,13 @@ https://www.grauman.co.il
 
 ## Part 1 - *JavaScript*
 ## Part 2 - *Node.js*
+
+---
+
+---
+
+## In order to know @color[#e49436](Node)
+## understand @color[#e49436](JavaScript)
 
 ---
 
