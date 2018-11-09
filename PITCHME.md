@@ -1422,16 +1422,23 @@ console.log('Promise done');
 ---
 ### @color[#e49436](Promise) - Ex
 
-@ol
-- Extract data from Github public repositories
-- https://api.github.com/repositories
-- Let's grab some repositories from github and print for each one (For example):
-- {
+1 - Extract data from Github public repositories
+2 - https://api.github.com/repositories
+3 - Grab some github repositories and print for each one (For example):
+
+```js 
+{
     id: 210, //repository id
     full_name: 'polanski/fred', 
     avatar_url: 'https://avatars0.githubusercontent.com/u/75?v=4', 
     html_url: 'https://github.com/fred'    
-  }
-@olend
+}
+
+//Use fetch(url) which returns a Promise
+  fetch(url)
+  .then(res => res.json());
+}
+```
+
 
 ---
