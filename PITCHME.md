@@ -400,7 +400,6 @@ console.log(calcF(3));
 
 #### Function statement vs. Expressions
 
-@snap[west sidebar]
 ```js
 function calc(num) {
     return num * 2;
@@ -411,21 +410,309 @@ let calcF = calc;
 console.log(calcF(3));
 console.log(calc(3));
 ```
-@snapend
 
-@snap[east sidebar]
 ```js
 let calcF2 = function calc2(num) {
     return num * 3;
 }
 
 console.log(calcF2(3));
-//console.log(calc2(2));
+//console.log(calc2(2)); //Can be used no more 
 ```
-@snapend
+
+---
+### @color[#e49436](functions)
+
+#### Anonymous function
+
+```js
+const myFunc = function(x){
+    console.log(isNaN(x) ? 'Not a number' : `x is ${x}`);
+}
+
+myFunc();
+myFunc(8);
+myFunc('6t');
+myFunc(0x32);
+```
+
+---
+### @color[#e49436](functions)
+
+#### function can be passed as argument
+
+```js
+function calcThis(x, func){
+    func(x);
+    console.log(`Raising x by 2: ${Math.pow(x,2)}`);       
+}
+
+calcThis(8, myFunc);
+```
+
+#### Heavily used for callbacks
 
 ---
 
+### @color[#e49436](functions)
 
+#### There is no overloading in JS
+
+```js
+function studentDetails(name, age, email) {
+    let details = 'No details!';
+
+    if (name != undefined) {
+        details = `Student Details:\nName: ${name}`;
+    }
+
+    if (age != undefined) {
+        details += `\nAge: ${age}`;
+    }
+
+    if (email != undefined) {
+        details += `\nEmail: ${email}`;
+    }
+
+    return details;
+}
+
+console.log('studentDetails1');
+console.log(studentDetails());
+console.log(studentDetails('Shahar'));
+console.log(studentDetails('Shahar', 27));
+console.log(studentDetails('Shahar', 27, 'info@grauman.co.il'));
+```
 
 ---
+### @color[#e49436](functions)
+
+#### It is common to pass an object containing the parameters
+### As with configuration objects
+
+```js
+function studentDetails2(props) {
+
+    if (!props) return 'No details!';
+
+    let details = '';
+
+    if (props.name != undefined) {
+        details = `Student Details:\nName: ${props.name}`;
+    }
+
+    if (props.age != undefined) {
+        details += `\nAge: ${props.age}`;
+    }
+
+    if (props.email != undefined) {
+        details += `\nEmail: ${props.email}`;
+    }
+
+    return details;
+}
+
+console.log('studentDetails2');
+console.log(studentDetails2());
+console.log(studentDetails2({ name: 'Shahar' }));
+console.log(studentDetails2({ name: 'Shahar', age: 27 }));
+console.log(studentDetails2({ name: 'Shahar', age: 27, email: 'info@grauman.co.il' }));
+
+```
+
+---
+### @color[#e49436](functions)
+
+#### Destructuring is a new feature of es6.
+### We'll be covering it more later on, but for now, 
+### let's see a bit of it
+
+```js
+function studentDetails3({ name, age, email }) {
+
+    let details = 'No details!';
+
+    if (name != undefined) {
+        details = `Student Details:\nName: ${name}`;
+    }
+
+    if (age != undefined) {
+        details += `\nAge: ${age}`;
+    }
+
+    if (email != undefined) {
+        details += `\nEmail: ${email}`;
+    }
+
+    return details;
+}
+
+//console.log(studentDetails3());
+console.log('studentDetails3');
+console.log(studentDetails3({ name: 'Shahar' }));
+console.log(studentDetails3({ age: 27, name: 'Shahar' }));
+console.log(studentDetails3({ email: 'info@grauman.co.il', age: 27, name: 'Shahar' }));
+```
+
+---
+### @color[#e49436](functions)
+
+#### functions can be nested, so the inner has the scope of the outer.
+- Meaning, the inner has access to outer variables/parameters
+- This is called @color[#e49436](Closure)
+
+```js
+function outer(num) {
+    let num1 = 9;
+
+    function inner(x) {
+        console.log('inner', num + x + num1);
+        return x;
+    }
+
+    console.log('outer', inner(7));
+}
+
+outer(2);
+```
+
+---
+### @color[#e49436](Closure)
+
+##### Functions maintain a lexical scoping of variables upon declaration
+#### It enables encapsulation
+
+```js
+function func2(){
+    let num = 42;
+
+    function square(){
+        return num * num;
+    }
+
+    return square;
+}
+
+let innerF = func2();
+
+console.log(innerF());
+```
+
+---
+### @color[#e49436](Closure)
+
+```js
+function F(f) {
+  function G(g) {
+    function H(h) {
+      console.log(f + g + h);
+    }
+    H(3);
+  }
+  G(2);
+}
+F(1);
+```
+
+---
+### @color[#e49436](Function's arguments object)
+
+Functions can be passed less/more arguments than declared
+
+```js
+function concat(separator) {
+   var result = '', 
+       i;
+
+   for (i = 1; i < arguments.length; i++) {
+      result += arguments[i] + separator;
+   }
+   
+   return result;
+}
+
+concat(', ', 'me', 'you', 'her');
+concat('; ', 'X', 'R', 'S', 'U');
+concat('. ', 'js', 'node', 'es6', 'web', 'fun');
+```
+
+---
+
+---
+### @color[#e49436](Default values)
+
+Functions can be passed less/more arguments than declared
+
+```js
+function multiply(a, b) {
+  b = typeof b !== 'undefined' ?  b : 1;
+
+  return a * b;
+}
+
+multiply(5);
+```
+```js
+function multiply (a, b = 2) {
+  return a * b;
+}
+multiply(5);
+```
+---
+### @color[#e49436](Default values)
+
+```js
+function multiply (a, b = 2) {
+  return a * b;
+}
+
+function foo (num = 1, mul = multiply(num)) {
+  return [num, mul];
+}
+foo(); // [1, 2]
+foo(6); // [6, 12]
+```
+---
+### @color[#e49436](Default values)
+
+Let's say we need to assign some default values to each of the parameters. This is one option we may take:
+```js
+function stam() { return 'lala'; }
+
+function omg(a, b, c, d, e, f, g) {
+  switch (arguments.length) {
+    case 0:
+      a = 1;
+    case 1:
+      b = 5;
+    case 2:
+      c = b;
+    case 3:
+      d = stam();
+    case 4:
+      e = this;
+    case 5:
+      f = arguments;
+    case 6:
+      g = this.num;
+    default:
+  }
+  //...
+  //Further processing
+}
+
+omg.call({ num: 101 });
+```
+---
+### @color[#e49436](Default values)
+
+And here is with default values (smile):
+```js
+function notSoBad(a, b = 5, c = b, d = stam(), 
+                  e = this, f = arguments, g = this.num) {
+  //...
+  //Further processing
+}
+
+notSoBad.call({ num: 101 });
+```
