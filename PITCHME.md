@@ -285,8 +285,65 @@ function loopsi(){
 
 loopsi();
 ```
-@ol
+@ul
 - Because var is hoisted, all functions refer to the same variable!
-@olend
+@ulend
+
+---
+
+### @color[#e49436](var scope - hoisting)
+
+This solution is very commonly used
+It uses *Closure* and *IIFE*
+
+```js
+function loopsi2(){
+    var numbers = [];
+
+    for(var i = 0; i < 5; i++){
+        numbers.push((function(n){
+            return function () { return n; }
+        })(i));
+    }
+
+    numbers.forEach(item => console.log(item()));
+}
+
+loopsi2();
+```
+
+---
+### @color[#e49436](let - not hoisted)
+
+```js
+function loopsi3(){
+    var numbers = [];
+
+    for(let i = 0; i < 5; i++){
+        numbers.push(function () { return i; });
+    }
+
+    numbers.forEach(item => console.log(item()));
+}
+
+loopsi3();
+```
+
+---
+### @color[#e49436](let) and const
+
+- let and const was introduced in es 2015
+- let behaves similary to declarations in other languages
+- It's available ONLY inside the immediate surrounding block, 
+- From the declaration line until the end of the block
+---
+
+### let and @color[#e49436](const)
+
+- const is like let, but needs initialization right away
+- Can't be modified later on
+- If const is reference, it can't be assigned a new one
+- But we can modify the data it points to
+
 
 ---
