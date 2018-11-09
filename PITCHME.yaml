@@ -1,0 +1,11 @@
+
+# Look-and-Feel
+theme : night
+highlight : ir-black
+
+# Behavior
+transition : none
+
+# Code Syntax
+highlight : ir black
+code-line-numbers : true

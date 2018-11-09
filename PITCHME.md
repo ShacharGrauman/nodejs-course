@@ -674,7 +674,6 @@ foo(6); // [6, 12]
 ### @color[#e49436](Default values)
 
 @size[0.5em](Let's say we need to assign some default values to each of the parameters)
-
 @size[0.5em](This is one option we may take:)
 ```js
 function stam() { return 'lala'; }
