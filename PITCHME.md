@@ -230,23 +230,63 @@ hoist();
 
 ---
 
-### @color[#e49436](var scope)
+### @color[#e49436](var scope - hoisting)
 
-JS interpreter reorganizes the code and hoist notOK to the top of the function:
+##### JS interpreter reorganizes the code and hoist notOK to the top of the function:
 
 ```js
 function hoist(){
     var notOK;
     var ok = true;
 
-    if (ok) {
+        if (ok) {
         var notOK = false;
-        
-    ...
+        console.log(notOK);
+    }
+
+    console.log(ok, notOK);
+}
+
+hoist();
 ```
 
-This is the reason it's available to the last console.log...
+##### This is the reason it's available to the last console.log...
 
 ---
 
+### @color[#e49436](var scope - hoisting)
 
+```js
+function hoist2(){
+    console.log(i);
+    for (var i = 0; i < 5; i++) {
+        console.log(i);        
+    }
+    console.log(i);
+}
+
+hoist2();
+```
+
+---
+
+### @color[#e49436](var scope - hoisting)
+
+```js
+function loopsi(){
+    var numbers = [];
+
+    for(var i = 0; i < 5; i++){
+        numbers.push(function () { return i; });
+    }
+
+    numbers.forEach(item => console.log(item()));
+}
+
+loopsi();
+```
+@ol
+- Because var is hoisted, all functions refer to the same variable!
+@olend
+
+---
