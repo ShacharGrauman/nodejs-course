@@ -487,8 +487,8 @@ console.log(studentDetails('Shahar', 27, 'info@grauman.co.il'));
 ---
 ### @color[#e49436](functions)
 
-#### It is common to pass an object containing the parameters
-### As with configuration objects
+##### It is common to pass an object containing the parameters
+##### As with configuration objects
 
 ```js
 function studentDetails2(props) {
@@ -524,8 +524,7 @@ console.log(studentDetails2({ name: 'Shahar', age: 27, email: 'info@grauman.co.i
 ### @color[#e49436](functions)
 
 #### Destructuring is a new feature of es6.
-### We'll be covering it more later on, but for now, 
-### let's see a bit of it
+##### (more on it later) but let's see a bit of it
 
 ```js
 function studentDetails3({ name, age, email }) {
@@ -580,7 +579,7 @@ outer(2);
 ### @color[#e49436](Closure)
 
 ##### Functions maintain a lexical scoping of variables upon declaration
-#### It enables encapsulation
+##### It enables encapsulation
 
 ```js
 function func2(){
@@ -673,7 +672,7 @@ foo(6); // [6, 12]
 ---
 ### @color[#e49436](Default values)
 
-@size[0.5em](Let's say we need to assign some default values to each of the parameters)
+@size[0.5em](Let's say we need to assign some default values to each of the parameters)<br>
 @size[0.5em](This is one option we may take:)
 ```js
 function stam() { return 'lala'; }
