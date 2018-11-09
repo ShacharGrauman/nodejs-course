@@ -637,8 +637,6 @@ concat('. ', 'js', 'node', 'es6', 'web', 'fun');
 ```
 
 ---
-
----
 ### @color[#e49436](Default values)
 
 Functions can be passed less/more arguments than declared
@@ -675,7 +673,9 @@ foo(6); // [6, 12]
 ---
 ### @color[#e49436](Default values)
 
-Let's say we need to assign some default values to each of the parameters. This is one option we may take:
+@size[0.5em](Let's say we need to assign some default values to each of the parameters)
+
+@size[0.5em](This is one option we may take:)
 ```js
 function stam() { return 'lala'; }
 
