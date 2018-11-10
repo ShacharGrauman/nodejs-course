@@ -1725,6 +1725,34 @@ for(let user of getUsers()){
   }
 }
 ```
+---
+### @color[#e49436](Generators)
 
+If we have an internal collection we don't wanna expose?
+
+We can use generator to encapsulate it
+
+And expose data via iterator+generator
+
+Iterator - Gives The ability to enumerate over a collection
+
+---
+### @color[#e49436](Generators)
+
+```js
+class UsersAPI {
+  getNextQuantaUsersFromSomewhere(){
+    return [{id:54520, name: 'Jack'}, {id:32021, name: 'Lori'}, {id:105595, name: 'Shahar'}, {id:87547, name: 'Moses'}, {id:965412, name: 'Honos'}];
+  }
+  
+  *[Symbol.iterator](){
+    let quantaUsers = this.getNextQuantaUsersFromSomewhere();
+    for(let user of quantaUsers){      
+      yield user;
+      quantaUsers = this.getNextQuantaUsersFromSomewhere();
+    }
+  }
+}
+```
 ---
 
