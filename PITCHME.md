@@ -1504,7 +1504,7 @@ new Student('Shahar')
 ---
 ### @color[#e49436](Promise) - async/await
 
-What's great about this is Error handling: is so similar to synchronous coding!
+What's also great about this is Error handling: is so similar to synchronous coding!
 
 ```js
 async () => {
@@ -1527,17 +1527,27 @@ func().catch(err => {});
 ```
 
 ---
+### @color[#e49436](Promise) - async/await
 
+- @color[#e49436](Promise.all) waits for multiple promises to complete
+- @color[#e49436](Promise.race) waits for the first to complete
 
+```js
+const results = await Promise.all([fetch(url1), fetch(url2)]);
+//results is an array of promises results
+```
+```js
+const result = await Promise.race([fetch(url1), fetch(url2)]);
+//result will be the first evaluated value 
+```
 
+---
 ### @color[#e49436](Promise) - Ex
 
-@size[0.5em](1 - Extract data from Github public repositories)
-<br>
-@size[0.5em](2 - https://api.github.com/repositories)
-<br>
-@size[0.5em](3 - Grab some github repositories and print for each one:)
-
+- @size[0.5em](1 - Extract data from Github public repositories)
+- @size[0.5em](2 - https://api.github.com/repositories)
+- @size[0.5em](3 - Grab some github repositories and print for each one:)
+- Show all users' avatars images in the page
 ```js 
 {
  id: 210, //repository id
