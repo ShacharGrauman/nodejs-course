@@ -1755,4 +1755,159 @@ class UsersAPI {
 }
 ```
 ---
+### @color[#e49436](Generators)
 
+And the consumer can decide when to quit
+
+```js
+const users = new UsersAPI()
+
+for(let user of users){
+  if(user.id == 105595){
+    console.log(`Found userid ${user.id} - ${user.name}`);
+    break;
+  }
+}
+```
+---
+### @color[#e49436](Generators) - Ex
+
+Convert this to generator
+
+```js
+function step (start, stop, by) {
+    const characters = [];
+    while (start < stop) {
+        characters.push(String.fromCharCode(start));
+        start += by;
+    }
+    return characters;
+}
+
+var steps = step(65, 91, 2);
+for (var i = 0; i < steps.length; i++) {
+    console.log(steps[i]); // A, C, E, G, ...
+}
+```
+---
+### @color[#e49436](Hiher-Order Functions)
+
+Functions that operate on other functions 
+
+Either by taking them as arguments 
+
+Or by returning them
+
+---
+### @color[#e49436](Hiher-Order Functions)
+
+Most common usages are, for example
+
+Functions that create new functions
+
+Function compositions
+
+---
+### @color[#e49436](Hiher-Order Functions)
+
+```js
+function gt(y) {
+  return x => x > y;
+}
+
+let gt100 = gt(100);
+
+console.log(gt100(101));
+```
+---
+### @color[#e49436](Hiher-Order Functions)
+
+We can 'wrap' functions for pre/post processing
+
+```js
+function beforeAfter(func) {
+  return (...args) => {
+    console.log(`calling ${func.name} with ${args}`);
+    let result = func(...args);
+    console.log(`${func.name} returned ${result}`);
+    return result;
+  };
+}
+beforeAfter(Math.sqrt)(64);
+```
+---
+### @color[#e49436](Hiher-Order Functions)
+
+```js
+function repeat(until, func) {
+  for (let i = 0; i < until; i++) {
+    func(i);
+  }
+}
+
+repeat(5, console.log);
+//Or
+repeat(5, i => console.log(`Next num is ${i}`));
+```
+
+---
+### @color[#e49436](Hiher-Order Functions)
+
+```js
+function ifnot(condition, perform) {
+  if (!condition) perform();
+}
+
+repeat(5, x => {
+  ifnot(x % 2 == 1, () => {
+    console.log(x, "is even");
+  });
+});
+```
+---
+### @color[#e49436](Hiher-Order Functions)
+
+Let's think of a function that format currencies values
+
+For example: You feed it the symbol (Like '$'), The decimal seperator (Like ',') and the value to format, like 312090
+
+And it should format it to $3120,90
+
+Or if you send it '£', '.' and 1009 then -> £10.09
+
+---
+### @color[#e49436](Hiher-Order Functions)
+
+```js
+const formatCurrency = function(currencySymbol, decimalSeparator) {
+    return function(value) {
+        const wholePart = Math.floor(value/100);
+        let agorot = value % 100;        
+        return `${currencySymbol}${wholePart}
+                ${decimalSeparator}
+                ${(''+agorot).padStart(2,0)}`;
+    }
+}
+ 
+ getTashlum = formatCurrency('$', '.');
+ 
+ //Now we can use getTashlum to format values
+```
+---
+### @color[#e49436](Hiher-Order Functions)
+
+So basically we can combine any sort of logic to our demand
+
+Here is a simple array concatenation function
+
+```js
+function concat(arr1, arr2){
+	return [...arr1, ...arr2];
+}
+```
+
+Ex - Write flattenArr function getting jagged array 
+like [[1, 2, 3], [4, 5], [6]] 
+returning [1, 2, 3, 4, 5, 6]
+
+---
