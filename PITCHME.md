@@ -1004,8 +1004,7 @@ Solution:
 ---
 ### Ex
 
-- @size[0.5em](Create a function for copy properties from one json object to the other
-  - By flattening other object
+- @size[0.5em](Create a function for copy properties from one json object to the other, by *flattening other object*
 -  @size[0.5em](For example, you use person object with this structure:)
 
 ```js
