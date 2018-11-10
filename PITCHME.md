@@ -1679,7 +1679,7 @@ const result = await Promise.race([fetch(url1), fetch(url2)]);
 
 Let say we have an array of 100 users, and we're searching for user with id 105595.
 
-We can construct a function to retrieve'em all like so
+We can write function to retrieve'em all like so
 ```js
 function getUsers(){
   //Users from somewhere
@@ -1696,3 +1696,35 @@ for(let user of getUsers()){
 }
 ```
 ---
+### @color[#e49436](Generators)
+
+The thing is getUsers returns ALL the users, which could be large
+
+More than that, we can find what we're looking for much sooner than iterating over all the array
+
+@quote[I wish there was a better solution...]
+
+---
+### @color[#e49436](Generators)
+
+```js
+function* getUsers(){
+  //Users from somewhere
+  const users = [{id:54520, name: 'Jack'}, {id:32021, name: 'Lori'}, {id:105595, name: 'Shahar'}, 
+                 {id:87547, name: 'Moses'}, {id:965412, name: 'Honos'}/*, ....*/];
+  
+  for(let user of users){
+    yield user;
+  }
+}
+
+for(let user of getUsers()){
+  if(user.id == 105595){
+    console.log(`Found userid ${user.id} - ${user.name}`);
+    break;
+  }
+}
+```
+
+---
+
