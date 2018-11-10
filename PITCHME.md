@@ -1547,6 +1547,7 @@ const result = await Promise.race([fetch(url1), fetch(url2)]);
 - @size[0.5em](1 - Extract data from Github public repositories)
 - @size[0.5em](2 - https://api.github.com/repositories)
 - @size[0.5em](3 - Grab some github repositories and print for each one:)
+- @size[0.5em](4 - Show all users' avatars images in the page)
 
 ```js 
 {
@@ -1562,7 +1563,6 @@ const result = await Promise.race([fetch(url1), fetch(url2)]);
 }
 ```
 
-- @size[0.5em](4 - Show all users' avatars images in the page)
 
 
 ---
