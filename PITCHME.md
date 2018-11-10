@@ -921,8 +921,8 @@ So *Closure* and *IIFE*. Got that?
 Or just use *let* @fa[thumbs-o-up]
 
 ---
-### Let's see what you've got for me:
-### 1 What is the output of this?
+#### Let's see what you've got for me:
+#### (1) What is the output of this?
 
 ```js
 function doSomething(a) {
@@ -941,8 +941,8 @@ Solution:
 @ulend
 
 ---
-### Let's see what you've got for me:
-### 2 What is the output of this?
+#### Let's see what you've got for me:
+#### (2) What is the output of this?
 
 ```js
 function foo() {
@@ -963,8 +963,8 @@ Solution:
 @ulend
 
 ---
-### Let's see what you've got for me:
-### 3 What is the output of this?
+#### Let's see what you've got for me:
+#### (3) What is the output of this?
 
 ```js
 var a = 2;
@@ -983,8 +983,8 @@ Solution:
 @ulend
 
 ---
-### Let's see what you've got for me:
-### 4 What is the output of this?
+#### Let's see what you've got for me:
+#### (4) What is the output of this?
 
 ```js
 var a = 2;
