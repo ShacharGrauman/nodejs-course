@@ -1420,18 +1420,35 @@ promise
 console.log('Promise done');
 ```
 ---
+### @color[#e49436](Promise) - async/await
+
+```js
+async function func() {
+  return 42;
+}
+```
+- The word *async* means the function **always** returns a promise
+- If the code returns non-promise
+  - Then it's being wrapped into a *resolved promise* with that value (return Promise.resolve(42))
+
+```js
+func().then(console.log); // 42```
+```
+---
 ### @color[#e49436](Promise) - Ex
 
-1 - Extract data from Github public repositories
-2 - https://api.github.com/repositories
-3 - Grab some github repositories and print for each one (For example):
+@size[0.5em](1 - Extract data from Github public repositories)
+<br>
+@size[0.5em](2 - https://api.github.com/repositories)
+<br>
+@size[0.5em](3 - Grab some github repositories and print for each one:)
 
 ```js 
 {
-    id: 210, //repository id
-    full_name: 'polanski/fred', 
-    avatar_url: 'https://avatars0.githubusercontent.com/u/75?v=4', 
-    html_url: 'https://github.com/fred'    
+ id: 210, //repository id
+ full_name: 'polanski/fred', 
+ avatar_url: 'https://avatars0.githubusercontent.com/u/75?v=4', 
+ html_url: 'https://github.com/fred'    
 }
 
 //Use fetch(url) which returns a Promise
