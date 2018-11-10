@@ -1004,8 +1004,8 @@ Solution:
 ---
 ### Ex
 
-- Create a function for copy properties from one json object to the other, by flattening other object
-- For example, you use person object with this structure:
+-  @size[0.5em](Create a function for copy properties from one json object to the other, by flattening other object)
+-  @size[0.5em](For example, you use person object with this structure:)
 
 ```js
 const person = {
@@ -1015,7 +1015,7 @@ const person = {
     email: ''
 }
 ```
-- And you get, from some api, this object:
+-  @size[0.5em](And you get, from some api, this object:)
 ```js
 const otherPerson = {
     fullName: {
