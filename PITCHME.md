@@ -921,6 +921,113 @@ So *Closure* and *IIFE*. Got that?
 Or just use *let* @fa[thumbs-o-up]
 
 ---
+### Let's see what you've got for me:
+### 1 What is the output of this?
+
+```js
+function doSomething(a) {
+    function doSomethingElse(a) {
+        return a - 1;
+    }
+    var b;
+    b = a + doSomethingElse(a * 2);
+    console.log(b * 3);
+}
+doSomething(2);
+```
+Solution:
+@ul
+- 15
+@ulend
+
+---
+### Let's see what you've got for me:
+### 2 What is the output of this?
+
+```js
+function foo() {
+    function bar(a) {
+        i = 3;
+
+        console.log(a + i);
+    }
+    for (var i = 0; i < 10; i++) {
+        bar(i * 2);
+    }
+}
+foo();
+```
+Solution:
+@ul
+- Infinite loop! How we can fix that?
+@ulend
+
+---
+### Let's see what you've got for me:
+### 3 What is the output of this?
+
+```js
+var a = 2;
+
+(function func(obj) {
+    var a = 3;
+    console.log(a);
+    console.log(obj.a);
+})(window);
+
+console.log(a);
+```
+Solution:
+@ul
+- 3, 2, 2
+@ulend
+
+---
+### Let's see what you've got for me:
+### 4 What is the output of this?
+
+```js
+var a = 2;
+(function func(def) {
+    def(window);
+})(function (obj) {
+    var a = 3;
+    console.log(a); 
+    console.log(obj.a);
+});
+```
+Solution:
+@ul
+- 3, 2
+@ulend
+
+---
+### Ex
+
+- Create a function for copy properties from one json object to the other, by flattening other object
+- For example, you use person object with this structure:
+
+```js
+const person = {
+    firstName: '',
+    lastName: '',
+    age: 0,
+    email: ''
+}
+```
+- And you get, from some api, this object:
+```js
+const otherPerson = {
+    fullName: {
+        firstName: 'Shahar',
+        lastName: 'Grauman'
+    },
+    age: 80,
+    email: 'info@grauman.co.il'
+}
+```
+
+---
 ### @color[#e49436](Function constructor)
 
 Functions can be used to construct objects
@@ -1546,7 +1653,7 @@ const result = await Promise.race([fetch(url1), fetch(url2)]);
 
 - @size[0.5em](1 - Extract data from Github public repositories)
 - @size[0.5em](2 - https://api.github.com/repositories)
-- @size[0.5em](3 - Grab some github repositories and print for each one:)
+- @size[0.5em](3 - Grab some github repositories and print for each one the following json:)
 - @size[0.5em](4 - Show all users' avatars images in the page)
 
 ```js 
