@@ -1790,7 +1790,7 @@ for (var i = 0; i < steps.length; i++) {
 }
 ```
 ---
-### @color[#e49436](Hiher-Order Functions)
+### @color[#e49436](Higher-Order Functions)
 
 Functions that operate on other functions 
 
@@ -1799,7 +1799,7 @@ Either by taking them as arguments
 Or by returning them
 
 ---
-### @color[#e49436](Hiher-Order Functions)
+### @color[#e49436](Higher-Order Functions)
 
 Most common usages are, for example
 
@@ -1808,7 +1808,7 @@ Functions that create new functions
 Function compositions
 
 ---
-### @color[#e49436](Hiher-Order Functions)
+### @color[#e49436](Higher-Order Functions)
 
 ```js
 function gt(y) {
@@ -1820,7 +1820,7 @@ let gt100 = gt(100);
 console.log(gt100(101));
 ```
 ---
-### @color[#e49436](Hiher-Order Functions)
+### @color[#e49436](Higher-Order Functions)
 
 We can 'wrap' functions for pre/post processing
 
@@ -1836,7 +1836,7 @@ function beforeAfter(func) {
 beforeAfter(Math.sqrt)(64);
 ```
 ---
-### @color[#e49436](Hiher-Order Functions)
+### @color[#e49436](Higher-Order Functions)
 
 ```js
 function repeat(until, func) {
@@ -1851,9 +1851,15 @@ repeat(5, i => console.log(`Next num is ${i}`));
 ```
 
 ---
-### @color[#e49436](Hiher-Order Functions)
+### @color[#e49436](Higher-Order Functions)
 
 ```js
+function repeat(until, func) {
+  for (let i = 0; i < until; i++) {
+    func(i);
+  }
+}
+
 function ifnot(condition, perform) {
   if (!condition) perform();
 }
@@ -1865,7 +1871,7 @@ repeat(5, x => {
 });
 ```
 ---
-### @color[#e49436](Hiher-Order Functions)
+### @color[#e49436](Higher-Order Functions)
 
 Let's think of a function that format currencies values
 
@@ -1876,7 +1882,7 @@ And it should format it to $3120,90
 Or if you send it '£', '.' and 1009 then -> £10.09
 
 ---
-### @color[#e49436](Hiher-Order Functions)
+### @color[#e49436](Higher-Order Functions)
 
 ```js
 const formatCurrency = function(currencySymbol, decimalSeparator) {
@@ -1894,7 +1900,7 @@ const formatCurrency = function(currencySymbol, decimalSeparator) {
  //Now we can use getTashlum to format values
 ```
 ---
-### @color[#e49436](Hiher-Order Functions)
+### @color[#e49436](Higher-Order Functions)
 
 So basically we can combine any sort of logic to our demand
 
