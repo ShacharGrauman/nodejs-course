@@ -1918,4 +1918,4 @@ returning [1, 2, 3, 4, 5, 6]
 
 Use concat
 
----?image=assets/images/grauman-at-wobi.jpg
+---?image=assets/images/grauman-at-wobi.png
