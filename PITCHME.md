@@ -1,3 +1,6 @@
+---?image=assets/images/grauman-at-wobi.png
+
+---
 # Introduction
 
 Our Group: 
