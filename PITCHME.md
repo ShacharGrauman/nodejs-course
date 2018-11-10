@@ -1009,7 +1009,7 @@ Solution:
 
 ```js
 const person = {
-    firstName: '',
+    firstName: '',.
     lastName: '',
     age: 0,
     email: ''
@@ -1667,7 +1667,32 @@ const result = await Promise.race([fetch(url1), fetch(url2)]);
   .then(res => res.json());
 }
 ```
+---
+### @color[#e49436](Generators)
 
+#### Generators enable us to pause the control flow and resume it when needed
+#### In contrast to regular procedural flow where flow is blocked until all data is constructed
+#### With generators, data can be consumed in chunks, with full control of the consumer
 
+---
+### @color[#e49436](Generators)
 
+Let say we have an array of 100 users, and we're searching for user with id 105595.
+
+We can construct a function to retrieve'em all like so
+```js
+function getUsers(){
+  //Users from somewhere
+  const users = [{id:54520, name: 'Jack'}, {id:32021, name: 'Lori'}, {id:105595, name: 'Shahar'}, 
+                 {id:87547, name: 'Moses'}, {id:965412, name: 'Honos'}/*, ....*/];
+  return users;
+}
+
+for(let user of getUsers()){
+  if(user.id == 105595){
+    console.log(`Found userid ${user.id} - ${user.name}`);
+    break;
+  }
+}
+```
 ---
