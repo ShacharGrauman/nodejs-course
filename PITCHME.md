@@ -1412,6 +1412,8 @@ console.log('Promise done');
 ```js
 const promise = new Promise((resolve, reject) => {
   throw new Error('OMG!');
+  //Same as 
+  await Promise.reject(new Error("OMG!"));
 });
 console.log('Promise fired');
 promise
@@ -1427,14 +1429,107 @@ async function func() {
   return 42;
 }
 ```
-- The word *async* means the function **always** returns a promise
+- The word @color[#e49436](async) means the function **always** returns a promise
 - If the code returns non-promise
-  - Then it's being wrapped into a *resolved promise* with that value (return Promise.resolve(42))
+  - Then it's being wrapped into a *resolved promise* with that value (*return Promise.resolve(42)*)
 
 ```js
-func().then(console.log); // 42```
+func().then(console.log); // 42
 ```
 ---
+### @color[#e49436](Promise) - async/await
+
+- Inside *async* function we can call some promise
+- @color[#e49436](await) makes JS wait until that promise settles
+- @color[#e49436](await) can be used **only** inside *async* function
+
+```js
+async function func() {
+
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve(42), 1000);
+  });
+
+  console.log('Promise done: ', await promise);
+}
+
+func();
+```
+
+---
+### @color[#e49436](Promise) - async/await
+
+- await awaits thenable object
+- You can create your own object with then compatible function
+
+```js
+class Student {
+  constructor(name) {
+    this.name = name;
+  }
+  then(resolve, reject) {
+    setTimeout(() => resolve(`Student name: ${this.name}`), 500);
+  }
+};
+
+(async () => {
+  const result = await new Student('Shahar');
+  alert(result);
+})();
+```
+
+---
+### @color[#e49436](Promise) - async/await
+
+Class method can by async as well
+
+```js
+class Student {
+  constructor(name) {
+    this.name = name;
+  }
+  async hold() {
+    return `Student name: ${this.name}`;
+    //Or return Promise.resolve(`Student name: ${this.name}`);
+    //Or return await some promise
+  }
+};
+
+new Student('Shahar')
+    .hold()
+    .then(console.log);
+
+```
+
+---
+### @color[#e49436](Promise) - async/await
+
+What's great about this is Error handling: is so similar to synchronous coding!
+
+```js
+async () => {
+  try {
+    const response = await fetch('some url');
+    const user = await response.json();
+  } catch(err) {
+    //catches errors either of fetch or response.json
+    alert(err);
+  }
+}
+```
+```js
+async function func() {
+  const response = await fetch('bad url');
+  //...
+}
+// func() becomes a rejected promise
+func().catch(err => {});
+```
+
+---
+
+
+
 ### @color[#e49436](Promise) - Ex
 
 @size[0.5em](1 - Extract data from Github public repositories)
