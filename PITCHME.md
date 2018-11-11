@@ -22,6 +22,39 @@ https://www.grauman.co.il
 ---
 #### @color[#e49436](ECMAScript and JavaScript Engines)
 
+- JavaScript came to earth in Netscape - 1993
+- They released Mosaic - first Web browser
+- 1994 - Netscape was released
+  - Internal codename - Mozilla
+- May 1995 - Brendan Eich, Netscape, wrote a proposal prototype of a scripting language to be embedded inside Netscape
+- Named Mocha, but officialy LiveScript (Netscape 2.0)
+- December 1995 - Renamed to JavaScript
+
+---
+#### @color[#e49436](ECMAScript and JavaScript Engines)
+
+- Same December '95 - Netscape Enterprise Server
+  - Server-Side scripting! (Implementation of the language)
+- 1996 - Microsoft reversed-engineered Netscape's JS - JScript
+  - Internet Explorer 3
+  - Used in their IIS servers
+- The Browser Wars came
+  - "Best viewed in Netscape/Internet Explorer" 
+
+---
+#### @color[#e49436](ECMAScript and JavaScript Engines)
+
+- 1997 - ECMA-262 first standard
+- 1998 - ECMAScript 2 
+- 1999 - ECMAScript 3
+- In the meantime - Blood Shade 
+- 2005 - Ajax
+  - Big explosion of jQuery, Dojo, MooTools...
+- 2009 - ECMAScript 5
+- 2015 ECMAScript 6 (ECMAScript 2015 / ES6)
+- 2016 ECMAScript 7 (ECMAScript 2016 / ES7)
+- 2017 ECMAScript 8 (ECMAScript 2016 / ES8)
+
 ---
 #### @color[#e49436](V8)
 
