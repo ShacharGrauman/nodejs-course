@@ -34,12 +34,13 @@ https://www.grauman.co.il
 #### @color[#e49436](ECMAScript and JavaScript Engines)
 
 - Same December '95 - Netscape Enterprise Server
-  - Server-Side scripting! (Implementation of the language)
+  - LiveWire Pro Web, Server-Side scripting!
 - 1996 - Microsoft reversed-engineered Netscape's JS - JScript
   - Internet Explorer 3
   - Used in their IIS servers
 - The Browser Wars came
   - "Best viewed in Netscape/Internet Explorer" 
+- So before her last breath, Netscape initiated the standard
 
 ---
 #### @color[#e49436](ECMAScript and JavaScript Engines)
@@ -54,6 +55,40 @@ https://www.grauman.co.il
 - 2015 ECMAScript 6 (ECMAScript 2015 / ES6)
 - 2016 ECMAScript 7 (ECMAScript 2016 / ES7)
 - 2017 ECMAScript 8 (ECMAScript 2016 / ES8)
+
+---
+#### @color[#e49436](Node.js)
+- A runtime executes JavaScript outside of a browser
+- Written in 2009 - By Ryan Dahl
+  - Google's V8, Event Loop, low-level I/O API
+- 2010 - NPM
+- 2011 Node.js for Windows (Microsoft & Joyent)
+- io.js - a fork of node.js
+  - keep io.js up to date with latest V8
+- 2015 - Node.js v0.12 + io.js v3.3 = Node v4.0
+
+---
+#### @color[#e49436](Node.js)
+
+- Is primarily used to build Web servers
+- Has numerous modules for various core functionalities
+  - File System I/O
+  - Networking
+  - Buffers & Streams
+  - Cryptography
+
+---
+#### @color[#e49436](Node.js)
+
+- The biggest difference between Node.js and (ASP/PHP...)
+  - Most functions in PHP block
+  - Node.js functions are Non-Blocking
+
+- Has and Event-Driven architecture
+  - Asynchronous I/O
+  - Optimized throughput
+  - Optimized scalability
+  - Real-Time web applications
 
 ---
 #### @color[#e49436](V8)
