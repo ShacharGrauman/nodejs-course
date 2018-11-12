@@ -133,12 +133,15 @@ Can be standalone
 ![standalone](assets/images/v8-standalone.png)
 @snapend
 
+@snap[east sidebar]
+
 We can add our own implementations
 
 For example, 
 ```js 
     spit('Whats Up?')
 ```
+@snapend
 
 
 ---
