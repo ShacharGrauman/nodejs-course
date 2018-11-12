@@ -81,7 +81,7 @@ https://www.grauman.co.il
 #### @color[#e49436](Node.js)
 
 - The biggest difference between Node.js and (ASP/PHP...)
-  - Most functions in PHP block
+  - Most functions in them block
   - Node.js functions are Non-Blocking
 
 - Has and Event-Driven architecture
@@ -91,7 +91,36 @@ https://www.grauman.co.il
   - Real-Time web applications
 
 ---
+#### @color[#e49436](Node.js)
+
+- Event-Driven programming
+  - No more threads!
+  - using callbacks to signal a task completion
+
+- Uses Google V8 JavaScript engine
+  - Extremely fast
+
+---
 #### @color[#e49436](V8)
+
+- Released in 2008
+- Written in C++
+  - Compiles JS to native machine code
+- Compiled code ia additionally optimized
+  - and re-optimized at runtime
+- Consists of Interpreter (Ignition) and optimizing compiler (TurboFan)
+  - Replaced Full-Codegen and Crankshaft
+
+---
+#### @color[#e49436](V8)
+
+### JavaScript
+### ||
+### C/C++
+### ||
+### Assembly Language
+### ||
+### Machine Language
 
 ---
 #### @color[#e49436](The V8 C++ Side)
