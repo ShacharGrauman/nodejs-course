@@ -123,6 +123,8 @@ https://www.grauman.co.il
 #### Machine Language
 
 ---
+@transition[none]
+
 ### @color[#e49436](V8)
 
 @snap[north-west]
