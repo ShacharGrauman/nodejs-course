@@ -134,9 +134,7 @@ Can be standalone
 @snapend
 
 @snap[east sidebar]
-
 We can add our own implementations
-
 For example, 
 ```js 
     spit('Whats Up?')
