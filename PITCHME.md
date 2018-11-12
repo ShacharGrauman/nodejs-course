@@ -125,7 +125,21 @@ https://www.grauman.co.il
 ---
 ### @color[#e49436](V8)
 
-![Can be standalone](assets/images/v8-standalone.png)
+@snap[north-west]
+Can be standalone
+@snapend
+
+@snap[west sidebar]
+![standalone](assets/images/v8-standalone.png)
+@snapend
+
+We can add our own implementations
+
+For example, 
+```js 
+    spit('Whats Up?')
+```
+
 
 ---
 ### @color[#e49436](V8) - JavaScript Engine
