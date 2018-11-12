@@ -125,7 +125,7 @@ https://www.grauman.co.il
 ---
 @transition[none]
 
-@snap[midpoint]
+@snap[north]
 ### @color[#e49436](V8)
 @snapend
 
@@ -133,18 +133,17 @@ https://www.grauman.co.il
 Can be standalone
 @snapend
 
-@snap[west sidebar]
+@snap[south west]
 ![standalone](assets/images/v8-standalone.png)
 @snapend
 
-<!-- @snap[east sidebar]
+@snap[east]
 We can add our own implementations
-For example, 
-```js 
-    spit('Whats Up?')
-```
-@snapend -->
+For example 
 
+spit('Whats Up?')
+
+@snapend
 
 ---
 ### @color[#e49436](V8) - JavaScript Engine
