@@ -112,15 +112,15 @@ https://www.grauman.co.il
   - Replaced Full-Codegen and Crankshaft
 
 ---
-#### @color[#e49436](V8)
+### @color[#e49436](V8)
 
-### JavaScript
-### ||
-### C/C++
-### ||
-### Assembly Language
-### ||
-### Machine Language
+#### JavaScript
+#### ||
+#### C/C++
+#### ||
+#### Assembly Language
+#### ||
+#### Machine Language
 
 ---
 #### @color[#e49436](The V8 C++ Side)
