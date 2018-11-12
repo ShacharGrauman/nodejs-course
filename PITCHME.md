@@ -112,7 +112,7 @@ https://www.grauman.co.il
   - Replaced Full-Codegen and Crankshaft
 
 ---
-### @color[#e49436](V8)
+### @color[#e49436](V8) - JavaScript Engine
 
 #### JavaScript
 #### ||
@@ -123,6 +123,23 @@ https://www.grauman.co.il
 #### Machine Language
 
 ---
+### @color[#e49436](V8)
+
+![Can be standalone](assets/images/v8-standalone.png)
+
+---
+### @color[#e49436](V8) - JavaScript Engine
+
+Google - V8 (Chrome, Node.js)
+Microsoft - Chakra (Edge)
+Mozilla - SpiderMonkey (FireFox)
+
+Rhino, JavaScriptCore...
+
+All based on ECMAScript standard
+---
+
+
 #### @color[#e49436](The V8 C++ Side)
 
 ---
