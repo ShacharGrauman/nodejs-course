@@ -125,7 +125,9 @@ https://www.grauman.co.il
 ---
 @transition[none]
 
+@snap[midpoint]
 ### @color[#e49436](V8)
+@snapend
 
 @snap[north-west]
 Can be standalone
@@ -135,13 +137,13 @@ Can be standalone
 ![standalone](assets/images/v8-standalone.png)
 @snapend
 
-@snap[east sidebar]
+<!-- @snap[east sidebar]
 We can add our own implementations
 For example, 
 ```js 
     spit('Whats Up?')
 ```
-@snapend
+@snapend -->
 
 
 ---
