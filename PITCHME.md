@@ -1350,6 +1350,7 @@ let student = new Student('Ace', 25, 'JavaScript');
 student.details();
 
 Student.prototype.details = function(){
+    //Using delegation to parent
     Person.prototype.details.call(this);
     console.log(`Studying ${this.course}`);
 };
@@ -1391,14 +1392,14 @@ Objects of B uses now the shadowing func
 ```js
 var a = { a: 42 };
 var b = Object.create(a);
-a.a; // 42
-b.a; // 42
-a.hasOwnProperty('a'); // true
-b.hasOwnProperty('a'); // false
-b.a++; // Watch out! implicit shadowing!
-a.a; // 42
-b.a; // 43
-b.hasOwnProperty('a'); // true
+a.a;
+b.a;
+a.hasOwnProperty('a');
+b.hasOwnProperty('a');
+b.a++;
+a.a;
+b.a;
+b.hasOwnProperty('a');
 ```
 
 ---
@@ -1415,7 +1416,7 @@ console.log(arr); //['b','d','a','c','f', 'e',]
 ```
 
 ---
-### @color[#e49436](Prototype) - Common practice
+### @color[#e49436](Prototype)
 
 ```js
 Array.prototype.shuffle = function(){
