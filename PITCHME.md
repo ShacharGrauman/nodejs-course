@@ -161,15 +161,52 @@ It reads the JS code and convert it to machine code
 ---
 #### @color[#e49436](The V8 C++ Side)
 
+Node Include v8
+
+![node-include-v8](assets/images/node/node-include-v8.png)
+
+---
+#### @color[#e49436](The V8 C++ Side)
+
+Built-In Json Parser
+
 ![json-cpp](assets/images/node/json-parser-cpp.png)
 
 ---
 #### @color[#e49436](The V8 C++ Side)
 
+Built-In Boolean
+
 ![boolean-cpp](assets/images/node/boolean-cpp.png)
 
 ---
+#### @color[#e49436](The V8 C++ Side)
+
+Built-In Date
+
+![date-cpp](assets/images/node/date-cpp.png)
+
+
+---
 #### @color[#e49436](The V8 JavaScript Side)
+
+fs module
+
+![date-cpp](assets/images/node/fs-js.png)
+
+---
+#### @color[#e49436](The V8 JavaScript Side)
+
+http module
+
+![date-cpp](assets/images/node/http-js.png)
+
+---
+#### @color[#e49436](The V8 JavaScript Side)
+
+path module
+
+![date-cpp](assets/images/node/path-js.png)
 
 ---
 #### @color[#e49436](Node Modules and require)
@@ -187,6 +224,10 @@ It reads the JS code and convert it to machine code
 #### @color[#e49436](Event Loop)
 
 
+---
+#### @color[#e49436](Event Loop)
+
+![date-cpp](assets/images/eventloop/event-loop.png)
 
 
 ---
