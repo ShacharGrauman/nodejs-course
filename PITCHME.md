@@ -163,28 +163,28 @@ It reads the JS code and convert it to machine code
 
 Node Include v8
 
-![node-include-v8](assets/images/node/node-include-v8.png)
+![node-include-v8](assets/images/node-intro/node-include-v8.png)
 
 ---
 #### @color[#e49436](The V8 C++ Side)
 
 Built-In Json Parser
 
-![json-cpp](assets/images/node/json-parser-cpp.png)
+![json-cpp](assets/images/node-intro/json-parser-cpp.png)
 
 ---
 #### @color[#e49436](The V8 C++ Side)
 
 Built-In Boolean
 
-![boolean-cpp](assets/images/node/boolean-cpp.png)
+![boolean-cpp](assets/images/node-intro/boolean-cpp.png)
 
 ---
 #### @color[#e49436](The V8 C++ Side)
 
 Built-In Date
 
-![date-cpp](assets/images/node/date-cpp.png)
+![date-cpp](assets/images/node-intro/date-cpp.png)
 
 
 ---
@@ -192,21 +192,21 @@ Built-In Date
 
 fs module
 
-![date-cpp](assets/images/node/fs-js.png)
+![date-cpp](assets/images/node-intro/fs-js.png)
 
 ---
 #### @color[#e49436](The V8 JavaScript Side)
 
 http module
 
-![date-cpp](assets/images/node/http-js.png)
+![date-cpp](assets/images/node-intro/http-js.png)
 
 ---
 #### @color[#e49436](The V8 JavaScript Side)
 
 path module
 
-![date-cpp](assets/images/node/path-js.png)
+![date-cpp](assets/images/node-intro/path-js.png)
 
 ---
 #### @color[#e49436](Node Modules and require)
@@ -231,7 +231,7 @@ NodeJS uses this standard - how code modules should be structured
 ---
 #### @color[#e49436](Node Modules and require)
 
-We use require('<module-name>');
+We use require('module-name');
 
 If it's my module then we add ./ for same directory
 
@@ -252,12 +252,14 @@ var hello = function() {
 ```
 app.js
 ```js
-require('./hello');
+require('./hello'); //Default to .js files
 hello();
 ```
 
 ---
 #### @color[#e49436](Node Modules and require)
+
+Exporting our module
 
 hello.js
 ```js
@@ -275,6 +277,13 @@ hello();
 ---
 #### @color[#e49436](Node Modules and require)
 
+Module.prototype.require
+
+![date-cpp](assets/images/node-intro/module-loader.png)
+
+---
+#### @color[#e49436](Node Modules and require)
+
 ```js
 (function (exports, require, module, __filename, __dirname) { 
   var hello = function(){
@@ -284,10 +293,52 @@ hello();
   module.exports = hello;
 });
 ```
-![date-cpp](assets/images/node/require-module-wrapper.png)
+![date-cpp](assets/images/node-intro/require-module-wrapper.png)
+
+---
+#### @color[#e49436](Node Modules and require)
+
+- What module loader actually does is 
+- running my code inside a wrapper function
+- Giving me a module variable (also __dirname)
+- And I'm attaching properties to it's export object
+- So require returns module.exports
 
 ---
 #### @color[#e49436](Modules Patterns)
+
+We can export with several techniques
+
+- A single function
+
+```js
+module.exports = function() {
+    //...
+}
+```
+```js
+let func = require('./module');
+func();
+```
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- Add it to exports
+
+```js
+module.exports.func = function(){
+    //...
+}
+```
+```js
+let mod = require('./module');
+mod.hello();
+```
+```js
+let hello = require('./module').hello;
+hello();
+```
 
 ---
 #### @color[#e49436](EventEmitter)
