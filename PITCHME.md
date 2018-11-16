@@ -211,6 +211,81 @@ path module
 ---
 #### @color[#e49436](Node Modules and require)
 
+We saw how to create modules via Closures
+
+Module encapsulates internal data
+
+Module exports a public API
+
+Module is a reusable block of code
+
+---
+#### @color[#e49436](Node Modules and require)
+
+CommonJS
+
+Is a project with the goal of specifying an ecosystem for JavaScript outside the browser
+
+NodeJS uses this standard - how code modules should be structured
+
+---
+#### @color[#e49436](Node Modules and require)
+
+We use require('<module-name>');
+
+If it's my module then we add ./ for same directory
+
+require('./my-module');
+
+If it's built-in one we omit the ./
+
+require('fs');
+
+---
+#### @color[#e49436](Node Modules and require)
+
+hello.js
+```js
+var hello = function() {
+    console.log('Hello');
+}
+```
+app.js
+```js
+require('./hello');
+hello();
+```
+
+---
+#### @color[#e49436](Node Modules and require)
+
+hello.js
+```js
+var hello = function() {
+    console.log('Hello');
+}
+module.exports = hello;
+```
+app.js
+```js
+require('./hello');
+hello();
+```
+
+---
+#### @color[#e49436](Node Modules and require)
+
+```js
+(function (exports, require, module, __filename, __dirname) { 
+  var hello = function(){
+    console.log('Hello');
+  }
+
+  module.exports = hello;
+});
+```
+![date-cpp](assets/images/node/require-module-wrapper.png)
+
 ---
 #### @color[#e49436](Modules Patterns)
 
