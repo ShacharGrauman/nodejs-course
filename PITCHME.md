@@ -125,7 +125,7 @@ https://www.grauman.co.il
 ---
 ### @color[#e49436](V8)
 
-@size[0.5em](Can be standalone), or be embedded @size[0.5em](We can add our own implementations: spit('Whats Up?')) 
+@size[0.5em](Can be standalone, or be embedded. We can add our own implementations: spit('Whats Up?')) 
 
 ![standalone](assets/images/v8-standalone.png)
 
@@ -139,10 +139,15 @@ Mozilla - SpiderMonkey (FireFox)
 Rhino, JavaScriptCore...
 
 All based on ECMAScript standard
+
 ---
-
-
 #### @color[#e49436](The V8 C++ Side)
+
+Node.js in itself is a C++ implementation of a V8 engine 
+
+Allowing server side programming and networking applications
+
+https://github.com/v8/v8/blob/master/samples/shell.cc
 
 ---
 #### @color[#e49436](The V8 JavaScript Side)
