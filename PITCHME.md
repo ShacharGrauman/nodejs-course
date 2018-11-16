@@ -166,7 +166,7 @@ It reads the JS code and convert it to machine code
 ---
 #### @color[#e49436](The V8 C++ Side)
 
-![boolean-cpp](assets/images/node/boolean-cpp.jpg)
+![boolean-cpp](assets/images/node/boolean-cpp.png)
 
 ---
 #### @color[#e49436](The V8 JavaScript Side)
