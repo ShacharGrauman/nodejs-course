@@ -150,6 +150,25 @@ Allowing server side programming and networking applications
 https://github.com/v8/v8/blob/master/samples/shell.cc
 
 ---
+#### @color[#e49436](The V8 C++ Side)
+
+If we dive in the source code of v8
+
+We can see HUGE C++ implementations of the ECMAScript standatd
+
+It reads the JS code and convert it to machine code
+
+---
+#### @color[#e49436](The V8 C++ Side)
+
+![standalone](assets/images/node/json-parser-cpp.jpg)
+
+---
+#### @color[#e49436](The V8 C++ Side)
+
+![standalone](assets/images/node/boolean-cpp.jpg)
+
+---
 #### @color[#e49436](The V8 JavaScript Side)
 
 ---
