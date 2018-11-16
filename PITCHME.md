@@ -125,13 +125,9 @@ https://www.grauman.co.il
 ---
 ### @color[#e49436](V8)
 
-Can be standalone
+@size[0.5em](Can be standalone), or be embedded @size[0.5em](We can add our own implementations: spit('Whats Up?')) 
 
 ![standalone](assets/images/v8-standalone.png)
-
-@size[0.5em](We can add our own implementations) 
-
-spit('Whats Up?')
 
 ---
 ### @color[#e49436](V8) - JavaScript Engine
