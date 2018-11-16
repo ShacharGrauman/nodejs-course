@@ -161,12 +161,12 @@ It reads the JS code and convert it to machine code
 ---
 #### @color[#e49436](The V8 C++ Side)
 
-![standalone](assets/images/node/json-parser-cpp.jpg)
+![json-cpp](assets/images/node/json-parser-cpp.jpg)
 
 ---
 #### @color[#e49436](The V8 C++ Side)
 
-![standalone](assets/images/node/boolean-cpp.jpg)
+![boolean-cpp](assets/images/node/boolean-cpp.jpg)
 
 ---
 #### @color[#e49436](The V8 JavaScript Side)
