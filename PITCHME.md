@@ -84,7 +84,7 @@ https://www.grauman.co.il
   - Most functions in them block
   - Node.js functions are Non-Blocking
 
-- Has and Event-Driven architecture
+- Has an Event-Driven architecture
   - Asynchronous I/O
   - Optimized throughput
   - Optimized scalability
@@ -123,27 +123,15 @@ https://www.grauman.co.il
 #### Machine Language
 
 ---
-@transition[none]
-
-@snap[north-west]
 ### @color[#e49436](V8)
-@snapend
 
-@snap[west]
 Can be standalone
-@snapend
 
-@snap[west span-50]
 ![standalone](assets/images/v8-standalone.png)
-@snapend
 
-@snap[east span-50]
-@size[0.5em](We can add our own implementations
-For example) 
+@size[0.5em](We can add our own implementations) 
 
 spit('Whats Up?')
-
-@snapend
 
 ---
 ### @color[#e49436](V8) - JavaScript Engine
