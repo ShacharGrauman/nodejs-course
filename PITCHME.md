@@ -842,6 +842,24 @@ In order to write better code and cope with performance issues
 
 ![event-loop-node.cc](assets/images/eventloop/event-loop-node.cc.png)
 
+---
+#### @color[#e49436](Event Loop)
+
+@ol
+- The event loop is initialized
+- Our code runs entirely and exits to the terminal, unless
+- There are task that is need to be ran (in each loop *tick*):
+- Any pending timers
+- Any pending OS task (For example: http server listening)
+- Any pending long running operations (For example: read file)
+- Each type of task is managed like in a queue array
+- Event loop is paused before next *tick*
+@olend
+
+---
+#### @color[#e49436](Event Loop)
+
+![event-loop-tick](assets/images/eventloop/event-loop-tick.png)
 
 
 ---
