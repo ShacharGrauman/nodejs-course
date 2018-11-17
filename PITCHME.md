@@ -650,9 +650,8 @@ console.table([
 #### @color[#e49436](Console) - table
 
 ```js
-function Person(firstName, lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+function Person(fn, ln) {
+    this.firstName = fn; this.lastName = ln;
 }
 var grauman = {
     mother: new Person("Hadassa", "Grauman"),
@@ -669,6 +668,34 @@ console.table(grauman);
 //│ daughter │  'Gaya'   │ 'Grauman' │
 //└──────────┴───────────┴───────────┘
 ```
+
+---
+#### @color[#e49436](Console) - time
+
+```js
+var i = 0;
+function long(){
+    let limit = i + 1E7;
+    for(; i < limit; i++){}
+    return i;
+}
+console.time('long'); //label
+console.timeLog('long', 'elapsed, value ', long());
+console.timeLog('long', 'elapsed, value ', long());
+console.timeEnd('long');
+//output
+//long: 32.468ms elapsed, value  10000000
+//long: 67.950ms elapsed, value  20000000
+//long: 69.131ms
+```
+
+---
+#### @color[#e49436](Console) - trace
+
+- Outputs the call stack trace
+
+![console-trace](assets/images/node-intro/console/trace.png)
+
 ---
 #### @color[#e49436](EventEmitter)
 
