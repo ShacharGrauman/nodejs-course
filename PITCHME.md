@@ -209,6 +209,38 @@ path module
 ![date-cpp](assets/images/node-intro/path-js.png)
 
 ---
+#### @color[#e49436](Console)
+
+```js
+const person = {
+    details:{
+        age:34, name:'shahar', 
+        address:{
+            city:'Karkur', 
+            street:{
+                num:1
+            }
+        }
+    }
+};
+//non-enumerable
+Object.defineProperty(person, 'zip', { value: '123456' });
+
+console.dir(person)// default depth:2
+console.dir(person, {showHidden:true, depth:3})
+//output
+//{ details:
+//   { age: 34,
+//     name: 'shahar',
+//     address: { city: 'Karkur', street: [Object] } } }
+//{ details:
+//   { age: 34,
+//     name: 'shahar',
+//     address: { city: 'Karkur', street: { num: 1 } } },
+//  [zip]: '123456' }
+```
+
+---
 #### @color[#e49436](Node Modules and require)
 
 We saw how to create modules via Closures
@@ -574,7 +606,44 @@ readline.question(quiz, (solution) => {
     - and its exports object is provided to the first.js module
 
 ---
+#### @color[#e49436](Modules Patterns) - ES6 modules
+
+- Right now Node not fully supports es6 modules
+  - Requires –experimental-modules flag
+  - .js should be renamed to .mjs
+  - No metavariables such as __dirname and __filename
+
+It's not baked-in yet so don't use it for now
+
+
+---
+#### @color[#e49436](Modules Patterns) - ES6 modules
+
+```js
+//my-module.mjs
+const X = 2.222;
+const Ctor = function(lala){
+    this.lala = lala;
+}
+export { Ctor, X };
+
+//app.js
+import { X as constant, Ctor } from './my-module.mjs';
+console.log(constant, new Ctor('lala').lala);
+
+//node --experimental-modules .\my-module.mjs
+//>2.222 'lala'
+```
+
+---
 #### @color[#e49436](EventEmitter)
+
+- Events can be split into 2 parts:
+  - The C++ core side (libuv)
+    - Reading a file, receive data from internet...
+  - The JS core side
+    - Implemented by Node's EventEmitter
+- libuv interacts with Node implementation
 
 ---
 #### @color[#e49436](EventEmitter) - inherit
