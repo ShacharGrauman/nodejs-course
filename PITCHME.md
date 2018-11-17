@@ -846,7 +846,7 @@ In order to write better code and cope with performance issues
 #### @color[#e49436](Event Loop) - High Overview
 
 @ol
-- @size[0.7em](The event loop is initialized)
+- @size[0.6em](The event loop is initialized)
 - @size[0.6em](Our code runs entirely and exits to the terminal, unless)
 - @size[0.6em](There are task that is need to be ran, in each loop *tick*):
 - @size[0.6em](Any pending timers)
@@ -861,6 +861,19 @@ In order to write better code and cope with performance issues
 
 ![event-loop-tick](assets/images/eventloop/event-loop-tick.png)
 
+---
+#### @color[#e49436](Event Loop) - High Overview
+
+@ol
+- @size[0.6em](Node checks if any pending timers, setTimeout/setInterval, are ready to be called)
+- @size[0.6em](Node checks if any pending OS or long running tasks callbacks should be called)
+- @size[0.6em](Pause a little and continue if)
+  - @size[0.6em](New pending OS task is done)
+  - @size[0.6em](New long running task is done)
+  - @size[0.6em](a timer is complete)
+- @size[0.6em](Check pending timers, call any setImmediate)
+- @size[0.6em](Handle 'close' events)
+@olend
 
 ---
 #### @color[#e49436](Streams & Buffers)
