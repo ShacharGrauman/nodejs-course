@@ -668,6 +668,7 @@ console.table(grauman);
 //│  father  │ 'Shahar'  │ 'Grauman' │
 //│ daughter │  'Gaya'   │ 'Grauman' │
 //└──────────┴───────────┴───────────┘
+```
 ---
 #### @color[#e49436](EventEmitter)
 
