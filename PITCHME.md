@@ -697,14 +697,19 @@ console.timeEnd('long');
 ![console-trace](assets/images/node-intro/console/trace.png)
 
 ---
-#### @color[#e49436](EventEmitter)
+#### @color[#e49436](Node Internals)
 
-- Events can be split into 2 parts:
-  - The C++ core side (libuv)
+- Node can be split into 2 parts:
+  - The C++ core side 
     - Reading a file, receive data from internet...
   - The JS core side
-    - Implemented by Node's EventEmitter
-- libuv interacts with Node implementation via callbacks
+    - The API which we use, that interacts with the C++ side
+- libuv is in the heart of the C++ core
+
+---
+#### @color[#e49436](Node Internals)
+
+![node-architecture](assets/images/node-intro/node-architecture.png)
 
 ---
 #### @color[#e49436](EventEmitter)
