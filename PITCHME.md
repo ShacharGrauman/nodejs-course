@@ -838,22 +838,22 @@ In order to write better code and cope with performance issues
 
 
 ---
-#### @color[#e49436](Event Loop)
+#### @color[#e49436](Event Loop) - node.cc
 
 ![event-loop-node.cc](assets/images/eventloop/event-loop-node.cc.png)
 
 ---
-#### @color[#e49436](Event Loop)
+#### @color[#e49436](Event Loop) - High Overview
 
 @ol
-- The event loop is initialized
-- Our code runs entirely and exits to the terminal, unless
-- There are task that is need to be ran (in each loop *tick*):
-- Any pending timers
-- Any pending OS task (For example: http server listening)
-- Any pending long running operations (For example: read file)
-- Each type of task is managed like in a queue array
-- Event loop is paused before next *tick*
+- @size[0.7em](The event loop is initialized)
+- @size[0.6em](Our code runs entirely and exits to the terminal, unless)
+- @size[0.6em](There are task that is need to be ran, in each loop *tick*):
+- @size[0.6em](Any pending timers)
+- @size[0.6em](Any pending OS task, For example: http server listening)
+- @size[0.6em](Any pending long running operations, For example: read file)
+- @size[0.6em](Each type of task is managed like in a queue array)
+- @size[0.6em](Event loop is paused before next *tick*)
 @olend
 
 ---
