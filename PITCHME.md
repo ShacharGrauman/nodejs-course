@@ -488,6 +488,7 @@ var Person = require('./module');
 let me = new Person('Shahar');
 me.sayYourName();
 ```
+- What do you think?
 
 ---
 #### @color[#e49436](Modules Patterns)
@@ -507,6 +508,42 @@ Remember this?
 exports argument is *module.exports*
 
 They point to the same object
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- So you can **add** properties directly to *exports*
+  - But not reassign it
+- Or just use *module.exports* which is what returned:
+
+```js
+Module._load = function(request, parent, isMain) {
+  //...
+  Module._cache[filename] = module;
+  tryModuleLoad(module, filename);
+  return module.exports;
+};
+```
+
+---
+#### @color[#e49436](Modules Patterns)
+
+Requiring native modules - without path and extention
+
+```js
+const util = require('util');
+const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+const quiz = util.format('%d+%f=', 4, 1.98);  
+readline.question(quiz, (solution) => {
+  console.log(util.format('Your solution to %s%d is: %d', 
+                            quiz, 5.98, solution));  
+  readline.close();
+});
+```
 
 ---
 #### @color[#e49436](EventEmitter)
