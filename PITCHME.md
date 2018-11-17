@@ -543,7 +543,17 @@ readline.question(quiz, (solution) => {
                             quiz, 5.98, solution));  
   readline.close();
 });
+//4+1.98=9.5
+//Your solution to 4+1.98=5.98 is: 9.5
 ```
+
+---
+#### @color[#e49436](Modules Patterns) - Circular require call
+
+#### What happens here?
+
+![date-cpp](assets/images/node-intro/cycle-require.png)
+
 
 ---
 #### @color[#e49436](EventEmitter)
