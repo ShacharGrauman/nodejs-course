@@ -732,11 +732,11 @@ Short Ex - Pub/Sub
     - @size[0.6em](the function will be a listener)
   - @size[0.6em](*emit* will invoke all listeners of that type)
 - @size[0.7em](Users can require your module and register their listeners)
-  - @size[0.6em](For example: myEvent.on('data', myListenerFunc\))
-- When emitting - invoke all listeners
-  - For example: myEvent.emit('data');
-- Enable to pass arguments to the listeners
-  - For example: myEvent.emit('data', 1, 'a');
+  - @size[0.6em](For example: myEvent.on('data', myListenerFunc);
+- @size[0.7em](When emitting - invoke all listeners)
+  - @size[0.6em](For example: myEvent.emit('data');
+- @size[0.7em](Enable to pass arguments to the listeners)
+  - @size[0.7em](For example: myEvent.emit('data', 1, 'a');
 
 ---
 #### @color[#e49436](EventEmitter) - inherit
