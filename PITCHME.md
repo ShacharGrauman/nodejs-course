@@ -209,38 +209,6 @@ path module
 ![date-cpp](assets/images/node-intro/path-js.png)
 
 ---
-#### @color[#e49436](Console)
-
-```js
-const person = {
-    details:{
-        age:34, name:'shahar', 
-        address:{
-            city:'Karkur', 
-            street:{
-                num:1
-            }
-        }
-    }
-};
-//non-enumerable
-Object.defineProperty(person, 'zip', { value: '123456' });
-
-console.dir(person)// default depth:2
-console.dir(person, {showHidden:true, depth:3})
-//output
-//{ details:
-//   { age: 34,
-//     name: 'shahar',
-//     address: { city: 'Karkur', street: [Object] } } }
-//{ details:
-//   { age: 34,
-//     name: 'shahar',
-//     address: { city: 'Karkur', street: { num: 1 } } },
-//  [zip]: '123456' }
-```
-
----
 #### @color[#e49436](Node Modules and require)
 
 We saw how to create modules via Closures
@@ -634,6 +602,11 @@ console.log(constant, new Ctor('lala').lala);
 //node --experimental-modules .\my-module.mjs
 //>2.222 'lala'
 ```
+
+---
+#### @color[#e49436](Console) - dir
+
+![console-dir](assets/images/node-intro/console/dir.png)
 
 ---
 #### @color[#e49436](EventEmitter)
