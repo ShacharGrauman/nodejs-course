@@ -749,6 +749,23 @@ Modules uses it to enable listeners get notified upon event
 
 util module has *inherits* method enabling target to get src inheritance
 
+```js
+const EventEmitter = require('events');
+const util = require('util');
+
+class MyPubSub {
+    //...
+}
+util.inherits(MyPubSub, EventEmitter);
+const emitter = new MyPubSub();
+
+emitter.on('msg', () => console.log('Hi event!'));
+emitter.emit('msg');
+```
+
+---
+#### @color[#e49436](EventEmitter) - inherit
+
 Now, with ES6, it is recommended to *extend* EventEmitter rather then using util.inherits
 
 ```js
@@ -759,7 +776,7 @@ class MyPubSub extends EventEmitter {
 }
 const emitter = new MyPubSub();
 
-emitter.on('msg', () => console.log('msg'));
+emitter.on('msg', () => console.log('Hi event!'));
 emitter.emit('msg');
 ```
 
@@ -785,6 +802,17 @@ emitter.emit('msg');
 
 ---
 #### @color[#e49436](Files)
+
+
+---
+#### @color[#e49436](Files) - Ex
+
+Write a function, getting a directory path
+
+The function will print all sub-directories as well the files
+
+![read-dir-recursive](assets/images/files/read-dir-recursive-ex.png)
+
 
 ---
 #### @color[#e49436](Files) - Streams
