@@ -324,7 +324,7 @@ func();
 ---
 #### @color[#e49436](Modules Patterns)
 
-- Add it to exports
+- Add it as a property to exports
 
 ```js
 module.exports.func = function(){
@@ -339,6 +339,29 @@ mod.hello();
 let hello = require('./module').hello;
 hello();
 ```
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- Function Constructor
+
+```js
+function Person() {
+    this.name = 'Shahar';
+    this.sayYourName = function() {
+        console.log(`My name is ${this.name}`);
+    }
+}
+module.exports = new Person();
+```
+```js
+let me = require('./person');
+me.name = 'Lala'; 
+me.sayYourName();
+let him = require('./person');
+him.sayYourName();
+```
+
 
 ---
 #### @color[#e49436](EventEmitter)
