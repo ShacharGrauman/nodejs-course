@@ -700,16 +700,34 @@ console.timeEnd('long');
 #### @color[#e49436](Node Internals)
 
 - Node can be split into 2 parts:
-  - The C++ core side 
+  - The C++ core side (src directory)
     - Reading a file, receive data from internet...
-  - The JS core side
+  - The JS core side (lib directory)
     - The API which we use, that interacts with the C++ side
 - libuv is in the heart of the C++ core
 
 ---
 #### @color[#e49436](Node Internals)
 
-![node-architecture](assets/images/node-intro/node-architecture.png)
+![node-architecture](assets/images/node-intro/architecture/node-architecture.png)
+
+---
+#### @color[#e49436](Node Internals)
+
+We'll examine it by using the encryption library - *crypto*
+
+Using it's **pbkdf2** method to hash strings, mainly passwords
+
+---
+#### @color[#e49436](Node Internals) - Node JS API
+
+![pbkdf2-js](assets/images/node-intro/architecture/pbkdf2-js.png)
+
+---
+#### @color[#e49436](Node Internals) - Node JS to CPP
+
+![pbkdf2-js](assets/images/node-intro/architecture/node-js-to-cpp.png)
+
 
 ---
 #### @color[#e49436](EventEmitter)
