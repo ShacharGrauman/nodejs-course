@@ -716,6 +716,17 @@ console.timeEnd('long');
 ---
 #### @color[#e49436](EventEmitter)
 
+Event emmiter is a fundamental node concept
+
+A lot of it's modules are built on top of this mechanism
+
+The idea is to enable rich Pub/Sub architecture
+
+Modules uses it to enable listeners get notified upon event
+
+---
+#### @color[#e49436](EventEmitter)
+
 ##### Node C++ Event wrapper implementation (fs)
 
 ![node-event-wrapper](assets/images/events/node-event-wrapper.png)
@@ -724,10 +735,8 @@ console.timeEnd('long');
 #### @color[#e49436](EventEmitter) - Ex - Pub/Sub
 
 - @size[0.6em](Create a module named *MyEvent* and expose object with 2 methods)
-  - @size[0.5em](*on* - will receive 2 arguments: type and listener)
-    - @size[0.5em](the string will be the type of the listeners)
-  - @size[0.5em](*emit* - will receive type)
-    - @size[0.5em](*emit* will invoke all listeners of that type)
+  - @size[0.5em](*on* - will receive 2 arguments: type and listener. The string will be the type of the listeners)
+  - @size[0.5em](*emit* - will receive type and invoke all listeners of that type)
 - @size[0.6em](Users can require your module and register their listeners)
   - @size[0.5em](For example: myEvent.on('data', myListenerFunc);
 - @size[0.6em](When emitting - invoke all listeners)
@@ -737,6 +746,22 @@ console.timeEnd('long');
 
 ---
 #### @color[#e49436](EventEmitter) - inherit
+
+util module has *inherits* method enabling target to get src inheritance
+
+Now, with ES6, it is recommended to *extend* EventEmitter rather then using util.inherits
+
+```js
+const EventEmitter = require('events');
+
+class MyPubSub extends EventEmitter {
+    //...
+}
+const emitter = new MyPubSub();
+
+emitter.on('msg', () => console.log('msg'));
+emitter.emit('msg');
+```
 
 ---
 #### @color[#e49436](Event Loop)
