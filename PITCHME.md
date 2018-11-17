@@ -609,6 +609,66 @@ console.log(constant, new Ctor('lala').lala);
 ![console-dir](assets/images/node-intro/console/dir.png)
 
 ---
+#### @color[#e49436](Console) - group
+
+- group increases indentation by 2 spaces
+- groupEnd decreases indentation by 2 spaces
+
+```js
+console.group('a');
+console.group('b');
+console.groupEnd();
+console.group('c');
+console.group('d', 'e');
+console.groupEnd()
+//output
+//a
+//  b
+//  c
+//    d e
+```
+
+---
+#### @color[#e49436](Console) - table
+
+```js
+console.table([
+        { id: 1, name: 'Shahar' }, 
+        { id: 2, name: 'Hanoch' },
+        { id: 3, name: 'Gaya' }]);
+//output
+//┌─────────┬────┬──────────┐
+//│ (index) │ id │   name   │
+//├─────────┼────┼──────────┤
+//│    0    │ 1  │ 'Shahar' │
+//│    1    │ 2  │ 'Hanoch' │
+//│    2    │ 3  │  'Gaya'  │
+//└─────────┴────┴──────────┘
+```
+
+---
+#### @color[#e49436](Console) - table
+
+```js
+function Person(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+}
+var grauman = {
+    mother: new Person("Hadassa", "Grauman"),
+    father: new Person("Shahar", "Grauman"),
+    daughter: new Person("Gaya", "Grauman"),
+};
+console.table(grauman);
+//output
+//┌──────────┬───────────┬───────────┐
+//│ (index)  │ firstName │ lastName  │
+//├──────────┼───────────┼───────────┤
+//│  mother  │ 'Hadassa' │ 'Grauman' │
+//│  father  │ 'Shahar'  │ 'Grauman' │
+//│ daughter │  'Gaya'   │ 'Grauman' │
+//└──────────┴───────────┴───────────┘
+---
 #### @color[#e49436](EventEmitter)
 
 - Events can be split into 2 parts:
