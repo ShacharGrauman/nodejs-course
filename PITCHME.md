@@ -725,7 +725,7 @@ console.timeEnd('long');
 
 Short Ex - Pub/Sub
 
-- Create a module named *MyEvent* and expose object with 2 methods
+- @size[0.5em](Create a module named *MyEvent* and expose object with 2 methods)
   - *on* (registration) and *emit* (invokation)
   - *on* will receive 2 arguments: string and function
     - the string will be the type of the listeners
