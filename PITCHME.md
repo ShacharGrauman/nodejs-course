@@ -872,8 +872,37 @@ In order to write better code and cope with performance issues
   - @size[0.6em](New long running task is done)
   - @size[0.6em](a timer is complete)
 - @size[0.6em](Check pending timers, call any setImmediate)
-- @size[0.6em](Handle 'close' events)
+- @size[0.6em](Handle 'close' events, like readStream.on 'close')
 @olend
+
+---
+#### @color[#e49436](Event Loop) - Single threaded
+
+@ul
+- Node is single threaded
+  - Is it?
+- The event loop runs in a single thread, that's true
+- But some of Node's libraries are NOT single threaded
+  - They run outside of the event loop
+@ulend
+
+---
+#### @color[#e49436](Event Loop) - Single threaded
+
+Let's check that out and get the feeling by using pbkdf2 hashing function
+
+This is a long running operation we can use to our testing
+
+```js
+console.time('hash');
+
+crypto.pbkdf2('password', 'nodejs', 1E5, 512, 'sha512', (err, key) => {
+    if(!err) {
+        console.log(key.toString('hex'));
+        console.timeEnd('hash');
+    }
+})
+```
 
 ---
 #### @color[#e49436](Streams & Buffers)
