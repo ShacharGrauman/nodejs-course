@@ -721,13 +721,32 @@ Using it's **pbkdf2** method to hash strings, mainly passwords
 ---
 #### @color[#e49436](Node Internals) - Node JS API
 
+##### This is the JS API we're using
+
 ![pbkdf2-js](assets/images/node-intro/architecture/pbkdf2-js.png)
+
+
+---
+#### @color[#e49436](Node Internals) - Node JS to CPP API
+
+##### This is the actualy CPP, no JS, code
+
+![pbkdf2-js](assets/images/node-intro/architecture/pbkdf2-js-enable-to-cpp.png)
 
 ---
 #### @color[#e49436](Node Internals) - Node JS to CPP
 
-![pbkdf2-js](assets/images/node-intro/architecture/node-js-to-cpp.png)
+![node-js-to-cpp.png](assets/images/node-intro/architecture/node-js-to-cpp.png)
 
+
+---
+#### @color[#e49436](Node Internals) - Node JS vs. CPP
+
+So whenever we requires modules
+
+Those modules maps to the CPP side
+
+We actually delegating our JS code to the CPP side
 
 ---
 #### @color[#e49436](EventEmitter)
