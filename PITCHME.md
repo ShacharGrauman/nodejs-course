@@ -725,14 +725,14 @@ console.timeEnd('long');
 
 Short Ex - Pub/Sub
 
-- @size[0.5em](Create a module named *MyEvent* and expose object with 2 methods)
-  - *on* (registration) and *emit* (invokation)
-  - *on* will receive 2 arguments: string and function
-    - the string will be the type of the listeners
-    - the function will be a listener
-  - *emit* will invoke all listeners of that type
-- Users can require your module and register their listeners
-  - For example: myEvent.on('data', myListenerFunc)
+- @size[0.7em](Create a module named *MyEvent* and expose object with 2 methods)
+  - @size[0.6em](*on* - registration, and *emit* - invokation)
+  - @size[0.6em](*on* will receive 2 arguments: string and function)
+    - @size[0.6em](the string will be the type of the listeners)
+    - @size[0.6em](the function will be a listener)
+  - @size[0.6em](*emit* will invoke all listeners of that type)
+- @size[0.7em](Users can require your module and register their listeners)
+  - @size[0.6em](For example: myEvent.on('data', myListenerFunc\))
 - When emitting - invoke all listeners
   - For example: myEvent.emit('data');
 - Enable to pass arguments to the listeners
