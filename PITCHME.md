@@ -721,9 +721,7 @@ console.timeEnd('long');
 ![node-event-wrapper](assets/images/events/node-event-wrapper.png)
 
 ---
-#### @color[#e49436](EventEmitter)
-
-Short Ex - Pub/Sub
+#### @color[#e49436](EventEmitter) - Ex - Pub/Sub
 
 - @size[0.7em](Create a module named *MyEvent* and expose object with 2 methods)
   - @size[0.6em](*on* - registration, and *emit* - invokation)
