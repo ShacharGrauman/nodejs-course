@@ -385,6 +385,130 @@ him.sayYourName();
 ```
 
 ---
+#### @color[#e49436](Modules Patterns)
+
+- exports is an object. You can attach it multiple things
+
+```js
+var counter = 0; //private!
+
+function Person() {
+    this.name = 'Shahar';
+    counter++;
+    this.sayYourName = function() { 
+        return `My name is ${this.name}`; 
+    }
+    this.counter = function(){ return counter; }
+}
+function Cat(age){
+    this.age = age || 1;
+    this.meau = function(){ return 'Feed me simor'; }
+}
+
+module.exports.Person = Person;
+module.exports.Cat = Cat;
+```
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- extracting from exports
+
+```js
+const things = require('./module');
+const Person = things.Person;
+const Cat = things.Cat; 
+```
+Or
+```js
+const { Person, Cat } = require('./module');
+```
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- exports using revealing module
+
+```js
+var counter = 0; //private!
+
+function Person() {
+    this.name = 'Shahar';
+    counter++;
+    this.sayYourName = function() { 
+        return `My name is ${this.name}`; 
+    }
+}
+function Cat(age, owner){
+    this.age = age || 1;
+    this.meau = function(){ return `Feed me ${owner || 'simor'}`; }
+}
+
+module.exports = {
+    Person,
+    counter: function(){ return counter; },
+    createCat: function(owner){
+        return new Cat(2, owner);
+    }
+}
+```
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- using revealing module
+
+```js
+const revealed = require('./module');
+
+let p1 = new revealed.Person();
+console.log(p1.sayYourName(), revealed.counter()); 
+
+let kitty = revealed.createCat(p1.name);
+console.log(kitty.meau());
+
+```
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- Using only *exports* instead of *module.exports*
+
+```js
+exports = function Person(name){
+    this.name = name;
+    this.sayYourName = function() { 
+        console.log(`My name is ${this.name}`); 
+    }
+}
+```
+```js
+var Person = require('./module');
+
+let me = new Person('Shahar');
+me.sayYourName();
+```
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- Using only *exports* instead of *module.exports*
+
+Remember this?
+```js
+(function (exports, require, module, __filename, __dirname) { 
+  var hello = function(){
+    console.log('Hello');
+  }
+
+  module.exports = hello;
+});
+```
+exports argument is *module.exports*
+
+They point to the same object
+
+---
 #### @color[#e49436](EventEmitter)
 
 ---
