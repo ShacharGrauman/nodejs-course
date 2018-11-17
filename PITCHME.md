@@ -567,7 +567,7 @@ readline.question(quiz, (solution) => {
 - When app.js loads first.js, 
   - Then first.js in turn loads second.js 
 - At that point, second.js tries to load first.js 
-  - Causing infinite loop
+  - Causing infinite loop @fa[frown-o]
 - In order to prevent that - 
   - An **unfinished** copy of first.js exports object is returned to second.js module
   - second.js then finishes loading
