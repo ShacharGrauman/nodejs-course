@@ -923,6 +923,23 @@ crypto.pbkdf2('password', 'nodejs', 1E5, 512, 'sha512', (err, key) => {
 @size[0.6em](This can be tuned by setting UV_THREADPOOL_SIZE)
 
 ---
+#### @color[#e49436](Event Loop) - OS Async functions
+
+@size[0.6em](Not all internals uses thread pool)
+@size[0.6em](Things like http modules delegates to the low OS level)
+
+@size[0.6em](Take this for example, it takes ~0.250ms)
+```js
+https.request('https://www.walla.co.il/', response => {
+    response.on('data', cunk => {});
+    response.on('end', () => {
+        console.timeLog('http-request');
+    })
+}).end();
+```
+@size[0.6em](6 requests takes ~0.300ms... No thread pool usage...)
+
+---
 #### @color[#e49436](Streams & Buffers)
 
 ---
