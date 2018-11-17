@@ -716,9 +716,27 @@ console.timeEnd('long');
 ---
 #### @color[#e49436](EventEmitter)
 
-##### Node C++ Event wrapper implementation
+##### Node C++ Event wrapper implementation (fs)
 
 ![node-event-wrapper](assets/images/events/node-event-wrapper.png)
+
+---
+#### @color[#e49436](EventEmitter)
+
+Short Ex - Pub/Sub
+
+- Create a module named *MyEvent* and expose object with 2 methods
+  - *on* (registration) and *emit* (invokation)
+  - *on* will receive 2 arguments: string and function
+    - the string will be the type of the listeners
+    - the function will be a listener
+  - *emit* will invoke all listeners of that type
+- Users can require your module and register their listeners
+  - For example: myEvent.on('data', myListenerFunc)
+- When emitting - invoke all listeners
+  - For example: myEvent.emit('data');
+- Enable to pass arguments to the listeners
+  - For example: myEvent.emit('data', 1, 'a');
 
 ---
 #### @color[#e49436](EventEmitter) - inherit
