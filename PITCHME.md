@@ -362,6 +362,27 @@ let him = require('./person');
 him.sayYourName();
 ```
 
+---
+#### @color[#e49436](Modules Patterns)
+
+- Modules are cached. Further requiring returns the same module
+
+```js
+function Person() {
+    this.name = 'Shahar';
+    this.sayYourName = function() {
+        console.log(`My name is ${this.name}`);
+    }
+}
+module.exports = Person;
+```
+```js
+const Person = require('./person');
+let me = new Person();
+me.name = 'Lala';  me.sayYourName();
+let him = new Person();//require('./person');
+him.sayYourName();
+```
 
 ---
 #### @color[#e49436](EventEmitter)
