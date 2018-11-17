@@ -889,9 +889,9 @@ In order to write better code and cope with performance issues
 ---
 #### @color[#e49436](Event Loop) - Single threaded
 
-##### Let's check that out and get the feeling by using pbkdf2 hashing function
+###### Let's check that out and get the feeling by using pbkdf2 hashing function
 
-##### This is a long running operation we can use for our testing
+###### This is a long running operation we can use for our testing
 
 ```js
 console.time('hash');
@@ -903,7 +903,7 @@ crypto.pbkdf2('password', 'nodejs', 1E5, 512, 'sha512', (err, key) => {
     }
 })
 ```
-##### It takes ~1.1 second. What happen if we'll run 2 pbkdf2 functions?
+###### It takes ~1.1 second. What happen if we'll run 2 pbkdf2 functions?
 
 ---
 #### @color[#e49436](Event Loop) - Single threaded
@@ -916,7 +916,9 @@ crypto.pbkdf2('password', 'nodejs', 1E5, 512, 'sha512', (err, key) => {
 ---
 #### @color[#e49436](Event Loop) - libuv Thread Pool
 
+###### The default amount of threads = 4
 ![libuv-threadpool](assets/images/eventloop/libuv-threadpool.png)
+###### This can be tuned by setting UV_THREADPOOL_SIZE
 
 ---
 #### @color[#e49436](Streams & Buffers)
