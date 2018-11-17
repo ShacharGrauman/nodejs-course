@@ -916,11 +916,11 @@ crypto.pbkdf2('password', 'nodejs', 1E5, 512, 'sha512', (err, key) => {
 ---
 #### @color[#e49436](Event Loop) - libuv Thread Pool
 
-###### The default amount of threads = 4
+@size[0.6em](The default amount of threads = 4)
 
 ![libuv-threadpool](assets/images/eventloop/libuv-threadpool.png)
 
-###### This can be tuned by setting UV_THREADPOOL_SIZE
+@size[0.6em](This can be tuned by setting UV_THREADPOOL_SIZE)
 
 ---
 #### @color[#e49436](Streams & Buffers)
