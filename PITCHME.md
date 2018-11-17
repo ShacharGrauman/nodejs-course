@@ -825,11 +825,23 @@ emitter.emit('msg');
 ---
 #### @color[#e49436](Event Loop)
 
+Each Node program has 1 thread running the Event Loop
+
+It's realy important to even partially understand this
+
+In order to write better code and cope with performance issues
 
 ---
 #### @color[#e49436](Event Loop)
 
 ![date-cpp](assets/images/eventloop/event-loop.png)
+
+
+---
+#### @color[#e49436](Event Loop)
+
+![event-loop-node.cc](assets/images/eventloop/event-loop-node.cc.png)
+
 
 
 ---
