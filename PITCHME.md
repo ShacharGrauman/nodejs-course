@@ -704,7 +704,21 @@ console.timeEnd('long');
     - Reading a file, receive data from internet...
   - The JS core side
     - Implemented by Node's EventEmitter
-- libuv interacts with Node implementation
+- libuv interacts with Node implementation via callbacks
+
+---
+#### @color[#e49436](EventEmitter)
+
+C++ Function implementation of a callback within the execution context
+
+![Function-cpp](assets/images/events/Function-cpp.png)
+
+---
+#### @color[#e49436](EventEmitter)
+
+Node C++ Event wrapper implementation
+
+![node-event-wrapper](assets/images/events/node-event-wrapper.png)
 
 ---
 #### @color[#e49436](EventEmitter) - inherit
