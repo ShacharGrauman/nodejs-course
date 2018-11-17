@@ -723,17 +723,17 @@ console.timeEnd('long');
 ---
 #### @color[#e49436](EventEmitter) - Ex - Pub/Sub
 
-- @size[0.7em](Create a module named *MyEvent* and expose object with 2 methods)
-  - @size[0.6em](*on* - will receive 2 arguments: type and listener)
+- @size[0.6em](Create a module named *MyEvent* and expose object with 2 methods)
+  - @size[0.5em](*on* - will receive 2 arguments: type and listener)
     - @size[0.5em](the string will be the type of the listeners)
-  - @size[0.6em](*emit* - will receive type)
+  - @size[0.5em](*emit* - will receive type)
     - @size[0.5em](*emit* will invoke all listeners of that type)
-- @size[0.7em](Users can require your module and register their listeners)
-  - @size[0.6em](For example: myEvent.on('data', myListenerFunc);
-- @size[0.7em](When emitting - invoke all listeners)
-  - @size[0.6em](For example: myEvent.emit('data');
-- @size[0.7em](Enable to pass arguments to the listeners)
-  - @size[0.7em](For example: myEvent.emit('data', 1, 'a');
+- @size[0.6em](Users can require your module and register their listeners)
+  - @size[0.5em](For example: myEvent.on('data', myListenerFunc);
+- @size[0.6em](When emitting - invoke all listeners)
+  - @size[0.5em](For example: myEvent.emit('data')
+- @size[0.6em](Enable to pass arguments to the listeners)
+- Bonus @size[0.6em](implement *single* - a 1-time listener)
 
 ---
 #### @color[#e49436](EventEmitter) - inherit
