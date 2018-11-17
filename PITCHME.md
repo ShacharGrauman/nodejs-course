@@ -744,9 +744,9 @@ Using it's **pbkdf2** method to hash strings, mainly passwords
 
 So whenever we requires modules
 
-Those modules maps to the CPP side
+Those modules are mapped to the CPP side
 
-We actually delegating our JS code to the CPP side
+We actually delegating our JS code to the CPP code
 
 ---
 #### @color[#e49436](EventEmitter)
