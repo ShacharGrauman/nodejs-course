@@ -930,7 +930,7 @@ crypto.pbkdf2('password', 'nodejs', 1E5, 512, 'sha512', (err, key) => {
 
 @size[0.6em](Take this for example, it takes ~0.250ms)
 ```js
-https.request('https://www.walla.co.il/', response => {
+https.request('https://www.grauman.co.il/', response => {
     response.on('data', cunk => {});
     response.on('end', () => {
         console.timeLog('http-request');
@@ -951,14 +951,16 @@ https.request('https://www.walla.co.il/', response => {
 ---
 #### @color[#e49436](Event Loop) - Quick Summary
 
-![quick-summary](assets/images/eventloop/quick-summary.png)
-
 @size[0.5em](Note that any required modules are executed as well)
+
+![quick-summary](assets/images/eventloop/quick-summary.png)
 
 ---
 #### @color[#e49436](Event Loop) - Summary Ex
 
 So let's do a quick summarize exercise:
+
+BEFORE you run, try to understand what should be the output
 
 Create a small program with the following:
 
@@ -968,7 +970,20 @@ Create a small program with the following:
   - Make 4 pbkdf2 calls 
 @olend
 
-BEFORE you run it, try to understand what should the output be
+---
+#### @color[#e49436](Event Loop) - Summary Ex
+
+- @size[0.5em](http will be done by the OS)
+  - @size[0.5em](As soon as it done, it'll be delegated back)
+- @size[0.5em](Thread pool: 1 thread assigned to fs, 3 threads to pbkdf2)
+- @size[0.5em](fs does 2 roundtrips to the HD)
+  - @size[0.5em](It asks for some file statistics, like size)
+  - @size[0.5em](Then it reads the file)
+    - @size[0.5em](In between, the associated thread is freed)
+- @size[0.5em](The 4th pbkdf2 is assigned the free thread)
+  - @size[0.5em](All 4 threads assigned to pbkdf2)
+- @size[0.5em](1 of them finishes so it delegated back to us)
+- @size[0.5em](Then this free one is assigned to the fs, get the statistics and start reading the file because no other job is required)
 
 ---
 #### @color[#e49436](Streams & Buffers)
