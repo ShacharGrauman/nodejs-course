@@ -713,9 +713,11 @@ console.timeEnd('long');
 
 ---?image=assets/images/node-intro/libuv.png?position=center&size=60% 80%
 
-#### @color[#e49436](Node Internals) - libuv
+@transition[none]
 
+@snap[south-east]
 [libuv](https://github.com/libuv/libuv/blob/32cccbc9f00696a4d07fa3b56d8b94ecbebb94a7/src/win/core.c#L506)
+@snapend
 
 ---
 #### @color[#e49436](Node Internals)
