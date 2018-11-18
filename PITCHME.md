@@ -926,7 +926,7 @@ crypto.pbkdf2('password', 'nodejs', 1E5, 512, 'sha512', (err, key) => {
 #### @color[#e49436](Event Loop) - OS Async functions
 
 @size[0.6em](Not all internals uses thread pool)
-@size[0.6em](Things like http modules delegates to the low OS level)
+@size[0.6em](Things like http requests are delegated to the OS)
 
 @size[0.6em](Take this for example, it takes ~0.250ms)
 ```js
@@ -938,6 +938,37 @@ https.request('https://www.walla.co.il/', response => {
 }).end();
 ```
 @size[0.6em](6 requests takes ~0.300ms... No thread pool usage...)
+
+---
+#### @color[#e49436](Event Loop) - OS Async functions
+
+- @size[0.6em](Node and libuv don't have any code for handling the low level http requests)
+- @size[0.6em](So libuv delegates to the underlying OS and waits for a signal)
+  - @size[0.5em](The OS actually does this job and decides whether or not to use threads)
+  - @size[0.5em](No blocking of our JS code)
+  - @size[0.5em](No Thread Pool usage in this case)
+
+---
+#### @color[#e49436](Event Loop) - Quick Summary
+
+![quick-summary](assets/images/eventloop/quick-summary.png)
+
+@size[0.5em](Note that any required modules are executed as well)
+
+---
+#### @color[#e49436](Event Loop) - Summary Ex
+
+So let's do a quick summarize exercise:
+
+Create a small program with the following:
+
+@ol
+  - Get some page from the web
+  - Read some file from your HD
+  - Make 4 pbkdf2 calls 
+@olend
+
+BEFORE you run it, try to understand what should the output be
 
 ---
 #### @color[#e49436](Streams & Buffers)
