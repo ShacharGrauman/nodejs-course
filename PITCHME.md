@@ -990,6 +990,15 @@ Create a small program with the following:
 ---
 #### @color[#e49436](Streams & Buffers)
 
+@size[0.5em](
+@ol
+- http will be done by the OS
+  - As soon as it done, it'll be delegated back
+- Thread pool: 1 thread assigned to fs, 3 threads to pbkdf2
+@olend
+)
+
+
 ---
 #### @color[#e49436](Streams & Buffers) - Encoding
 
