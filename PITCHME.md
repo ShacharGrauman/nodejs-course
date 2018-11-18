@@ -711,7 +711,7 @@ console.timeEnd('long');
 
 ![node-architecture](assets/images/node-intro/architecture/node-architecture.png)
 
----?image=assets/images/node-intro/libuv.png?position=center
+---?image=assets/images/node-intro/libuv.png?position=center&size=60% 80%
 
 #### @color[#e49436](Node Internals) - libuv
 
