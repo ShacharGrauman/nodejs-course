@@ -711,6 +711,12 @@ console.timeEnd('long');
 
 ![node-architecture](assets/images/node-intro/architecture/node-architecture.png)
 
+---?image=assets/images/node-intro/libuv.png?position=center
+
+#### @color[#e49436](Node Internals) - libuv
+
+[libuv](https://github.com/libuv/libuv/blob/32cccbc9f00696a4d07fa3b56d8b94ecbebb94a7/src/win/core.c#L506)
+
 ---
 #### @color[#e49436](Node Internals)
 
@@ -974,7 +980,7 @@ Create a small program with the following:
 #### @color[#e49436](Event Loop) - Summary Ex
 
 
-- @size[0.4em](http will be done by the OS)
+- @size[0.4em](http will be done by the OS system events)
 - @size[0.4em](As soon as it done, it'll be delegated back)
 - @size[0.4em](Thread pool: 1 thread assigned to fs, 3 threads to pbkdf2)
 - @size[0.4em](fs does 2 roundtrips to the HD)
