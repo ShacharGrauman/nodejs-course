@@ -1083,22 +1083,85 @@ Like the 'buffering' while watching a movie. It buffers some data, process it, a
 ---
 #### @color[#e49436](Streams & Buffers) - Buffer
 
+From the Node API docs
+
+![buffer-creation-node-api](assets/images/files/buffer-creation-node-api.png)
 
 
 ---
 #### @color[#e49436](Streams & Buffers) - Typed Arrays
 
+Starting with ES6, JavaScript has Typed Arrays
+```js
+Int8Array();
+Uint8Array();
+Uint8ClampedArray();
+Int16Array();
+Uint16Array();
+Int32Array();
+Uint32Array();
+Float32Array();
+Float64Array();
+```
+@size[0.4em](Now JavaScript has mechanism for reading or manipulating streams of binary data)
 
 ---
-#### @color[#e49436](Files)
+#### @color[#e49436](Streams & Buffers) - Typed Arrays
+
+You rarely be using raw Buffers nor Typed Arrays
+
+They are being used by node, mainly with fs and http
+
+
+---
+#### @color[#e49436](Files) - fs module readFileSync
+
+We'll start by using readFileSync. It returns a Buffer 
+
+![readFileSync](assets/images/files/readFileSync.png)
+
+@size[0.4em](It's intentionaly named ...Sync, because it's blocking)
+
+---
+#### @color[#e49436](Files) - fs module readFile
+
+readFile, on the other hand, is async.
+
+![readFile](assets/images/files/readFile-fs-api.png)
+
+---
+#### @color[#e49436](Files) - fs module
+
+But what happens if the file is big?
+
+Although fs uses buffer asynchronously, it still a memory in the heap
+
+And what if many users are reading this file?
+
+You can end up consuming a lot of memory
+
+---
+#### @color[#e49436](Files) - Streams again
+
+Data is usualy split in chunks and streamed
+
+A chunk is a piece of data being sent through a stream
+
+How does Stream actualy stream chunks?
+
+
+---
+#### @color[#e49436](Files) - Streams again
+
+![Stream](assets/images/files/Stream.png)
 
 
 ---
 #### @color[#e49436](Files) - Ex
 
-Write a function, getting a directory path
+Write a program that print a directory content
 
-The function will print all sub-directories as well the files
+The program will print all sub-directories as well the files
 
 ![read-dir-recursive](assets/images/files/read-dir-recursive-ex.png)
 
