@@ -697,6 +697,27 @@ console.timeEnd('long');
 ![console-trace](assets/images/node-intro/console/trace.png)
 
 ---
+#### @color[#e49436](Console) - Command Line Arguments
+
+Using *process.argv* - Array of the node execution, the file executed and the parameters
+
+Or we can install *minimist* with better tooling
+
+![console-arguments](assets/images/node-intro/console/arguments.png)
+
+---
+#### @color[#e49436](Console) - Colors
+
+Installing *chalk* can give us colors to the cmd
+
+![console-colors](assets/images/node-intro/console/colors.png)
+
+---
+#### @color[#e49436](Console) - Progress
+
+![console-progress](assets/images/node-intro/console/progress.png)
+
+---
 #### @color[#e49436](Node Internals)
 
 - Node can be split into 2 parts:
@@ -994,13 +1015,75 @@ Create a small program with the following:
 - @size[0.4em](1 of them finishes so it delegated back to us)
 - @size[0.4em](Then this free one is assigned to the fs, get the statistics and start reading the file because no other job is required)
 
----
-#### @color[#e49436](Streams & Buffers)
-
-
 
 ---
 #### @color[#e49436](Streams & Buffers) - Encoding
+
+Everything is binary data!
+
+Each character or symbol is represented by a number
+
+@color[#e49436](Character Set) is the way a character is assigned a number
+
+@color[#e49436](Character Encoding) is how much space we store that number
+
+---
+#### @color[#e49436](Streams & Buffers) - Encoding
+
+@color[#e49436](UTF-8) is the dominant encoding on the web
+
+It uses one byte (8 bits) for the first 128 code points
+
+And up to 4 bytes for other characters
+
+The first 128 Unicode code points are the @color[#e49436](ASCII) characters
+
+Which means that @color[#e49436](any ASCII text is also a UTF-8 text)
+
+---
+#### @color[#e49436](Streams & Buffers) - Encoding
+
+JavaScript handles well Character Sets like Unicode
+
+But up to recently, it lacks the ability to handle binary data
+
+This is where Node also expands the boundaries of JavaScript
+
+---
+#### @color[#e49436](Streams & Buffers) - Buffer
+
+A @color[#e49436](Buffer) is a temporary holding spot, limited size, for data
+
+Data that is being moved from one place to another
+
+---
+#### @color[#e49436](Streams & Buffers) - Stream
+
+A @color[#e49436](Stream) is a sequence of data made available over time
+
+Pieces of data that eventually combine into a whole
+
+And may be processed as it streamed
+
+Like stream a movie, instead of downloading it all
+
+---
+#### @color[#e49436](Streams & Buffers) - Buffer & Stream
+
+So as the streaming data flows
+
+It fills a buffer
+
+And then processed
+
+Untill the streaming is done
+
+Like the 'buffering' while watching a movie. It buffers some data, process it, and receive more data from the stream...
+
+---
+#### @color[#e49436](Streams & Buffers) - Buffer
+
+
 
 ---
 #### @color[#e49436](Streams & Buffers) - Typed Arrays
