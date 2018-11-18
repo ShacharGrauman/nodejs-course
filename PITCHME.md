@@ -973,6 +973,7 @@ Create a small program with the following:
 ---
 #### @color[#e49436](Event Loop) - Summary Ex
 
+@ol
 - @size[0.5em](http will be done by the OS)
   - @size[0.5em](As soon as it done, it'll be delegated back)
 - @size[0.5em](Thread pool: 1 thread assigned to fs, 3 threads to pbkdf2)
@@ -984,6 +985,7 @@ Create a small program with the following:
   - @size[0.5em](All 4 threads assigned to pbkdf2)
 - @size[0.5em](1 of them finishes so it delegated back to us)
 - @size[0.5em](Then this free one is assigned to the fs, get the statistics and start reading the file because no other job is required)
+@olend
 
 ---
 #### @color[#e49436](Streams & Buffers)
