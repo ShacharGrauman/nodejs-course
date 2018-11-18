@@ -975,16 +975,27 @@ Create a small program with the following:
 
 
 @size[0.5em](1- http will be done by the OS)
+
 @size[0.5em](2- As soon as it done, it'll be delegated back)
+
 @size[0.5em](3- Thread pool: 1 thread assigned to fs, 3 threads to pbkdf2)
+
 @size[0.5em](4- fs does 2 roundtrips to the HD)
-@size[0.5em]( * It asks for some file statistics, like size)
-@size[0.5em]( * Then it reads the file)
-@size[0.5em](  * In between, the associated thread is freed)
+
+@size[0.5em]( 4.1- It asks for some file statistics, like size)
+
+@size[0.5em]( 4.2- Then it reads the file)
+
+@size[0.5em](  4.2.1- In between, the associated thread is freed)
+
 @size[0.5em](5- The 4th pbkdf2 is assigned the free thread)
-@size[0.5em]( * All 4 threads assigned to pbkdf2)
+
+@size[0.5em]( 5.1- All 4 threads assigned to pbkdf2)
+
 @size[0.5em](6- one of them finishes so it delegated back to us)
-@size[0.5em](7- Then this free one is assigned to the fs, get the statistics and start reading the file because no other job is required)
+
+@size[0.5em](7- Then this free one is assigned to the fs, get the statistics and start 
+reading the file because no other job is required)
 
 ---
 #### @color[#e49436](Streams & Buffers)
