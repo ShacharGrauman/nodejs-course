@@ -1149,11 +1149,116 @@ A chunk is a piece of data being sent through a stream
 
 How does Stream actualy stream chunks?
 
-
 ---
 #### @color[#e49436](Files) - Streams again
 
 ![Stream](assets/images/files/Stream.png)
+
+---
+#### @color[#e49436](Files) - Stream types
+
+So every Stream *is* EventEmitter. It has the *on* and *emit* events
+
+We have several types of Streams such as 
+- Readable - reading only 
+- Writable - writing only
+- Duplex - read and write
+- Transform - change the data as it's written
+
+---
+#### @color[#e49436](Files) - Streams types
+
+![readable-writable-streams](assets/images/files/readable-writable-streams.png)
+
+---
+#### @color[#e49436](Files) - ReadableStream
+
+Let's take for example the Readable stream.
+
+It inherits from Stream, which inherits from EventEmitter, making it able to emit or listen to events 
+
+@size[0.5em](But those streams are abstract) 
+
+@size[0.5em](Here is 1 place where ReadStream is created in fs:)
+```js
+function createReadStream(path, options) {
+  lazyLoadStreams();
+  return new ReadStream(path, options);
+}
+```
+
+---
+#### @color[#e49436](Files) - ReadableStream
+
+```js
+const readable = fs.createReadStream('lorem-ipsum.txt');
+
+readable.on('data', chunk => {
+    console.log(chunk.length);
+});
+//-> 28585
+```
+
+@size[0.5em](The default buffer size is 64K, so if I read a larger file, let say 85K, then it'll be read in 2 chunks)
+```js
+//65536
+//20227
+```
+
+---
+#### @color[#e49436](Files) - ReadableStream
+
+@size[0.5em](We can pass options like encoding and the buffer size)
+```js
+readable = fs.createReadStream('lorem-ipsum.txt', { 
+    encoding: 'utf8', 
+    highWaterMark: 16 * 1024 //16K
+}).on('data', chunk => {
+    console.log(chunk.length);
+});
+//16384
+//16384
+//16384
+//16384
+//16384
+//3843
+```
+
+---
+#### @color[#e49436](Files) - Readable to WritableStream
+
+@size[0.5em](So it's easy to write those chunk to a Writable Stream)
+
+```js
+const writable = fs.createWriteStream('output-lorem.txt');
+
+const readable = fs.createReadStream('lorem-ipsum.txt', { 
+    encoding: 'utf8', 
+    highWaterMark: 16 * 1024 //16K
+}).on('data', chunk => {
+    console.log(chunk.length);
+    writable.write(chunk);
+});
+```
+@size[0.5em](We can deal with a large files with relatively small buffers!)
+
+---
+#### @color[#e49436](Files) - Piping Streams
+
+We can pipe data from a Readable stream to a Writable stream.
+
+It is a connection we do between 2 streams
+
+Reading from a Readable and piping to a Writable
+
+If the Writable is also a Redable
+
+We can continue piping
+
+---
+#### @color[#e49436](Files) - Piping Streams
+
+![Readable.prototype.pipe](assets/images/files/Readable.prototype.pipe.png)
 
 
 ---
