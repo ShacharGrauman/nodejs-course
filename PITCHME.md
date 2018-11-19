@@ -1081,6 +1081,25 @@ Untill the streaming is done
 Like the 'buffering' while watching a movie. It buffers some data, process it, and receive more data from the stream...
 
 ---
+#### @color[#e49436](Streams & Buffers) - Stream
+
+Readable streams like fs.createReadStream, process.stdin
+
+Writable streams like fs.createWriteStream, process.stdout, console
+
+Duplex streams (Readable and Writable) like sockets
+
+Transform streams like gzip
+
+---
+#### @color[#e49436](Streams & Buffers) - Buffer
+
+@size[0.5em](chunks fill the buffer and the client eventually get the buffered data)
+
+![buffer-and-chunk](assets/images/files/buffer-and-chunk.png)
+
+
+---
 #### @color[#e49436](Streams & Buffers) - Buffer
 
 From the Node API docs
@@ -1125,16 +1144,25 @@ We'll start by using readFileSync. It returns a Buffer
 ---
 #### @color[#e49436](Files) - fs module readFile
 
-readFile, on the other hand, is async.
+@size[0.5em](readFile, on the other hand, is async. You pass it a callback to be called when data has been fully read)
 
 ![readFile](assets/images/files/readFile-fs-api.png)
 
+---
+#### @color[#e49436](Files) - fs module readFile
+
+```js
+fs.readFile('lorem-ipsum.txt', (err, data) => {
+    console.log(data); //<Buffer 4c 6f 72 ... >    
+    console.log(data.toString()); //Lorem inpsum...
+});
+```
 ---
 #### @color[#e49436](Files) - fs module
 
 But what happens if the file is big?
 
-Although fs uses buffer asynchronously, it still a memory in the heap
+Although fs uses buffer asynchronously, it still consuming memory
 
 And what if many users are reading this file?
 
@@ -1143,7 +1171,9 @@ You can end up consuming a lot of memory
 ---
 #### @color[#e49436](Files) - Streams again
 
-Data is usualy split in chunks and streamed
+Streams are a pattern that convert big operations into manageable chunks
+
+Data is usualy split into chunks and streamed
 
 A chunk is a piece of data being sent through a stream
 
@@ -1163,7 +1193,7 @@ We have several types of Streams such as
 - Readable - reading only 
 - Writable - writing only
 - Duplex - read and write
-- Transform - change the data as it's written
+  - Transform - change the data as it's written
 
 ---
 #### @color[#e49436](Files) - Streams types
@@ -1243,24 +1273,78 @@ const readable = fs.createReadStream('lorem-ipsum.txt', {
 @size[0.5em](We can deal with a large files with relatively small buffers!)
 
 ---
+#### @color[#e49436](Files) - Backpressure
+
+@size[0.5em](Writer signals when it's available to further consume the next chunk)
+
+@size[0.6em](What happens if the writer is slower than the reader?)
+
+@size[0.5em](Perhaps the writer is a Transform which process each chunk)
+
+@size[0.5em](This could lead the reader to keep storing the next datas, bloating the process memory)
+
+---
 #### @color[#e49436](Files) - Piping Streams
 
-We can pipe data from a Readable stream to a Writable stream.
+@size[0.5em](We can pipe data from a Readable stream to a Writable stream)
 
-It is a connection we do between 2 streams
+@size[0.5em](It is a connection we do between 2 streams)
 
-Reading from a Readable and piping to a Writable
+@size[0.5em](Reading from a Readable and piping to a Writable)
 
-If the Writable is also a Redable
+@size[0.5em](If the Writable is also a Redable)
 
-We can continue piping
+@size[0.5em](We can continue piping)
+
+@size[0.5em](Piping handles the Backpressure!)
 
 ---
 #### @color[#e49436](Files) - Piping Streams
 
 ![Readable.prototype.pipe](assets/images/files/Readable.prototype.pipe.png)
 
+---
+#### @color[#e49436](Files) - Piping Streams
 
+```js
+const writable = fs.createWriteStream('output.txt');
+const readable = fs.createReadStream('file.txt', { 
+    encoding: 'utf8', 
+    highWaterMark: 16 * 1024 //16K
+});
+//When pipe is connected, the data is streaming
+readable.pipe(writable).on('close', () => {
+    console.log(writable.bytesWritten);
+});
+```
+---
+#### @color[#e49436](Files) - Piping Streams
+
+@size[0.5em](*process.stdin* is readable)
+@size[0.5em](*process.stdout* is writable)
+
+```js
+process.stdin.pipe(process.stdout);
+```
+
+@size[0.5em](the *request* of the http module is readable)
+@size[0.5em](the *response* of the http module is writable)
+
+---
+#### @color[#e49436](Files) - Piping & Transform
+
+```js
+const fs = require('fs'),
+      zlib = require('zlib');
+
+const gzip = zlib.createGzip();
+const writable = fs.createWriteStream('file.txt.gz');
+
+fs.createReadStream('file.txt')
+    .pipe(gzip)
+    .pipe(writable)
+    .on('close', () => console.log('Finished'));
+```
 ---
 #### @color[#e49436](Files) - Ex
 
