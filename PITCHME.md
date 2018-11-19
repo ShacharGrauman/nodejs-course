@@ -1275,28 +1275,28 @@ const readable = fs.createReadStream('lorem-ipsum.txt', {
 ---
 #### @color[#e49436](Files) - Backpressure
 
-@size[0.5em](Writer signals when it's available to further consume the next chunk)
+@size[0.6em](Writer signals when it's available to further consume the next chunk)
 
 @size[0.6em](What happens if the writer is slower than the reader?)
 
-@size[0.5em](Perhaps the writer is a Transform which process each chunk)
+@size[0.6em](Perhaps the writer is a Transform which process each chunk)
 
-@size[0.5em](This could lead the reader to keep storing the next datas, bloating the process memory)
+@size[0.6em](This could lead the reader to keep storing the next datas, bloating the process memory)
 
 ---
 #### @color[#e49436](Files) - Piping Streams
 
-@size[0.5em](We can pipe data from a Readable stream to a Writable stream)
+@size[0.6em](We can pipe data from a Readable stream to a Writable stream)
 
-@size[0.5em](It is a connection we do between 2 streams)
+@size[0.6em](It is a connection we do between 2 streams)
 
-@size[0.5em](Reading from a Readable and piping to a Writable)
+@size[0.6em](Reading from a Readable and piping to a Writable)
 
-@size[0.5em](If the Writable is also a Redable)
+@size[0.6em](If the Writable is also a Redable)
 
-@size[0.5em](We can continue piping)
+@size[0.6em](We can continue piping)
 
-@size[0.5em](Piping handles the Backpressure!)
+@size[0.6em](Piping handles the Backpressure!)
 
 ---
 #### @color[#e49436](Files) - Piping Streams
@@ -1362,7 +1362,10 @@ Which can be piped through
 
 ![through2](assets/images/files/through2.png)
 
-
+Short Ex - 
+@ol
+- replace 'fun' with 😃, hard with 😱, sun with ☀️, gun with 🔫  
+@olend
 ---
 #### @color[#e49436](Files) - Ex
 
