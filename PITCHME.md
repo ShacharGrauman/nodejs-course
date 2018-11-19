@@ -1345,6 +1345,24 @@ fs.createReadStream('file.txt')
     .pipe(writable)
     .on('close', () => console.log('Finished'));
 ```
+
+---
+#### @color[#e49436](Files) - Piping & Transform
+
+3rd party libs such as *through2* or *highland* can simplify things
+
+through2 can be passed a function with the same signature as transform
+
+And it returns a Transform stream
+
+Which can be piped through
+
+---
+#### @color[#e49436](Files) - Piping & Transform
+
+![through2](assets/images/files/through2.png)
+
+
 ---
 #### @color[#e49436](Files) - Ex
 
