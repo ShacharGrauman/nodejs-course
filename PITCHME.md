@@ -1488,7 +1488,7 @@ const server = http.createServer((req, res) => {
 });
 ```
 
----?image=assets/images/http/ex-background-img
+---?image=assets/images/http/ex-background-img.png
 
 @transition[none]
 
