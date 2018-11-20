@@ -1499,6 +1499,8 @@ We'll change the h1 to Ahalan Shahar
 
 ```js
 req.url //contains the '/Shahar...' 
+//You can also use
+require('querystring').parse
 ```
 
 ---?image=assets/images/http/ex-background-img.png
@@ -1569,12 +1571,12 @@ Or use 3rd party as we saw
 
 Routing is handling different 'paths' in our domain
 
-www.mysite.com
-www.mysite.com/api
-www.mysite.com/login
-www.mysite.com/about
-www.mysite.com/api/customers
-www.mysite.com/api/customer/1021/orders?year=2017
+- www.mysite.com
+- www.mysite.com/api
+- www.mysite.com/login
+- www.mysite.com/about
+- www.mysite.com/api/customers
+- www.mysite.com/api/customer/1021/orders?year=2017
 
 ---
 #### @color[#e49436](Web Server) - Routing
@@ -1607,6 +1609,32 @@ if(req.method === 'POST'){
         });
     };
 ```
+
+---
+#### @color[#e49436](Web Server) - Routing
+
+Ex - Build a simple configurable router like so
+
+```js
+const router = new Router();
+
+const server = http.createServer(async (req, res) => {
+    await router.route(req, res);
+});
+
+router.get('/', (req, res) => {
+    res.writeHead(200, { 'content-type': 'text/html' });
+    fs.createReadStream('files/index.routing.html', 'utf8').pipe(res);
+});
+router.get('/api', (req, res) => {
+    //...
+});
+router.post('/api/new-customer', (req, res) => {
+    //...
+})
+
+```
+
 ---?image=assets/images/npm/npm.png
 
 ---
