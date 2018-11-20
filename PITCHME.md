@@ -1492,11 +1492,8 @@ const server = http.createServer((req, res) => {
 
 @transition[none]
 
-@snap[west]
-Quick Ex - 
-
-- Serve some html with background image
-
+@snap[south-west]
+Quick Ex - Serve some html with background image
 @snapend
 
 ---
