@@ -1621,7 +1621,6 @@ const router = new Router();
 const server = http.createServer(async (req, res) => {
     await router.route(req, res);
 });
-
 router.get('/', (req, res) => {
     res.writeHead(200, { 'content-type': 'text/html' });
     fs.createReadStream('files/index.routing.html', 'utf8').pipe(res);
