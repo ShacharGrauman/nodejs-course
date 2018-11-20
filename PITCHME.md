@@ -1393,15 +1393,114 @@ The program will print all sub-directories as well the files
 ![read-dir-recursive](assets/images/files/read-dir-recursive-ex.png)
 
 
----?image=assets/images/http/TCP-IP.png?position=center&size=60% 80%
+---
+#### @color[#e49436](Web Server) - HTTP, TCP/IP
+
+@size[0.7em](Protocol is an agreement between 2 sides of how to communicate)
+
+@size[0.5em](French and Spanish guys can talk in English)
+
+@color[#e49436](TCP) - @size[0.7em](Transmition Control Protocol - message is split into pieces)
+
+@color[#e49436](IP) - @size[0.7em](Sending those pieces to some network address)
+
+---?image=assets/images/http/TCP-IP.png?position=center&size=80% 80%
 
 @transition[none]
 
 ---
 #### @color[#e49436](Web Server) - HTTP, TCP/IP
 
+@size[0.7em](OK, the packet sent to us at 150.1.120.0:3000 is here, what's now?)
+
+@size[0.7em](Which program should be receiving it?)
+
+@color[#e49436](Port) - @size[0.7em](A program is setup on some port)
+
+@size[0.7em](The OS then know who is 'listening' to that port)
+
 ---
-#### @color[#e49436](Web Server) - First Steps
+#### @color[#e49436](Web Server) - HTTP, TCP/IP
+
+@size[0.7em](Now the program is recognized, Node in our case, what's now?)
+
+@color[#e49436](HTTP) - @size[0.7em](How data is structured when transferred over TCP/IP)
+
+@color[#e49436](Request & Response) - @size[0.7em](Defines the rules of construction)
+
+---
+#### @color[#e49436](Web Server) - HTTP, TCP/IP
+
+![http-request-details](assets/images/http/http-request-details.png)
+
+---
+#### @color[#e49436](Web Server) - HTTP, TCP/IP
+
+![Server-net-js](assets/images/http/Server-net-js.png)
+
+---
+#### @color[#e49436](Web Server) - Simple HTTP Server
+
+![createServer](assets/images/http/createServer.png)
+
+---
+#### @color[#e49436](Web Server) - Simple HTTP Server
+
+```js
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+
+    res.writeHead(200, { 'content-type': 'text/plain' });
+    res.end('Ahalan');
+});
+
+server.listen(3100, () => console.log('Listening on port 3100'));
+```
+---
+#### @color[#e49436](Web Server) - Simple HTTP Server
+
+![debug-request-headers](assets/images/http/debug-request-headers.png)
+
+---
+#### @color[#e49436](Web Server) - Simple HTTP Server
+
+It's damn simple!! 
+
+Few lines of code and you have a server
+
+So much is going on under the hood
+
+But abstracted from us, although, you can 'see' everything
+
+---
+#### @color[#e49436](Web Server) - Serving HTML
+
+```js
+const http = require('http'),
+      fs = require('fs');
+
+const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'content-type': 'text/html' });
+    fs.readFile('files/index.html', (err, html) => {
+        res.end(html);
+    });
+});
+```
+
+---?image=assets/images/http/ex-background-img
+
+@transition[none]
+
+@snap[west]
+Quick Ex - 
+
+- Serve some html with background image
+
+@snapend
+
+---
+#### @color[#e49436](Web Server) - Serving HTML
 
 ---
 #### @color[#e49436](Web Server) - Templates
