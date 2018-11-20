@@ -1362,10 +1362,27 @@ Which can be piped through
 
 ![through2](assets/images/files/through2.png)
 
-Short Ex - 
-@ol
-- replace 'fun' with 😃, hard with 😱, sun with ☀️, gun with 🔫  
-@olend
+@ul
+- Short Ex - Read the file and output 
+- Instead of: fun -> 😃, hard -> 😱, sun -> ☀️, gun -> 🔫
+@ulend
+
+---
+#### @color[#e49436](Files) - Piping & Transform
+
+*highland* is more trickey, has a huge API, and needs some investigation at start
+
+```js
+const fs = require('fs'),
+      highland = require('highland');
+
+highland(fs.createReadStream('customers.json'))
+    .map(c => JSON.parse(c))
+    .flatten()
+    .filter(c => c.age > 20)
+    .each(c => console.log(c.id, c.name));
+```
+
 ---
 #### @color[#e49436](Files) - Ex
 
@@ -1376,15 +1393,9 @@ The program will print all sub-directories as well the files
 ![read-dir-recursive](assets/images/files/read-dir-recursive-ex.png)
 
 
----
-#### @color[#e49436](Files) - Streams
+---?image=assets/images/http/TCP-IP.png?position=center&size=60% 80%
 
----
-#### @color[#e49436](Files) - Pipes
-
-
-
-
+@transition[none]
 
 ---
 #### @color[#e49436](Web Server) - HTTP, TCP/IP
