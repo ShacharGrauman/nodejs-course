@@ -1630,9 +1630,7 @@ router.get('/', (req, res) => {
     res.writeHead(200, { 'content-type': 'text/html' });
     fs.createReadStream('index.html', 'utf8').pipe(res);
 });
-router.post('/api/customer', (req, res) => {
-    //...
-});
+router.post('/api/customer', (req, res) => { ... });
 
 ```
 
@@ -1646,48 +1644,9 @@ NPM is the largest open source library
 Currently over 700,000 packages!!
 
 ---
-#### @color[#e49436](NPM) - SemVer
+#### @color[#e49436](Node Part 1)
 
----
-#### @color[#e49436](NPM) - package.json
-
-
----
-#### @color[#e49436](Express) - Web Server made easy
-
-
----
-#### @color[#e49436](Express) - Routes
-
-
----
-#### @color[#e49436](Express) - Static Files
-
-
----
-#### @color[#e49436](Express) - Middlewares
-
----
-#### @color[#e49436](Express) - Template Engine
-
-
----
-#### @color[#e49436](Express) - Parameters: Querystring/POST
-
----
-#### @color[#e49436](Express) - RESTful API
-
----
-#### @color[#e49436](Express) - MySql
-
-
----
-#### @color[#e49436](Express) - MongoDB
-
----
-#### @color[#e49436](The V8 C++ Core)
-
+End Of Part 1
 
 ---?image=assets/images/grauman-at-wobi.png
 
----
