@@ -1494,7 +1494,7 @@ const server = http.createServer((req, res) => {
 
 @snap[south-west]
 @color[#e49436](Quick Ex)
-
+<br>
 @color[#e49436](Serve some html with background image)
 @snapend
 
