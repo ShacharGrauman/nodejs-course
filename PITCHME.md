@@ -1513,7 +1513,21 @@ req.url //contains the '/Shahar...'
 
 
 ---
-#### @color[#e49436](Web Server) - Templates
+#### @color[#e49436](Web Server) - Serve JSON
+
+@size[0.7em](In order to return JSON response, use 'application/jaon' as Content-Type)
+
+@size[0.7em](Then serialize the object using JSON.parse/stringify)
+
+```js
+http.createServer(async (req, res) => {
+    res.writeHead(200, {'content-type': 'application/json'})
+    const customers = getCustomers();
+    //If customers is a json string
+    //Then use JSON.parse(content);
+    res.end(JSON.stringify(customers));
+})
+```
 
 ---
 #### @color[#e49436](Web Server) - Performance
@@ -1551,16 +1565,56 @@ If we were to change the content as it flows, we can build a custom stream
 Or use 3rd party as we saw
 
 ---
-#### @color[#e49436](Web Server) - JSON
+#### @color[#e49436](Web Server) - Routing
+
+Routing is handling different 'paths' in our domain
+
+www.mysite.com
+www.mysite.com/api
+www.mysite.com/login
+www.mysite.com/about
+www.mysite.com/api/customers
+www.mysite.com/api/customer/1021/orders?year=2017
 
 ---
 #### @color[#e49436](Web Server) - Routing
 
+Routing can respond to various types of methods
 
+GET, POST, PUT, DELETE...
 
+We extract the segments from the url (/api/customers)
+
+And in case of POST, we get data in the body of the request
+
+body is encapsulated as ReadableStream...
+
+---
+#### @color[#e49436](Web Server) - Routing
+
+```js
+const parse = require('querystring').parse;
+
+if(req.method === 'POST'){
+        let body = '';
+        req.on('data', chunk => {
+            body += chunk.toString();
+        });
+
+        req.on('end', () => {
+            res.writeHead(200, {'content-type': 'application/json'});
+            res.end(JSON.stringify(parse(body)));    
+        });
+    };
+```
+---?image=assets/images/npm/npm.png
 
 ---
 #### @color[#e49436](NPM) - Node Package Manager
+
+NPM is the largest open source library
+
+Currently over 700,000 packages!!
 
 ---
 #### @color[#e49436](NPM) - SemVer
