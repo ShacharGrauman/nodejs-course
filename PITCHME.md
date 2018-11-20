@@ -1622,8 +1622,7 @@ const server = http.createServer(async (req, res) => {
         await router.route(req, res);        
     } catch (error) {
         if(error instanceof NotFound){
-            res.writeHead(404);
-            res.end(error.message);
+            res.writeHead(404); res.end(error.message);
         }
     }
 });
