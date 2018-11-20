@@ -1616,21 +1616,24 @@ if(req.method === 'POST'){
 Ex - Build a simple configurable router like so
 
 ```js
-const router = new Router();
-
+const router = require('./custom-router');
 const server = http.createServer(async (req, res) => {
-    await router.route(req, res);
+    try {
+        await router.route(req, res);        
+    } catch (error) {
+        if(error instanceof NotFound){
+            res.writeHead(404);
+            res.end(error.message);
+        }
+    }
 });
 router.get('/', (req, res) => {
     res.writeHead(200, { 'content-type': 'text/html' });
-    fs.createReadStream('files/index.routing.html', 'utf8').pipe(res);
+    fs.createReadStream('index.html', 'utf8').pipe(res);
 });
-router.get('/api', (req, res) => {
+router.post('/api/customer', (req, res) => {
     //...
 });
-router.post('/api/new-customer', (req, res) => {
-    //...
-})
 
 ```
 
