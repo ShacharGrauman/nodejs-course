@@ -1488,6 +1488,19 @@ const server = http.createServer((req, res) => {
 });
 ```
 
+---
+#### @color[#e49436](Web Server) - Serving HTML Template
+
+Let's make the h1 message more dynamic
+
+If the user goes to *localhost:3100/Shahar*
+
+We'll change the h1 to Ahalan Shahar
+
+```js
+req.url //contains the '/Shahar...' 
+```
+
 ---?image=assets/images/http/ex-background-img.png
 
 @transition[none]
@@ -1498,14 +1511,44 @@ const server = http.createServer((req, res) => {
 @color[#e49436](Serve some html with background image)
 @snapend
 
----
-#### @color[#e49436](Web Server) - Serving HTML
 
 ---
 #### @color[#e49436](Web Server) - Templates
 
 ---
 #### @color[#e49436](Web Server) - Performance
+
+What happen if we serve a large file?
+
+```js
+const server = http.createServer((req, res) => {
+    //...
+    fs.readFile('large-file', (err, file) => {
+        res.end(file);
+    });
+});
+```
+
+Try now to stream the file instead of fully buffering it
+
+---
+#### @color[#e49436](Web Server) - Performance
+
+Using streams can drastically improve the performance
+
+```js
+const server = http.createServer((req, res) => {
+    //...
+    fs.createReadStream('large-file')
+      .pipe(res);
+    });
+});
+//Chunks chunks chunks
+```
+
+If we were to change the content as it flows, we can build a custom stream
+
+Or use 3rd party as we saw
 
 ---
 #### @color[#e49436](Web Server) - JSON
