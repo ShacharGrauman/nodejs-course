@@ -22,8 +22,8 @@ https://www.grauman.co.il
 ---
 #### @color[#e49436](Express)
 
-- npm init -y
-- npm install express --save
+> $ npm init -y
+> $ npm install express --save
 
 ```js
 const express = require('express');
@@ -54,7 +54,8 @@ const express = require('express');
 const port = process.env.PORT || 3100;
 const app = express();
 
-app.listen(port, () => console.log(`Server listening on port ${port}`));
+app.listen(port, 
+    () => console.log(`Server listening on port ${port}`));
 
 ```
 So we can listen for incoming request on some port
@@ -127,7 +128,7 @@ We can install nodemon for watching file changes
 
 It will reload our server automatically
 
->npm install -g nodemon
+> $ npm install -g nodemon
 
 ---
 
