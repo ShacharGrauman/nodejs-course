@@ -221,6 +221,50 @@ app.use('/', (req, res, next) => {
     next();
 });
 ```
+Which means: Any request starts with '/' will first run through this middleware
+
+---
+#### @color[#e49436](Express) Middleware
+
+We can use a much powerfull middleware named *morgan*
+
+`> npm install morgan`
+
+```js
+const morgan = require('morgan');
+//stdout
+app.use(morgan('combined')); 
+
+//Or to a file
+const logFile = fs.createWriteStream(
+    path.join(__dirname, 'logger.log'), 
+    { flags: 'a'});
+
+app.use(morgan('combined', { stream: logFile }));
+
+```
+
+---
+#### @color[#e49436](Express) Middleware
+
+We can write middleware which inspect the headers and act accordingly
+
+```js
+function compress(req, res, next) {
+    if(req.headers['accept-encoding'] && 
+       req.headers['accept-encoding'].includes('gzip')){
+        const gzip = zlib.createGzip();
+        fs.createReadStream(path.join(__dirname, 'file.pdf'))
+        .pipe(gzip).pipe(res);
+    }else{
+        next();
+    }
+}
+app.get('/file', compress, (req, res) => {
+    fs.createReadStream(path.join(__dirname, 'file.pdf'))
+    .pipe(res);
+});
+```
 
 ---
 
