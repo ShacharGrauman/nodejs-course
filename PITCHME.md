@@ -22,9 +22,9 @@ https://www.grauman.co.il
 ---
 #### @color[#e49436](Express)
 
-`$ npm init -y`
+`> npm init -y`
 
-> $ npm install express --save
+`> npm install express --save`
 
 ```js
 const express = require('express');
@@ -129,7 +129,98 @@ We can install nodemon for watching file changes
 
 It will reload our server automatically
 
-> $ npm install -g nodemon
+`> npm install -g nodemon`
+
+---
+#### @color[#e49436](Express) Route paths
+
+```js
+app.get('/ahalan/:name', (req, res) => {
+    res.send(`<html><head></head><body>
+        <h1>Ahalan ${req.params.name}</h1>
+    </body></html>`);
+});
+
+app.get('/aha?lan/:name', function (req, res) {
+    res.send(`<html><head></head><body>
+        <h1>Ahalan ${req.params.name}</h1>
+    </body></html>`);
+});
+//ahalan, ahlan
+```
+
+---
+#### @color[#e49436](Express) Route paths
+
+```js
+app.get('/ahala+n/:name', function (req, res) {
+  res.send(`<html><head></head><body>
+        <h1>Ahalan ${req.params.name}</h1>
+    </body></html>`);
+});
+//ahalan, ahalaan, ahalaaaaan etc.
+
+app.get('/ahala*n/:name', function (req, res) {
+  res.send(`<html><head></head><body>
+        <h1>Ahalan ${req.params.name}</h1>
+    </body></html>`);
+});
+//ahalan, ahalaaan, ahalabcdn etc.
+```
+
+---
+#### @color[#e49436](Express) Route paths
+
+```js
+app.get(/.*lan$/, function (req, res) {
+  res.send(`<html><head></head><body>
+        <h1>Ahalan!</h1>
+    </body></html>`);
+});
+//ahalan, kablan
+//Not ahalanyo etc.
+```
+
+---
+#### @color[#e49436](Express) Static files
+
+Whenever we need to serve static files (HTML, CSS, JSON, Images, Files...)
+
+We tell Express to *use* our assets folder
+
+```js
+app.use('/content', express.static(path.join(__dirname, 'assets'));
+//...
+app.get('/html', (req, res) => {
+    res.send(`<html><head>
+    <link href='content/styles.css' type='text/css' rel='stylesheet' />
+    </head>
+    <body><h1>Ahalan Express!</h1>
+    </body></html>`);
+});
+```
+
+---
+#### @color[#e49436](Express) Middleware
+
+We've just used middleware
+
+Middleware sits between the request and the response:
+
+- Execute some code
+- Perform changes on request / response objects
+- Decide to end the request-response cycle
+- Continue to the next middleware
+
+---
+#### @color[#e49436](Express) Middleware
+
+```js
+app.use('/', (req, res, next) => {
+    console.log(`Incoming request: ${req.url}`);
+    next();
+});
+```
 
 ---
 
