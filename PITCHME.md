@@ -338,8 +338,8 @@ Ex - Use ejs as the template engine
 
 Create 2 pages:
 
-- The first is a contact s page (name, email, notes)
-  - When submitting, show the thank you page instead
+- The first is a contact us page (name, email, notes)
+  - When submitting, replace html with thank you page
 - Thank you page, show name, email and notes
   - If data is missing, redirect back to contact us
 
@@ -381,6 +381,15 @@ module.exports = app => {
 ```
 
 ---
+#### @color[#e49436](Express) Structuring our app
+
+There's no right way of structuring our web app
+
+There's always more than 1 solution which suits our needs
+
+Keep app-logics seperated in simple yet reasonable way
+
+---
 #### @color[#e49436](Express) Express Generator
 
 `> npm install express-generator -g`
@@ -391,7 +400,7 @@ module.exports = app => {
 
 `> npm install`
 
-`> SET DEBUG=generated:* & npm start`
+`> npm start`
 
 ---
 #### @color[#e49436](Express) Express Generator
@@ -405,6 +414,8 @@ app.use('/users', usersRouter);
 
 users are being prefixed by */users*, and inside this router, we have normal routes
 
----
+
+---?image=assets/images/grauman-at-wobi.png
+
 
 
