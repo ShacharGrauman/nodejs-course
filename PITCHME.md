@@ -117,7 +117,7 @@ app.get('/json', (req, res) => {
 
 //...
 app.get('/download', (req, res) => {
-    res.download(path.join(__dirname, '../files/somePDF.pdf'));
+    res.download(path.join(__dirname, 'file.pdf'));
 });
 
 ```
@@ -189,7 +189,8 @@ Whenever we need to serve static files (HTML, CSS, JSON, Images, Files...)
 We tell Express to *use* our assets folder
 
 ```js
-app.use('/content', express.static(path.join(__dirname, 'assets'));
+app.use('/content', 
+        express.static(path.join(__dirname, 'assets'));
 //...
 app.get('/html', (req, res) => {
     res.send(`<html><head>
@@ -228,7 +229,7 @@ Which means: Any request starts with '/' will first run through this middleware
 
 We can use a much powerfull middleware named *morgan*
 
-`> npm install morgan`
+`> npm install morgan --save`
 
 ```js
 const morgan = require('morgan');
@@ -265,6 +266,144 @@ app.get('/file', compress, (req, res) => {
     .pipe(res);
 });
 ```
+
+---
+#### @color[#e49436](Express) Querystring & Post params
+
+```js
+request.query //will hold query params
+//localhost:3100/users?year=2010 -> req.query.year
+
+request.params //will hold url path params
+//localhost:3100/user:id -> req.params.id
+
+request.body //will hold post params
+//using body-parser library
+```
+
+---
+#### @color[#e49436](Express) Template Engine
+
+Template Engine is a way of structuring a page with dynamic content
+
+The page has known placeholders 
+
+We load that file and inject the content into those placeholders
+
+---
+#### @color[#e49436](Express) Custom Template Engine
+
+```js
+//Provide your engine file extension name
+//and function: the file to load, inject data, callback
+app.engine('sg', (file, data, cb) => {
+    //Read the file, 
+    //Inject data as your engine requires
+    //Call cb with the result    
+}
+//Then tell express where to locate 'sg' files
+app.set('views', './views'));
+//And finally register 'sg' engine
+app.set('view engine', 'sg');
+```
+
+---
+#### @color[#e49436](Express) Custom Template Engine
+
+```js
+//render the page using sg engine!
+//Pass data object
+app.get('/', (req, res) => {
+    res.render('index', {
+        data1: 'Some data to be injected',
+        data2: 'Other data'
+        //...
+    });
+});
+```
+
+---
+#### @color[#e49436](Express) EJS Template Engine
+
+*ejs* templage engine is a simple templating engine
+
+It uses similar syntax as used in *aspx* pages
+
+`> npm install ejs --save`
+
+---
+#### @color[#e49436](Express) EJS Template Engine
+
+Ex - Use ejs as the template engine
+
+Create 2 pages:
+
+- The first is a contact s page (name, email, notes)
+  - When submitting, show the thank you page instead
+- Thank you page, show name, email and notes
+  - If data is missing, redirect back to contact us
+
+---
+#### @color[#e49436](Express) REST API
+
+REpresentational State Transfer
+
+HTTP verbs (GET/POST...) and URLs has meaning
+
+Mainly being used for data tranfers (json)
+
+Usualy /api/... (api/customers, api/customer/3)
+
+---
+#### @color[#e49436](Express) REST API
+
+```js
+app.get('/api/users', (req, res) => return all users);
+app.get('/api/user:id', (req, res) => return user data);
+app.post('/api/user', (req, res) => add new user);
+app.delete('/api/user:id', (req, res) => delete from db);
+```
+
+---
+#### @color[#e49436](Express) Structuring our app
+
+We should create seperate modules for better structure the app
+
+For instance, extract routes to their own module
+
+How can we hook them into our app?
+
+```js
+module.exports = app => {
+    app.get('/api/users', (req, res) => {...});
+    app.post('/api/user', (req, res) => {...});
+}
+```
+
+---
+#### @color[#e49436](Express) Express Generator
+
+`> npm install express-generator -g`
+
+`> express --view=ejs generated`
+
+`> cd generated`
+
+`> npm install`
+
+`> SET DEBUG=generated:* & npm start`
+
+---
+#### @color[#e49436](Express) Express Generator
+
+Notice how routes are being used
+
+```js
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+```
+
+users are being prefixed by */users*, and inside this router, we have normal routes
 
 ---
 
