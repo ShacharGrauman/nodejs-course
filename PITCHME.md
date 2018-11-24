@@ -22,7 +22,7 @@ https://www.grauman.co.il
 ---
 #### @color[#e49436](Express)
 
-> $ npm init -y
+`$ npm init -y`
 
 > $ npm install express --save
 
