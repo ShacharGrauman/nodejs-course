@@ -139,18 +139,20 @@ Restart the server and go to homepage again
 
 Again, watch the cookie in browser and in server console
 
-What's wrong?
+Have you noticed anything?
 
 ---
 #### @color[#e49436](Express Session)
 
 Sessions are stored in memory
 
-If user sends hew session cookie, our middleware can't find it
+If user sends new session cookie, our middleware can't find it
 
 So it initiates a new one...
 
 We need to store our sessions to survive server restarts
+
+...More user friendly
 
 ---
 #### @color[#e49436](Express Session Store)
@@ -167,17 +169,18 @@ secret: sessionSecret,
 ///...
 
 ```
+Try again with the browser
 
 ---
 #### @color[#e49436](Express Session Store)
 
-Try again with the browser and watch it restarts each time a request is coming
+Did you noticed the server restarts each time a request is coming?
 
-This is because session-store created a *sessions folder* and updates it
+This is because session-store created a *sessions* folder and updates it
 
-With the latest time the user reached the server
+with the latest time the user reached the server
 
-Help nodemon. Add in package.json
+Help nodemon. Add to package.json
 
 ```js
 nodemon --ignore sessions/
@@ -193,7 +196,8 @@ The session is ended and removed from store
 ```js
 [session-file-store] Deleting expired sessions
 [session-file-store] Deleting expired sessions
-//...
+
+//ttl can be set when newing-up FileStore
 ```
 
 ---
@@ -202,8 +206,8 @@ The session is ended and removed from store
 Let's create a login route
 
 - Create login router and hook it into express
-- Add get and post routes
-  - console log req.sessionID and req.body
+- Add *get* and *post* routes
+  - console log *req.sessionID* and *req.body*
   - render login ejs file with email and password
 
 Run and verify post data is logged
@@ -222,6 +226,18 @@ We'll be using *local* strategy (email+password)
 Or in one shot
 
 `> npm install passport passport-local --save`
+
+---
+#### @color[#e49436](Express Passport)
+
+Then we initialize passport
+
+```js
+app.use(passport.initialize());
+app.use(passport.session());
+```
+
+And restoring session state (Later on)
 
 ---
 #### @color[#e49436](Express Passport)
@@ -327,28 +343,102 @@ router.get('/users/:name', authorize, (req, res) => {
 
 ```
 
+---
+#### @color[#e49436](Express Passport) return to url
+
+If the user is in */users/Shahar*
+
+The session had expired
+
+He refresh the browser
+
+After redirecting to */login* and authenticated
+
+Where should we redirect him to?
+
+*/* Or back to */users/Shahar* ?
+
+---
+#### @color[#e49436](Express Passport) return to url
+
+We can do it like so:
 
 ```js
-
+router.get('/login', (req, res) => {
+    res.render('login', {backTo: req.query.backTo ?
+         `?backTo=${req.query.backTo}` : ''});
+});
+//And in the form
+<form action="/login<%= locals.backTo %>" method="POST"></form>
+//Then in the post
+router.post('/', authenticate, (req, res) => {
+    if(req.query.backTo) res.redirect(req.query.backTo);
+    else res.redirect(`/`);
+});
 ```
 
 ---
-#### @color[#e49436](Express Session Store)
- 
-- Session Store
+#### @color[#e49436](Express Passport) return to url
 
+Or we can use our session to store the original url 
+
+```js
+function authorize(req, res, next) {
+    if(!req.isAuthenticated()){
+        req.session.backTo = req.originalUrl;
+        res.redirect('/login');
+    }else{
+        next();
+    }
+}
+router.post('/', authenticate, (req, res) => {
+    if(req.session.backTo) res.redirect(req.session.backTo);
+    else res.redirect(`/users/${req.user.name}`);
+});
+```
 
 ---
 #### @color[#e49436](Express MySql)
 
-- mysql
-- students table
-- REST
+Create college db with student table (id, name, email, password)
+
+`> npm install mysql --save`
+
+```js
+this.connection = mysql.createConnection({
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE
+});
+```
 
 ---
-#### @color[#e49436](Express Auth)
+#### @color[#e49436](Express MySql)
 
-- Passport
+```js
+connection.query('select * from student where email = ?', 
+    [email], 
+    (err, results, fields) => {
+        if(err) throw err;
+        return results.find(s => s.email === email);
+});
+```
+
+---
+#### @color[#e49436](Express REST)
+
+Route 	            HTTP Verb 	Description
+/api/students 	    GET 	    Get all students
+/api/students 	    POST 	    Create a student
+/api/students/:id 	GET 	    Get a single student
+/api/students/:id 	PUT 	    Update a student with new data
+/api/students/:id 	DELETE 	    Delete a student
+
+---
+
+- 
 
 ---
 #### @color[#e49436](Node Part 2)
