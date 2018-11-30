@@ -429,7 +429,7 @@ connection.query('select * from student where email = ?',
 ---
 #### @color[#e49436](Express REST)
 
-![rest-students-api](assets/images/rest-students-api.jpg)
+![rest-students-api](assets/rest-students-api.jpg)
 
 ---
 
