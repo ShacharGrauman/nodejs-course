@@ -429,12 +429,7 @@ connection.query('select * from student where email = ?',
 ---
 #### @color[#e49436](Express REST)
 
-Route 	            HTTP Verb 	Description
-/api/students 	    GET 	    Get all students
-/api/students 	    POST 	    Create a student
-/api/students/:id 	GET 	    Get a single student
-/api/students/:id 	PUT 	    Update a student with new data
-/api/students/:id 	DELETE 	    Delete a student
+![rest-students-api](assets/images/rest-students-api.jpg)
 
 ---
 
