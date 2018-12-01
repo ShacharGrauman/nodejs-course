@@ -696,7 +696,7 @@ A simple tool is Apache Benchmark, or ab
 
 `> ab.exe -c 10 -n 500 -g outab.plt http://localhost:3100/`
 
-500 requests, 10 concurrents, rest is outout to a file
+500 requests, 10 concurrents, outout to a file
 
 ---
 #### @color[#e49436](Clustering & Worker Threads)
@@ -719,6 +719,48 @@ Mon Oct 01 21:54:08 2018	1543694048	0	98	98	98
 Using gnuplot
 
 ![gnuplot](assets/gnuplot.png)
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+So if we have routes which takes time to process
+
+And other faster routes,
+
+Then clustering can kinda load-balancing incoming requests
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+To better simulate real time processing
+
+Let's use pbkdf2
+
+Let's, for start, fork 1 child with just 1 thread
+
+`> ab.exe -c 1 -n 1 http://localhost:3100/`
+
+Then `> ab.exe -c 2 -n 2 http://localhost:3100/`
+
+Make sure you understand the results
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+Now test with 2 children each with 1 thread
+
+And test with ab numbers matching your children
+
+See how performance is degradating
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+Forking 6 children with single thread pool
+
+`> ab.exe -c 6 -n 6 -g outab6.plt http://localhost:3100/`
+
+![gnuplot6](assets/gnuplot6.png)
 
 ---
 #### @color[#e49436](Clustering & Web Workers)
