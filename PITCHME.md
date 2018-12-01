@@ -751,7 +751,7 @@ Now test with 2 children each with 1 thread
 
 And test with ab numbers matching your children
 
-See how performance is degradating
+See how performance is degradating as you keep forking more children then available CPUs
 
 ---
 #### @color[#e49436](Clustering & Worker Threads)
@@ -761,6 +761,46 @@ Forking 6 children with single thread pool
 `> ab.exe -c 6 -n 6 -g outab6.plt http://localhost:3100/`
 
 ![gnuplot6](assets/gnuplot6.png)
+
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+Forking 16 children (twice than my cpus) with single thread pool
+
+`> ab.exe -c 16 -n 16 -g outab16.plt http://localhost:3100/`
+
+![gnuplot16](assets/gnuplot16.png)
+
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+We can ease the pain by using pm2
+
+Production process manager for Node.js
+
+`> npm install -g pm2`
+
+Then
+
+`> pm2 start app.js`
+
+`> pm2 show <app-name>`
+
+`> pm2 monit`
+
+`> pm2 start app.js -i 0 --watch`
+
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+`> pm2 start app.js -i 0`
+
+`> ab.exe -c 10 -n 60 -g outabpm2.plt http://localhost:3100/`
+
+![gnuplotpm2](assets/gnuplotpm2.png)
 
 ---
 #### @color[#e49436](Clustering & Web Workers)
