@@ -621,6 +621,12 @@ Will create Node Instance running our app.js server
 
 If we *fork* our instance, we'll create a copy of
 
+
+---
+#### @color[#e49436](Clustering & Web Workers)
+
+![cluster-fork](assets/cluster-fork.png)
+
 ---
 #### @color[#e49436](Clustering & Web Workers)
 
