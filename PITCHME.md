@@ -398,9 +398,22 @@ router.post('/', authenticate, (req, res) => {
 ```
 
 ---
+#### @color[#e49436](Express encrypt)
+
+`>  npm install bcrypt --save`
+
+```js
+bcrypt.hash(student.password, 10)
+        .then(hash => {});
+//...
+bcrypt.compare(password, hash)
+        .then(res => res)//true/false
+```
+
+---
 #### @color[#e49436](Express MySql)
 
-Create college db with student table (id, name, email, password)
+Make sure you create college db with student table (id, name, email, password)
 
 `> npm install mysql --save`
 
@@ -417,9 +430,29 @@ this.connection = mysql.createConnection({
 ---
 #### @color[#e49436](Express MySql)
 
+Query as usual!
+
+```js
+connection.query('select * from student where email='+email, 
+    (err, results, fields) => {
+        if(err) throw err;
+        return results.find(s => s.email === email);
+});
+```
+
+Hmmm... can you think of a potential problem above?
+
+---
+#### @color[#e49436](Express MySql)
+
+email could be *'bla; drop table student;'*
+
+Escape everything!
+
 ```js
 connection.query('select * from student where email = ?', 
-    [email], 
+    connection.escape(email),
+    //[email], //escaped as well!
     (err, results, fields) => {
         if(err) throw err;
         return results.find(s => s.email === email);
@@ -427,13 +460,184 @@ connection.query('select * from student where email = ?',
 ```
 
 ---
+#### @color[#e49436](Express MySql)
+
+Escape ids
+
+```js
+connection.query(`select * from 
+        ${connectoin.escae(table)}
+        where id = 
+        ${connection.escapeId(id)}`,
+    (err, results, fields) => {})
+});
+//Or
+connection.query('select * from ?? where id = ?', ['student', [id]], 
+    (err, results, fields) => {})
+});
+```
+
+---
+#### @color[#e49436](Express MySql)
+
+```js
+const columns = ['id', 'name', 'email', 'password'],
+      table = 'student';
+const q = this.connection.query(
+            `select ?? from ?? where id = ?`, 
+            [columns, table, [id]], 
+            (err, results, fields)=>{
+                console.log('Escaping', q.sql);
+            }
+);
+//Escaping select `id`, `name`, `email`, `password` from `student` where id = 4
+```
+
+---
+#### @color[#e49436](Express MySql)
+
+Preparing query for later use
+
+```js
+var sql = "select ?? from ?? where id = ?";
+var data = [columns, table, [id]];
+sql = mysql.format(sql, data);
+```
+
+---
+#### @color[#e49436](Express MySql)
+
+Piping results
+
+```js
+this.connection.query(`select...`)
+    .stream({highWaterMark:1})
+    .pipe(stream.Transform({
+        objectMode: true,
+        transform: function(object, enc, cb) {
+            console.log('mysql pipe transform', object);
+            cb();
+        }            
+        }).on('finish', () => console.log('transform ended'))
+    );
+```
+
+---
 #### @color[#e49436](Express REST)
 
-![rest-students-api](assets/rest-students-api.jpg)
+Route + HTTP Verb = REST API
+
+- GET /api/students
+  - Get all students
+- POST /api/students
+  - Create a student
+- GET /api/students/:id
+  - Get a single student
+- PUT /api/students/:id
+  - Update a student with new data
+- DELETE /api/students/:id
+  - Delete a student
 
 ---
 
-- 
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+Cluster mode is when Node runs in multiple copies
+
+All are running our server inside them.
+
+Multiple instances of the event loop
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+Worker Thread is using the libuv's thread pool
+
+Still experimental
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+So let's create a simple server to test those out
+
+```js
+const express = require('express'),
+      app = express();
+
+app.get('/', (req, res) => {
+    res.send('Ahalan!');
+})
+.listen(3100, () => console.log('Listen on 3100'));
+```
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+Most of our code will use built-in modules
+
+Which are using libuv's tread pool or OS tasks
+
+But what if we need to do intensive cpu work?
+
+We'll block the event loop...
+
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+We can simulate that by doing long while loop
+
+Test your server now with 2 tabs
+
+The event loop runs in single thread
+
+---
+#### @color[#e49436](Clustering & Web Workers)
+
+We can make a copy of our server
+
+Which means each has it's own event loop
+
+So we can handle 2 parallel requests
+
+---
+#### @color[#e49436](Clustering & Web Workers)
+
+We will have a *Cluster Manager*
+
+Like the parent process, the first born
+
+The manager will create multiple instances of the server
+
+It's responsible for monitoring the healte of each instance
+
+---
+#### @color[#e49436](Clustering & Web Workers)
+
+`Run node app.js`
+
+Will create Node Instance running our app.js server
+
+If we *fork* our instance, we'll create a copy of
+
+---
+#### @color[#e49436](Clustering & Web Workers)
+
+*Cluster Manager*
+
+- Start instances
+- Stop instances
+- Restart them
+- Send them data
+- ...
+
+Administration stuff
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+
 
 ---
 #### @color[#e49436](Node Part 2)
