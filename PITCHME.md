@@ -447,8 +447,6 @@ Hmmm... can you think of a potential problem above?
 
 email could be *'bla; drop table student;'*
 
-Escape everything!
-
 ```js
 connection.query('select * from student where email = ?', 
     connection.escape(email),
@@ -459,6 +457,8 @@ connection.query('select * from student where email = ?',
 });
 ```
 
+Escape everything!
+
 ---
 #### @color[#e49436](Express MySql)
 
@@ -466,7 +466,7 @@ Escape ids
 
 ```js
 connection.query(`select * from 
-        ${connectoin.escae(table)}
+        ${connectoin.escape(table)}
         where id = 
         ${connection.escapeId(id)}`,
     (err, results, fields) => {})
@@ -539,8 +539,6 @@ Route + HTTP Verb = REST API
   - Delete a student
 
 ---
-
----
 #### @color[#e49436](Clustering & Worker Threads)
 
 Cluster mode is when Node runs in multiple copies
@@ -592,14 +590,16 @@ Test your server now with 2 tabs
 
 The event loop runs in single thread
 
+If you have 16 cores machine, your app will use just 1
+
 ---
 #### @color[#e49436](Clustering & Web Workers)
 
 We can make a copy of our server
 
-Which means each has it's own event loop
+Which means each has it's own event loop in a dedicated process
 
-So we can handle 2 parallel requests
+So we can handle parallel requests *on the same port*
 
 ---
 #### @color[#e49436](Clustering & Web Workers)
@@ -615,21 +615,6 @@ It's responsible for monitoring the healte of each instance
 ---
 #### @color[#e49436](Clustering & Web Workers)
 
-`Run node app.js`
-
-Will create Node Instance running our app.js server
-
-If we *fork* our instance, we'll create a copy of
-
-
----
-#### @color[#e49436](Clustering & Web Workers)
-
-![cluster-fork](assets/cluster-fork.png)
-
----
-#### @color[#e49436](Clustering & Web Workers)
-
 *Cluster Manager*
 
 - Start instances
@@ -641,9 +626,145 @@ If we *fork* our instance, we'll create a copy of
 Administration stuff
 
 ---
+#### @color[#e49436](Clustering & Web Workers)
+
+Run `node index.js`
+
+Will create Node Instance running our index.js server
+
+If we *fork* our instance, we'll create a copy of index.js
+
+
+---
+#### @color[#e49436](Clustering & Web Workers)
+
+![cluster-fork](assets/cluster-fork.png)
+
+---
+#### @color[#e49436](Clustering & Web Workers)
+
+```js
+cluster = require('cluster');
+```
+
+We distinguish between the manager and children by checking 
+
+```js
+cluster.isMaster
+
+isMaster === true // I'm the Master, 
+isMaster === false// I'm a Worker
+```
+
+---
+#### @color[#e49436](Clustering & Web Workers)
+
+```js
+const cluster = require('cluster');
+//...
+//Is this master mode?
+if(cluster.isMaster){
+    //Run app.js again in child/slave mode
+    cluster.fork();
+} else {
+    //...
+    app.listen(3100, () => console.log('Listen on 3100'));
+})
+```
+
+---
+#### @color[#e49436](Clustering & Web Workers)
+ 
+forking just once isn't much of a benefit
+
+We can fork as much as we want
+
+Try to fork 2,3 or 4 times
+
+Run the server and open multiple tabs
+
+Test to see you get results as expected
+
+---
 #### @color[#e49436](Clustering & Worker Threads)
 
+Benchmark your tests can be difficult
 
+How would you simulate 500 requests? 1000 requests?
+
+A simple tool is Apache Benchmark, or ab
+
+`> ab.exe -c 10 -n 500 -g outab.plt http://localhost:3100/`
+
+500 requests, 10 concurrents, rest is outout to a file
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+```js
+starttime	seconds	    ctime	dtime	ttime	wait
+Mon Oct 01 21:54:08 2018	1543694048	0	98	98	98
+//...
+```
+
+- starttime − The date at which the call started
+- ctime − The Connection Time
+- dtime − The Processing Time
+- ttime − Total Time (ctime + dtime)
+- wait − Waiting Time
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+Using gnuplot
+
+![gnuplot](assets/gnuplot.png)
+
+---
+#### @color[#e49436](Clustering & Web Workers)
+
+Communicating between process is done through messaging
+
+Child/Master process can use *process.send({object})* to Master/Child
+
+Child process can receive message from master 
+
+*process.on('message', function(message){})*
+
+Master can listen on *child.on('message')*
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+```js
+if(cluster.isMaster){
+  for (let i = 0; i < cpus; i++) {
+      cluster.fork();        
+  }
+
+  for(const childId in cluster.workers) {
+      cluster.workers[childId].on('message', message => {
+          console.log(`Master ${process.pid} got message from child: ${JSON.stringify(message)}`);
+      });
+  }
+}
+```
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+```js
+} else {    
+  process.on('message', message => {
+      console.log(`Child ${process.pid} got message from master ${JSON.stringify(message)}`);
+  });
+  //...
+  cluster.worker.send({
+      childsays: `Ahalan from child process 
+      #${cluster.worker.process.pid}`
+  });
+
+```
 
 ---
 #### @color[#e49436](Node Part 2)
