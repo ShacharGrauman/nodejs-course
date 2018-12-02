@@ -882,8 +882,7 @@ app.get('/', (req, res) => {
   });
   //Get message from worker
   worker.onmessage = function(event){
-      res.send(`Got result from worker 
-      ${event.data.result}`);
+      res.send(`Worker result ${event.data.result}`);
   };
   //Send message to worker
   worker.postMessage(1e8);
