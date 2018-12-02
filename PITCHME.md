@@ -826,7 +826,8 @@ if(cluster.isMaster){
 
   for(const childId in cluster.workers) {
       cluster.workers[childId].on('message', message => {
-          console.log(`Master ${process.pid} got message from child: ${JSON.stringify(message)}`);
+          console.log(`Master ${process.pid} got message 
+          from child: ${JSON.stringify(message)}`);
       });
   }
 }
@@ -838,7 +839,8 @@ if(cluster.isMaster){
 ```js
 } else {    
   process.on('message', message => {
-      console.log(`Child ${process.pid} got message from master ${JSON.stringify(message)}`);
+      console.log(`Child ${process.pid} got message 
+      from master ${JSON.stringify(message)}`);
   });
   //...
   cluster.worker.send({
@@ -846,6 +848,46 @@ if(cluster.isMaster){
       #${cluster.worker.process.pid}`
   });
 
+```
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+Worker Threads
+
+Uses the same thread pool managed by libuv
+
+So if I run pbkdf2 inside a worker?
+
+I won't gain anything, because pbkdf2 already runs in another thread
+
+Use it if you have heavy work to do it outside the event loop
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+`> npm install webworker-threads --save`
+
+---
+#### @color[#e49436](Clustering & Worker Threads)
+
+```js
+app.get('/', (req, res) => {
+  const worker = new Worker(function(){
+      this.onmessage = function(event) {
+        console.log('Worker got counter', event.data);
+        for(var i=0; i < event.data; i++){}
+        postMessage({result: i});
+      }
+  });
+  //Get message from worker
+  worker.onmessage = function(event){
+      res.send(`Got result from worker 
+      ${event.data.result}`);
+  };
+  //Send message to worker
+  worker.postMessage(1e8);
+})
 ```
 
 ---
