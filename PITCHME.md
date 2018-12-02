@@ -20,879 +20,407 @@ VSCode, Browser
 https://www.grauman.co.il
 
 ---
-#### @color[#e49436](Express Generator)
+#### @color[#e49436](Express)
 
-- Express Generator
+`> npm init -y`
 
-`> npm install -g express-generator`
-
-Install dependencies
-
-`> npm install`
-
----
-#### @color[#e49436](Express Env Variables)
-
-`> npm install dotenv --save`
-
-Create .env file in root folder and inside:
+`> npm install express --save`
 
 ```js
-PORT=4100
+const express = require('express');
 ```
-And inside package.json:
+Which returns a function...
+
+---
+#### @color[#e49436](Express)
 
 ```js
-"start": "nodemon -r dotenv/config ./bin/www",
-"startProd": "set PORT=3100 & nodemon -r dotenv/config ./bin/www"
+const express = require('express');
+const app = express();
 ```
-
----
-#### @color[#e49436](Express Env Variables)
-
-Run the server twice:
-
-`> npm start`
-
-`>npm run startProd`
-
-And see the log
-
----
-#### @color[#e49436](Express uuid)
-
-We need to generate random GUID strings for our sessions
-
-`npm install uuid --save`
-
+Which is a server like we did before
 ```js
-//Show it in homepage
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', 
-            sessionID: require('uuid/v4')() });
-});
-
+//Inside Express code
+app.listen = function listen() {
+  var server = http.createServer(this);
+  return server.listen.apply(server, arguments);
+};
 ```
 
 ---
-#### @color[#e49436](Express Session)
-
-`> npm install express-session --save`
-
-- Let's add our session middleware
-  - Create middleware folder
-- require express-session and uuid/4
-- Use session({genid, secret, resave, saveUninitialized})
-  - genid should return unique string,
-  - secret is env key
-
----
-#### @color[#e49436](Express Session)
+#### @color[#e49436](Express)
 
 ```js
-session({
-    genid: req => {
-        console.log(`session middleware. sessionID ${req.sessionID}`);
-        return uuid();
-    },
-    secret: sessionSecret,
-    resave: false, //For Store...later
-    saveUninitialized: true //...later
-})
-```
+const express = require('express');
+const port = process.env.PORT || 3100;
+const app = express();
 
----
-#### @color[#e49436](Express Session)
-
-Update .env, add
-
-```js
-SESSION_SECRET="My secret session key"
-```
-
-And use it for the session secret
-
----
-#### @color[#e49436](Express Session)
-
-express-session will add sessionID to the request
-
-So let's try it out
-
-```js
-//Show it in homepage
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', 
-            sessionID: req.sessionID });
-});
+app.listen(port, 
+    () => console.log(`Server listening on port ${port}`));
 
 ```
-
-Watch the cookie in browser and in server console
-
-Try refreshing, try to delete the cookie
+So we can listen for incoming request on some port
 
 ---
-#### @color[#e49436](Express Session)
+#### @color[#e49436](Express)
 
-Restart the server and go to homepage again
-
-Again, watch the cookie in browser and in server console
-
-Have you noticed anything?
-
----
-#### @color[#e49436](Express Session)
-
-Sessions are stored in memory
-
-If user sends new session cookie, our middleware can't find it
-
-So it initiates a new one...
-
-We need to store our sessions to survive server restarts
-
-...More user friendly
-
----
-#### @color[#e49436](Express Session Store)
-
-`> npm install session-file-store --save`
-
-Add it to our session config object (store property)
+Express exposes HTTP methods more easily
 
 ```js
-const FileStore = require('session-file-store')(session);
 //...
-store: new FileStore(),
-secret: sessionSecret,
-///...
+const app = express();
 
-```
-Try again with the browser
-
----
-#### @color[#e49436](Express Session Store)
-
-Did you noticed the server restarts each time a request is coming?
-
-This is because session-store created a *sessions* folder and updates it
-
-with the latest time the user reached the server
-
-Help nodemon. Add to package.json
-
-```js
-nodemon --ignore sessions/
-```
-
----
-#### @color[#e49436](Express Session Store)
-
-After a period when no interaction is made by the user
-
-The session is ended and removed from store
-
-```js
-[session-file-store] Deleting expired sessions
-[session-file-store] Deleting expired sessions
-
-//ttl can be set when newing-up FileStore
-```
-
----
-#### @color[#e49436](Express Login)
-
-Let's create a login route
-
-- Create login router and hook it into express
-- Add *get* and *post* routes
-  - console log *req.sessionID* and *req.body*
-  - render login ejs file with email and password
-
-Run and verify post data is logged
-
----
-#### @color[#e49436](Express Passport)
-
-Install Passport as authentication middleware
-
-`> npm install passport --save`
-
-We'll be using *local* strategy (email+password)
-
-`> npm install passport-local --save`
-
-Or in one shot
-
-`> npm install passport passport-local --save`
-
----
-#### @color[#e49436](Express Passport)
-
-Then we initialize passport
-
-```js
-app.use(passport.initialize());
-app.use(passport.session());
-```
-
-And restoring session state (Later on)
-
----
-#### @color[#e49436](Express Passport)
-
-- We will use Passport *authenticate('local')*
-  - Which will use our auth method 
-  - If authenticated, Passport will give us the req.*user* object
-
-So first, implement authentication method
-
-LocalStrategy assumes 'email' and 'password' are sent in the request's body
-
----
-#### @color[#e49436](Express Passport)
-
-Local Strategy authentication method
-
-```js
-passport.use(
- new LocalStrategy({ usernameField: 'email' },
-  (email, password, done) => {
-     console.log(`LocalStrategy ${email} ${password}`);
-     const user = //... find the user by email
-     if(!user) return done(null, false);
-     if(user.password !== password) return done(null, false);
-     return done(null, user);
-  }
- )
-);
-
-```
----
-#### @color[#e49436](Express Passport)
-
-```js
-passport.authenticate('local', (err, user, info) => {
-  //login will be added if authentication succeeded
-  req.login(user, err => {
-      //req.user and req.session.passport are available
-      next();
-  });
-})(req, res, next);
-```
-
-After successful authentication, 
-
-Passport will establish a persistent login session
-
----
-#### @color[#e49436](Express Passport) authenticate
-
-- In our strategy, we use POST data to verify the user
-- If verified, we get back to *authenticate()* 
-  - And Passport added *req.login()* with the *user* as argument
-    - We call login with the authenticated user
-    - And eventually call the *next()* middleware
-
----
-#### @color[#e49436](Express Passport) authenticate
-
-- *req.login* then call *passport.serializeUser(user)*:
-  - It saves user id to the session store
-  - It adds user id as request.session.passport
-  - It adds user object as request.user
-
-```js
-passport.serializeUser((user, done) => {
-    done(null, user.id);
+app.get('/', (req, res) => {
+    res.send('Ahalan');
 });
-//{"cookie":{..."__lastAccess":...,"passport":{"user":101787}}
 
+app.listen(port);
 ```
+So we can listen for incoming request on some port
 
 ---
-#### @color[#e49436](Express Passport) authenticate
+#### @color[#e49436](Express) Status Codes
 
 ```js
-passport.deserializeUser((id, done) => {
-    //Find the user... then
-    if(user) done(null, user);
-    else done(null, false);
+res.sendStatus(200); // res.status(200).send('OK')
+res.sendStatus(403); // res.status(403).send('Forbidden')
+res.sendStatus(404); // res.status(404).send('Not Found')
+res.sendStatus(500); // res.status(500).send('Internal Server Error')
+```
+---
+#### @color[#e49436](Express) Responses Types
+
+Express intercepts, to some extent, the content of my response
+
+```js
+//...
+app.get('/html', (req, res) => {
+    res.send(`<html><head></head>
+    <body>
+        <h1>Ahalan Express!</h1>
+        <h2>I'm an HTML</h2>
+    </body></html>`);
 });
+
 ```
-- *passport.deserializeUser(userid)* will be called on next requests
-- It'll match session id to the session store and retrieve user id
-- Leaving us the opportunity to locate back the user data
-- And add it back again to the request object
+So we can respond more descriptively
 
 ---
-#### @color[#e49436](Express Passport) authorization
-
-We can now protect some routes from being accessed
-
-Using *req.isAuthenticated()*
-
-Or creating custom middleware
+#### @color[#e49436](Express) Responses Types
 
 ```js
-router.get('/users/:name', authorize, (req, res) => {
-    //...got here if authorized
-    //serve the page
+//...
+
+app.get('/json', (req, res) => {
+    res.json({nama: 'Shahar', age: 27});
+});
+
+//...
+app.get('/download', (req, res) => {
+    res.download(path.join(__dirname, 'file.pdf'));
 });
 
 ```
 
 ---
-#### @color[#e49436](Express Passport) return to url
+#### @color[#e49436](Express) nodemon
 
-If the user is in */users/Shahar*
+We can install nodemon for watching file changes 
 
-The session had expired
+It will reload our server automatically
 
-He refresh the browser
-
-After redirecting to */login* and authenticated
-
-Where should we redirect him to?
-
-*/* Or back to */users/Shahar* ?
+`> npm install -g nodemon`
 
 ---
-#### @color[#e49436](Express Passport) return to url
-
-We can do it like so:
+#### @color[#e49436](Express) Route paths
 
 ```js
-router.get('/login', (req, res) => {
-    res.render('login', {backTo: req.query.backTo ?
-         `?backTo=${req.query.backTo}` : ''});
+app.get('/ahalan/:name', (req, res) => {
+    res.send(`<html><head></head><body>
+        <h1>Ahalan ${req.params.name}</h1>
+    </body></html>`);
 });
-//And in the form
-<form action="/login<%= locals.backTo %>" method="POST"></form>
-//Then in the post
-router.post('/', authenticate, (req, res) => {
-    if(req.query.backTo) res.redirect(req.query.backTo);
-    else res.redirect(`/`);
+
+app.get('/aha?lan/:name', function (req, res) {
+    res.send(`<html><head></head><body>
+        <h1>Ahalan ${req.params.name}</h1>
+    </body></html>`);
+});
+//ahalan, ahlan
+```
+
+---
+#### @color[#e49436](Express) Route paths
+
+```js
+app.get('/ahala+n/:name', function (req, res) {
+  res.send(`<html><head></head><body>
+        <h1>Ahalan ${req.params.name}</h1>
+    </body></html>`);
+});
+//ahalan, ahalaan, ahalaaaaan etc.
+
+app.get('/ahala*n/:name', function (req, res) {
+  res.send(`<html><head></head><body>
+        <h1>Ahalan ${req.params.name}</h1>
+    </body></html>`);
+});
+//ahalan, ahalaaan, ahalabcdn etc.
+```
+
+---
+#### @color[#e49436](Express) Route paths
+
+```js
+app.get(/.*lan$/, function (req, res) {
+  res.send(`<html><head></head><body>
+        <h1>Ahalan!</h1>
+    </body></html>`);
+});
+//ahalan, kablan
+//Not ahalanyo etc.
+```
+
+---
+#### @color[#e49436](Express) Static files
+
+Whenever we need to serve static files (HTML, CSS, JSON, Images, Files...)
+
+We tell Express to *use* our assets folder
+
+```js
+app.use('/content', 
+        express.static(path.join(__dirname, 'assets'));
+//...
+app.get('/html', (req, res) => {
+    res.send(`<html><head>
+    <link href='content/styles.css' type='text/css' rel='stylesheet' />
+    </head>
+    <body><h1>Ahalan Express!</h1>
+    </body></html>`);
 });
 ```
 
 ---
-#### @color[#e49436](Express Passport) return to url
+#### @color[#e49436](Express) Middleware
 
-Or we can use our session to store the original url 
+We've just used middleware
+
+Middleware sits between the request and the response:
+
+- Execute some code
+- Perform changes on request / response objects
+- Decide to end the request-response cycle
+- Continue to the next middleware
+
+---
+#### @color[#e49436](Express) Middleware
 
 ```js
-function authorize(req, res, next) {
-    if(!req.isAuthenticated()){
-        req.session.backTo = req.originalUrl;
-        res.redirect('/login');
+app.use('/', (req, res, next) => {
+    console.log(`Incoming request: ${req.url}`);
+    next();
+});
+```
+Which means: Any request starts with '/' will first run through this middleware
+
+---
+#### @color[#e49436](Express) Middleware
+
+We can use a much powerfull middleware named *morgan*
+
+`> npm install morgan --save`
+
+```js
+const morgan = require('morgan');
+//stdout
+app.use(morgan('combined')); 
+
+//Or to a file
+const logFile = fs.createWriteStream(
+    path.join(__dirname, 'logger.log'), 
+    { flags: 'a'});
+
+app.use(morgan('combined', { stream: logFile }));
+
+```
+
+---
+#### @color[#e49436](Express) Middleware
+
+We can write middleware which inspect the headers and act accordingly
+
+```js
+function compress(req, res, next) {
+    if(req.headers['accept-encoding'] && 
+       req.headers['accept-encoding'].includes('gzip')){
+        const gzip = zlib.createGzip();
+        fs.createReadStream(path.join(__dirname, 'file.pdf'))
+        .pipe(gzip).pipe(res);
     }else{
         next();
     }
 }
-router.post('/', authenticate, (req, res) => {
-    if(req.session.backTo) res.redirect(req.session.backTo);
-    else res.redirect(`/users/${req.user.name}`);
+app.get('/file', compress, (req, res) => {
+    fs.createReadStream(path.join(__dirname, 'file.pdf'))
+    .pipe(res);
 });
 ```
 
 ---
-#### @color[#e49436](Express encrypt)
-
-`>  npm install bcrypt --save`
+#### @color[#e49436](Express) Querystring & Post params
 
 ```js
-bcrypt.hash(student.password, 10)
-        .then(hash => {});
-//...
-bcrypt.compare(password, hash)
-        .then(res => res)//true/false
+request.query //will hold query params
+//localhost:3100/users?year=2010 -> req.query.year
+
+request.params //will hold url path params
+//localhost:3100/user:id -> req.params.id
+
+request.body //will hold post params
+//using body-parser library
 ```
 
 ---
-#### @color[#e49436](Express MySql)
+#### @color[#e49436](Express) Template Engine
 
-Make sure you create college db with student table (id, name, email, password)
+Template Engine is a way of structuring a page with dynamic content
 
-`> npm install mysql --save`
+The page has known placeholders 
+
+We load that file and inject the content into those placeholders
+
+---
+#### @color[#e49436](Express) Custom Template Engine
 
 ```js
-this.connection = mysql.createConnection({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE
-});
+//Provide your engine file extension name
+//and function: the file to load, inject data, callback
+app.engine('sg', (file, data, cb) => {
+    //Read the file, 
+    //Inject data as your engine requires
+    //Call cb with the result    
+}
+//Then tell express where to locate 'sg' files
+app.set('views', './views'));
+//And finally register 'sg' engine
+app.set('view engine', 'sg');
 ```
 
 ---
-#### @color[#e49436](Express MySql)
-
-Query as usual!
+#### @color[#e49436](Express) Custom Template Engine
 
 ```js
-connection.query('select * from student where email='+email, 
-    (err, results, fields) => {
-        if(err) throw err;
-        return results.find(s => s.email === email);
-});
-```
-
-Hmmm... can you think of a potential problem above?
-
----
-#### @color[#e49436](Express MySql)
-
-email could be *'bla; drop table student;'*
-
-```js
-connection.query('select * from student where email = ?', 
-    connection.escape(email),
-    //[email], //escaped as well!
-    (err, results, fields) => {
-        if(err) throw err;
-        return results.find(s => s.email === email);
-});
-```
-
-Escape everything!
-
----
-#### @color[#e49436](Express MySql)
-
-Escape ids
-
-```js
-connection.query(`select * from 
-        ${connectoin.escape(table)}
-        where id = 
-        ${connection.escapeId(id)}`,
-    (err, results, fields) => {})
-});
-//Or
-connection.query('select * from ?? where id = ?', ['student', [id]], 
-    (err, results, fields) => {})
-});
-```
-
----
-#### @color[#e49436](Express MySql)
-
-```js
-const columns = ['id', 'name', 'email', 'password'],
-      table = 'student';
-const q = this.connection.query(
-            `select ?? from ?? where id = ?`, 
-            [columns, table, [id]], 
-            (err, results, fields)=>{
-                console.log('Escaping', q.sql);
-            }
-);
-//Escaping select `id`, `name`, `email`, `password` from `student` where id = 4
-```
-
----
-#### @color[#e49436](Express MySql)
-
-Preparing query for later use
-
-```js
-var sql = "select ?? from ?? where id = ?";
-var data = [columns, table, [id]];
-sql = mysql.format(sql, data);
-```
-
----
-#### @color[#e49436](Express MySql)
-
-Piping results
-
-```js
-this.connection.query(`select...`)
-    .stream({highWaterMark:1})
-    .pipe(stream.Transform({
-        objectMode: true,
-        transform: function(object, enc, cb) {
-            console.log('mysql pipe transform', object);
-            cb();
-        }            
-        }).on('finish', () => console.log('transform ended'))
-    );
-```
-
----
-#### @color[#e49436](Express REST)
-
-Route + HTTP Verb = REST API
-
-- GET /api/students
-  - Get all students
-- POST /api/students
-  - Create a student
-- GET /api/students/:id
-  - Get a single student
-- PUT /api/students/:id
-  - Update a student with new data
-- DELETE /api/students/:id
-  - Delete a student
-
----
-#### @color[#e49436](Clustering & Worker Threads)
-
-Cluster mode is when Node runs in multiple copies
-
-All are running our server inside them.
-
-Multiple instances of the event loop
-
----
-#### @color[#e49436](Clustering & Worker Threads)
-
-Worker Thread is using the libuv's thread pool
-
-Still experimental
-
----
-#### @color[#e49436](Clustering & Worker Threads)
-
-So let's create a simple server to test those out
-
-```js
-const express = require('express'),
-      app = express();
-
+//render the page using sg engine!
+//Pass data object
 app.get('/', (req, res) => {
-    res.send('Ahalan!');
-})
-.listen(3100, () => console.log('Listen on 3100'));
+    res.render('index', {
+        data1: 'Some data to be injected',
+        data2: 'Other data'
+        //...
+    });
+});
 ```
 
 ---
-#### @color[#e49436](Clustering & Worker Threads)
+#### @color[#e49436](Express) EJS Template Engine
 
-Most of our code will use built-in modules
+*ejs* templage engine is a simple templating engine
 
-Which are using libuv's tread pool or OS tasks
+It uses similar syntax as used in *aspx* pages
 
-But what if we need to do intensive cpu work?
-
-We'll block the event loop...
-
+`> npm install ejs --save`
 
 ---
-#### @color[#e49436](Clustering & Worker Threads)
+#### @color[#e49436](Express) EJS Template Engine
 
-We can simulate that by doing long while loop
+Ex - Use ejs as the template engine
 
-Test your server now with 2 tabs
+Create 2 pages:
 
-The event loop runs in single thread
-
-If you have 16 cores machine, your app will use just 1
-
----
-#### @color[#e49436](Clustering & Web Workers)
-
-We can make a copy of our server
-
-Which means each has it's own event loop in a dedicated process
-
-So we can handle parallel requests *on the same port*
+- The first is a contact us page (name, email, notes)
+  - When submitting, replace html with thank you page
+- Thank you page, show name, email and notes
+  - If data is missing, redirect back to contact us
 
 ---
-#### @color[#e49436](Clustering & Web Workers)
+#### @color[#e49436](Express) REST API
 
-We will have a *Cluster Manager*
+REpresentational State Transfer
 
-Like the parent process, the first born
+HTTP verbs (GET/POST...) and URLs has meaning
 
-The manager will create multiple instances of the server
+Mainly being used for data tranfers (json)
 
-It's responsible for monitoring the healte of each instance
-
----
-#### @color[#e49436](Clustering & Web Workers)
-
-*Cluster Manager*
-
-- Start instances
-- Stop instances
-- Restart them
-- Send them data
-- ...
-
-Administration stuff
+Usualy /api/... (api/customers, api/customer/3)
 
 ---
-#### @color[#e49436](Clustering & Web Workers)
-
-Run `node index.js`
-
-Will create Node Instance running our index.js server
-
-If we *fork* our instance, we'll create a copy of index.js
-
-
----
-#### @color[#e49436](Clustering & Web Workers)
-
-![cluster-fork](assets/cluster-fork.png)
-
----
-#### @color[#e49436](Clustering & Web Workers)
+#### @color[#e49436](Express) REST API
 
 ```js
-cluster = require('cluster');
-```
-
-We distinguish between the manager and children by checking 
-
-```js
-cluster.isMaster
-
-isMaster === true // I'm the Master, 
-isMaster === false// I'm a Worker
+app.get('/api/users', (req, res) => return all users);
+app.get('/api/user:id', (req, res) => return user data);
+app.post('/api/user', (req, res) => add new user);
+app.delete('/api/user:id', (req, res) => delete from db);
 ```
 
 ---
-#### @color[#e49436](Clustering & Web Workers)
+#### @color[#e49436](Express) Structuring our app
+
+We should create seperate modules for better structure the app
+
+For instance, extract routes to their own module
+
+How can we hook them into our app?
 
 ```js
-const cluster = require('cluster');
-//...
-//Is this master mode?
-if(cluster.isMaster){
-    //Run app.js again in child/slave mode
-    cluster.fork();
-} else {
-    //...
-    app.listen(3100, () => console.log('Listen on 3100'));
-})
-```
-
----
-#### @color[#e49436](Clustering & Web Workers)
- 
-forking just once isn't much of a benefit
-
-We can fork as much as we want
-
-Try to fork 2,3 or 4 times
-
-Run the server and open multiple tabs
-
-Test to see you get results as expected
-
----
-#### @color[#e49436](Clustering & Worker Threads)
-
-Benchmark your tests can be difficult
-
-How would you simulate 500 requests? 1000 requests?
-
-A simple tool is Apache Benchmark, or ab
-
-`> ab.exe -c 10 -n 500 -g outab.plt http://localhost:3100/`
-
-500 requests, 10 concurrents, outout to a file
-
----
-#### @color[#e49436](Clustering & Worker Threads)
-
-```js
-starttime	seconds	    ctime	dtime	ttime	wait
-Mon Oct 01 21:54:08 2018	1543694048	0	98	98	98
-//...
-```
-
-- starttime − The date at which the call started
-- ctime − The Connection Time
-- dtime − The Processing Time
-- ttime − Total Time (ctime + dtime)
-- wait − Waiting Time
-
----
-#### @color[#e49436](Clustering & Worker Threads)
-
-Using gnuplot
-
-![gnuplot](assets/gnuplot.png)
-
----
-#### @color[#e49436](Clustering & Worker Threads)
-
-So if we have routes which takes time to process
-
-And other faster routes,
-
-Then clustering can kinda load-balancing incoming requests
-
----
-#### @color[#e49436](Clustering & Worker Threads)
-
-To better simulate real time processing
-
-Let's use pbkdf2
-
-Let's, for start, fork 1 child with just 1 thread
-
-`> ab.exe -c 1 -n 1 http://localhost:3100/`
-
-Then `> ab.exe -c 2 -n 2 http://localhost:3100/`
-
-Make sure you understand the results
-
----
-#### @color[#e49436](Clustering & Worker Threads)
-
-Now test with 2 children each with 1 thread
-
-And test with ab numbers matching your children
-
-See how performance is degradating as you keep forking more children then available CPUs
-
----
-#### @color[#e49436](Clustering & Worker Threads)
-
-Forking 6 children with single thread pool
-
-`> ab.exe -c 6 -n 6 -g outab6.plt http://localhost:3100/`
-
-![gnuplot6](assets/gnuplot6.png)
-
-
----
-#### @color[#e49436](Clustering & Worker Threads)
-
-Forking 16 children (twice than my cpus) with single thread pool
-
-`> ab.exe -c 16 -n 16 -g outab16.plt http://localhost:3100/`
-
-![gnuplot16](assets/gnuplot16.png)
-
-
----
-#### @color[#e49436](Clustering & Worker Threads)
-
-We can ease the pain by using pm2
-
-Production process manager for Node.js
-
-`> npm install -g pm2`
-
-Then
-
-`> pm2 start app.js`
-
-`> pm2 show <app-name>`
-
-`> pm2 monit`
-
-`> pm2 start app.js -i 0 --watch`
-
-
----
-#### @color[#e49436](Clustering & Worker Threads)
-
-`> pm2 start app.js -i 0`
-
-`> ab.exe -c 10 -n 60 -g outabpm2.plt http://localhost:3100/`
-
-![gnuplotpm2](assets/gnuplotpm2.png)
-
----
-#### @color[#e49436](Clustering & Web Workers)
-
-Communicating between process is done through messaging
-
-Child/Master process can use *process.send({object})* to Master/Child
-
-Child process can receive message from master 
-
-*process.on('message', function(message){})*
-
-Master can listen on *child.on('message')*
-
----
-#### @color[#e49436](Clustering & Worker Threads)
-
-```js
-if(cluster.isMaster){
-  for (let i = 0; i < cpus; i++) {
-      cluster.fork();        
-  }
-
-  for(const childId in cluster.workers) {
-      cluster.workers[childId].on('message', message => {
-          console.log(`Master ${process.pid} got message 
-          from child: ${JSON.stringify(message)}`);
-      });
-  }
+module.exports = app => {
+    app.get('/api/users', (req, res) => {...});
+    app.post('/api/user', (req, res) => {...});
 }
 ```
 
 ---
-#### @color[#e49436](Clustering & Worker Threads)
+#### @color[#e49436](Express) Structuring our app
+
+There's no right way of structuring our web app
+
+There's always more than 1 solution which suits our needs
+
+Keep app-logics seperated in simple yet reasonable way
+
+---
+#### @color[#e49436](Express) Express Generator
+
+`> npm install express-generator -g`
+
+`> express --view=ejs generated`
+
+`> cd generated`
+
+`> npm install`
+
+`> npm start`
+
+---
+#### @color[#e49436](Express) Express Generator
+
+Notice how routes are being used
 
 ```js
-} else {    
-  process.on('message', message => {
-      console.log(`Child ${process.pid} got message 
-      from master ${JSON.stringify(message)}`);
-  });
-  //...
-  cluster.worker.send({
-      childsays: `Ahalan from child process 
-      #${cluster.worker.process.pid}`
-  });
-
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 ```
 
----
-#### @color[#e49436](Clustering & Worker Threads)
-
-Worker Threads
-
-Uses the same thread pool managed by libuv
-
-So if I run pbkdf2 inside a worker?
-
-I won't gain anything, because pbkdf2 already runs in another thread
-
-Use it if you have heavy work to do it outside the event loop
-
----
-#### @color[#e49436](Clustering & Worker Threads)
-
-`> npm install webworker-threads --save`
-
----
-#### @color[#e49436](Clustering & Worker Threads)
-
-```js
-app.get('/', (req, res) => {
-  const worker = new Worker(function(){
-      this.onmessage = function(event) {
-        console.log('Worker got counter', event.data);
-        for(var i=0; i < event.data; i++){}
-        postMessage({result: i});
-      }
-  });
-  //Get message from worker
-  worker.onmessage = function(event){
-      res.send(`Worker result ${event.data.result}`);
-  };
-  //Send message to worker
-  worker.postMessage(1e8);
-})
-```
+users are being prefixed by */users*, and inside this router, we have normal routes
 
 ---
 #### @color[#e49436](Node Part 2)
 
-End Of Node Coure!
+End Of Part 2
+
 
 ---?image=assets/images/grauman-at-wobi.png
+
+
 
