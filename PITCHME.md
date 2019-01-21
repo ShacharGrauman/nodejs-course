@@ -1,33 +1,20 @@
----?image=assets/images/grauman-at-wobi.png
+---?image=assets/images/grauman-js-at-bancor.png
 
 ---
 # Introduction
 
 Our Facebook Group: 
-GRAUMAN- Node.Js at WOBI
-
-WhatsApp:
-https://chat.whatsapp.com/HiWZtxYZU0WF0Q9geUFxYD
+GRAUMAN - JavaScript at Bancor
 
 Tools: 
-VSCode, Browser
+VSCode, Browser, Smile
 
 ---
 
-## Node.js @ Wobi
+## JavaScript @ Bancor
 
 @color[#e49436](GRAUMAN) dev courses for R&D teams
 https://www.grauman.co.il
-
----
-
-## Part 1 - *JavaScript*
-## Part 2 - *Node.js*
-
----
-
-## In order to know @color[#e49436](Node)
-## understand @color[#e49436](JavaScript)
 
 ---
 
@@ -1990,6 +1977,6 @@ returning [1, 2, 3, 4, 5, 6]
 
 Use concat
 
----?image=assets/images/grauman-at-wobi.png
+---?image=assets/images/grauman-js-at-bancor.png
 
 ---
