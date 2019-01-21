@@ -1,4 +1,4 @@
----?image=assets/images/grauman-js-at-bancor.png
+---?image=assets/images/grauman-at-bancor.png
 
 ---
 # Introduction
@@ -1977,6 +1977,6 @@ returning [1, 2, 3, 4, 5, 6]
 
 Use concat
 
----?image=assets/images/grauman-js-at-bancor.png
+---?image=assets/images/grauman-at-bancor.png
 
 ---
