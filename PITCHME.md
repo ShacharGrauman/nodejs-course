@@ -1,17 +1,17 @@
----?image=assets/images/grauman-at-bancor.png
+---?image=assets/images/grauman-at-experis.png
 
 ---
 # Introduction
 
 Our Facebook Group: 
-GRAUMAN - JavaScript at Bancor
+GRAUMAN - JavaScript at Experis
 
 Tools: 
 VSCode, Browser, Smile
 
 ---
 
-## JavaScript @ Bancor
+## JavaScript @ Experis
 
 @color[#e49436](GRAUMAN) dev courses for R&D teams
 https://www.grauman.co.il
@@ -1977,6 +1977,6 @@ returning [1, 2, 3, 4, 5, 6]
 
 Use concat
 
----?image=assets/images/grauman-at-bancor.png
+---?image=assets/images/grauman-at-experis.png
 
 ---

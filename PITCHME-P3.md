@@ -1,10 +1,10 @@
----?image=assets/images/grauman-at-wobi.png
+---?image=assets/images/grauman-at-experis.png
 
 ---
 # Introduction
 
 Our Facebook Group: 
-GRAUMAN- Node.Js at WOBI
+GRAUMAN- Node.Js at EXPERIS
 
 WhatsApp:
 https://chat.whatsapp.com/HiWZtxYZU0WF0Q9geUFxYD
@@ -14,7 +14,7 @@ VSCode, Browser
 
 ---
 
-## Node.js @ Wobi
+## Node.js @ Experis
 
 @color[#e49436](GRAUMAN) dev courses for R&D teams
 https://www.grauman.co.il
@@ -894,5 +894,5 @@ app.get('/', (req, res) => {
 
 End Of Node Coure!
 
----?image=assets/images/grauman-at-wobi.png
+---?image=assets/images/grauman-at-experis.png
 
