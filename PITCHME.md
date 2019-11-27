@@ -4,1979 +4,1649 @@
 # Introduction
 
 Our Facebook Group: 
-GRAUMAN - JavaScript at Experis
+GRAUMAN- Node.Js at EXPERIS
+
+WhatsApp:
+https://chat.whatsapp.com/HiWZtxYZU0WF0Q9geUFxYD
 
 Tools: 
-VSCode, Browser, Smile
+VSCode, Browser
 
 ---
 
-## JavaScript @ Experis
+## Node.js @ Experis
 
 @color[#e49436](GRAUMAN) dev courses for R&D teams
 https://www.grauman.co.il
 
 ---
+#### @color[#e49436](ECMAScript and JavaScript Engines)
 
-### @color[#e49436](JavaScript History)
-
-- Netscape
-
-- The browser war
-
-- Standartization - ECMAScript
-
-- jQuery
-
-- Node
-
-- SPA
+- JavaScript came to earth in Netscape - 1993
+- They released Mosaic - first Web browser
+- 1994 - Netscape was released
+  - Internal codename - Mozilla
+- May 1995 - Brendan Eich, Netscape, wrote a proposal prototype of a scripting language to be embedded inside Netscape
+- Named Mocha, but officialy LiveScript (Netscape 2.0)
+- December 1995 - Renamed to JavaScript
 
 ---
+#### @color[#e49436](ECMAScript and JavaScript Engines)
 
-### @color[#e49436](JavaScript in a nutshell)
-
-- All browser support JS - After all, JS is the language of the browsers
-- Client Side
-- Structured and syntax inspired by C language
-- Dynamic - Types, Evaluation at runtime
-
----
-
-### @color[#e49436](JavaScript in a nutshell)
-
-- Prototype based, as opposed to classical OO with classes
-- Function is First-Class - Meaning it’s an object! It can be passed around, assigned to variables, create objects
+- Same December '95 - Netscape Enterprise Server
+  - LiveWire Pro Web, Server-Side scripting!
+- 1996 - Microsoft reversed-engineered Netscape's JS - JScript
+  - Internet Explorer 3
+  - Used in their IIS servers
+- The Browser Wars came
+  - "Best viewed in Netscape/Internet Explorer" 
+- So before her last breath, Netscape initiated the standard
 
 ---
+#### @color[#e49436](ECMAScript and JavaScript Engines)
 
-### @color[#e49436](JavaScript on the Server?)
-
-* Node.js revolutionized the way JS can be used
-
-* Node is a server-side runtime
-  * Allow JS programs on the ‘other end’ 
-  * Full-Stack JS apps!
-
----
-
-### @color[#e49436](JavaScript on the Server?)
-
-
-* NPM - The worlds’ biggest open-source ecosystem
-  * Currently more than 600,000 packages!
-
-* Currently v10
-  * Keeps evolving
-  * New release every 6 months
+- 1997 - ECMA-262 first standard
+- 1998 - ECMAScript 2 
+- 1999 - ECMAScript 3
+- In the meantime - Blood Shade 
+- 2005 - Ajax
+  - Big explosion of jQuery, Dojo, MooTools...
+- 2009 - ECMAScript 5
+- 2015 ECMAScript 6 (ECMAScript 2015 / ES6)
+- 2016 ECMAScript 7 (ECMAScript 2016 / ES7)
+- 2017 ECMAScript 8 (ECMAScript 2016 / ES8)
 
 ---
-
-### @color[#e49436](ECMAScript)
-
-
-In 2015, the 6th version (referred as ES6 or ES2015) was released
-
-ES6 brought a lot of new features and improvements, most notably
+#### @color[#e49436](Node.js)
+- A runtime executes JavaScript outside of a browser
+- Written in 2009 - By Ryan Dahl
+  - Google's V8, Event Loop, low-level I/O API
+- 2010 - NPM
+- 2011 Node.js for Windows (Microsoft & Joyent)
+- io.js - a fork of node.js
+  - keep io.js up to date with latest V8
+- 2015 - Node.js v0.12 + io.js v3.3 = Node v4.0
 
 ---
-### @color[#e49436](ES6)
+#### @color[#e49436](Node.js)
+
+- Is primarily used to build Web servers
+- Has numerous modules for various core functionalities
+  - File System I/O
+  - Networking
+  - Buffers & Streams
+  - Cryptography
+
+---
+#### @color[#e49436](Node.js)
+
+- The biggest difference between Node.js and (ASP/PHP...)
+  - Most functions in them block
+  - Node.js functions are Non-Blocking
+
+- Has an Event-Driven architecture
+  - Asynchronous I/O
+  - Optimized throughput
+  - Optimized scalability
+  - Real-Time web applications
+
+---
+#### @color[#e49436](Node.js)
+
+- Event-Driven programming
+  - No more threads!
+  - using callbacks to signal a task completion
+
+- Uses Google V8 JavaScript engine
+  - Extremely fast
+
+---
+#### @color[#e49436](V8)
+
+- Released in 2008
+- Written in C++
+  - Compiles JS to native machine code
+- Compiled code ia additionally optimized
+  - and re-optimized at runtime
+- Consists of Interpreter (Ignition) and optimizing compiler (TurboFan)
+  - Replaced Full-Codegen and Crankshaft
+
+---
+### @color[#e49436](V8) - JavaScript Engine
+
+#### JavaScript
+#### ||
+#### C/C++
+#### ||
+#### Assembly Language
+#### ||
+#### Machine Language
+
+---
+### @color[#e49436](V8)
+
+@size[0.5em](Can be standalone, or be embedded. We can add our own implementations: spit('Whats Up?')) 
+
+![standalone](assets/images/v8-standalone.png)
+
+---
+### @color[#e49436](V8) - JavaScript Engine
+
+Google - V8 (Chrome, Node.js)
+Microsoft - Chakra (Edge)
+Mozilla - SpiderMonkey (FireFox)
+
+Rhino, JavaScriptCore...
+
+All based on ECMAScript standard
+
+---
+#### @color[#e49436](The V8 C++ Side)
+
+Node.js in itself is a C++ implementation of a V8 engine 
+
+Allowing server side programming and networking applications
+
+https://github.com/v8/v8/blob/master/samples/shell.cc
+
+---
+#### @color[#e49436](The V8 C++ Side)
+
+If we dive in the source code of v8
+
+We can see HUGE C++ implementations of the ECMAScript standatd
+
+It reads the JS code and convert it to machine code
+
+---
+#### @color[#e49436](The V8 C++ Side)
+
+Node Include v8
+
+![node-include-v8](assets/images/node-intro/node-include-v8.png)
+
+---
+#### @color[#e49436](The V8 C++ Side)
+
+Built-In Json Parser
+
+![json-cpp](assets/images/node-intro/json-parser-cpp.png)
+
+---
+#### @color[#e49436](The V8 C++ Side)
+
+Built-In Boolean
+
+![boolean-cpp](assets/images/node-intro/boolean-cpp.png)
+
+---
+#### @color[#e49436](The V8 C++ Side)
+
+Built-In Date
+
+![date-cpp](assets/images/node-intro/date-cpp.png)
+
+
+---
+#### @color[#e49436](The V8 JavaScript Side)
+
+fs module
+
+![date-cpp](assets/images/node-intro/fs-js.png)
+
+---
+#### @color[#e49436](The V8 JavaScript Side)
+
+http module
+
+![date-cpp](assets/images/node-intro/http-js.png)
+
+---
+#### @color[#e49436](The V8 JavaScript Side)
+
+path module
+
+![date-cpp](assets/images/node-intro/path-js.png)
+
+---
+#### @color[#e49436](Node Modules and require)
+
+We saw how to create modules via Closures
+
+Module encapsulates internal data
+
+Module exports a public API
+
+Module is a reusable block of code
+
+---
+#### @color[#e49436](Node Modules and require)
+
+CommonJS
+
+Is a project with the goal of specifying an ecosystem for JavaScript outside the browser
+
+NodeJS uses this standard - how code modules should be structured
+
+---
+#### @color[#e49436](Node Modules and require)
+
+We use require('module-name');
+
+If it's my module then we add ./ for same directory
+
+require('./my-module');
+
+If it's built-in one we omit the ./
+
+require('fs');
+
+---
+#### @color[#e49436](Node Modules and require)
+
+hello.js
+```js
+var hello = function() {
+    console.log('Hello');
+}
+```
+app.js
+```js
+require('./hello'); //Default to .js files
+hello();
+```
+
+---
+#### @color[#e49436](Node Modules and require)
+
+Exporting our module
+
+hello.js
+```js
+var hello = function() {
+    console.log('Hello');
+}
+module.exports = hello;
+```
+app.js
+```js
+require('./hello');
+hello();
+```
+
+---
+#### @color[#e49436](Node Modules and require)
+
+Module.prototype.require
+
+![date-cpp](assets/images/node-intro/module-loader.png)
+
+---
+#### @color[#e49436](Node Modules and require)
+
+```js
+(function (exports, require, module, __filename, __dirname) { 
+  var hello = function(){
+    console.log('Hello');
+  }
+
+  module.exports = hello;
+});
+```
+![date-cpp](assets/images/node-intro/require-module-wrapper.png)
+
+---
+#### @color[#e49436](Node Modules and require)
+
+- What module loader actually does is 
+- running my code inside a wrapper function
+- Giving me a module variable (also __dirname)
+- And I'm attaching properties to it's export object
+- So require returns module.exports
+
+---
+#### @color[#e49436](Modules Patterns)
+
+We can export with several techniques
+
+- A single function
+
+```js
+module.exports = function() {
+    //...
+}
+```
+```js
+let func = require('./module');
+func();
+```
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- Add it as a property to exports
+
+```js
+module.exports.func = function(){
+    //...
+}
+```
+```js
+let mod = require('./module');
+mod.hello();
+```
+```js
+let hello = require('./module').hello;
+hello();
+```
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- Function Constructor
+
+```js
+function Person() {
+    this.name = 'Shahar';
+    this.sayYourName = function() {
+        console.log(`My name is ${this.name}`);
+    }
+}
+module.exports = new Person();
+```
+```js
+let me = require('./person');
+me.name = 'Lala'; 
+me.sayYourName();
+let him = require('./person');
+him.sayYourName();
+```
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- Modules are cached. Further requiring returns the same module
+
+```js
+function Person() {
+    this.name = 'Shahar';
+    this.sayYourName = function() {
+        console.log(`My name is ${this.name}`);
+    }
+}
+module.exports = Person;
+```
+```js
+const Person = require('./person');
+let me = new Person();
+me.name = 'Lala';  me.sayYourName();
+let him = new Person();//require('./person');
+him.sayYourName();
+```
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- exports is an object. You can attach it multiple things
+
+```js
+var counter = 0; //private!
+
+function Person() {
+    this.name = 'Shahar';
+    counter++;
+    this.sayYourName = function() { 
+        return `My name is ${this.name}`; 
+    }
+    this.counter = function(){ return counter; }
+}
+function Cat(age){
+    this.age = age || 1;
+    this.meau = function(){ return 'Feed me simor'; }
+}
+
+module.exports.Person = Person;
+module.exports.Cat = Cat;
+```
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- extracting from exports
+
+```js
+const things = require('./module');
+const Person = things.Person;
+const Cat = things.Cat; 
+```
+Or
+```js
+const { Person, Cat } = require('./module');
+```
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- exports using revealing module
+
+```js
+var counter = 0; //private!
+
+function Person() {
+    this.name = 'Shahar';
+    counter++;
+    this.sayYourName = function() { 
+        return `My name is ${this.name}`; 
+    }
+}
+function Cat(age, owner){
+    this.age = age || 1;
+    this.meau = function(){ return `Feed me ${owner || 'simor'}`; }
+}
+
+module.exports = {
+    Person,
+    counter: function(){ return counter; },
+    createCat: function(owner){
+        return new Cat(2, owner);
+    }
+}
+```
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- using revealing module
+
+```js
+const revealed = require('./module');
+
+let p1 = new revealed.Person();
+console.log(p1.sayYourName(), revealed.counter()); 
+
+let kitty = revealed.createCat(p1.name);
+console.log(kitty.meau());
+
+```
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- Using only *exports* instead of *module.exports*
+
+```js
+exports = function Person(name){
+    this.name = name;
+    this.sayYourName = function() { 
+        console.log(`My name is ${this.name}`); 
+    }
+}
+```
+```js
+var Person = require('./module');
+
+let me = new Person('Shahar');
+me.sayYourName();
+```
+- What do you think?
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- Using only *exports* instead of *module.exports*
+
+Remember this?
+```js
+(function (exports, require, module, __filename, __dirname) { 
+  var hello = function(){
+    console.log('Hello');
+  }
+
+  module.exports = hello;
+});
+```
+exports argument is *module.exports*
+
+They point to the same object
+
+---
+#### @color[#e49436](Modules Patterns)
+
+- So you can **add** properties directly to *exports*
+  - But not reassign it
+- Or just use *module.exports* which is what returned:
+
+```js
+Module._load = function(request, parent, isMain) {
+  //...
+  Module._cache[filename] = module;
+  tryModuleLoad(module, filename);
+  return module.exports;
+};
+```
+
+---
+#### @color[#e49436](Modules Patterns)
+
+Requiring native modules - without path and extention
+
+```js
+const util = require('util');
+const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+const quiz = util.format('%d+%f=', 4, 1.98);  
+readline.question(quiz, (solution) => {
+  console.log(util.format('Your solution to %s%d is: %d', 
+                            quiz, 5.98, solution));  
+  readline.close();
+});
+//4+1.98=9.5
+//Your solution to 4+1.98=5.98 is: 9.5
+```
+
+---
+#### @color[#e49436](Modules Patterns) - Circular require call
+
+#### What happens here?
+
+![date-cpp](assets/images/node-intro/cycle-require.png)
+
+---
+#### @color[#e49436](Modules Patterns) - Circular require call
+
+#### What happens here?
+
+![date-cpp](assets/images/node-intro/cycle-require-2.png)
+
+---
+#### @color[#e49436](Modules Patterns) - Circular require call
+
+- When app.js loads first.js, 
+  - Then first.js in turn loads second.js 
+- At that point, second.js tries to load first.js 
+  - Causing infinite loop @fa[frown-o]
+- In order to prevent that - 
+  - An **unfinished** copy of first.js exports object is returned to second.js module
+  - second.js then finishes loading
+    - and its exports object is provided to the first.js module
+
+---
+#### @color[#e49436](Modules Patterns) - ES6 modules
+
+- Right now Node not fully supports es6 modules
+  - Requires –experimental-modules flag
+  - .js should be renamed to .mjs
+  - No metavariables such as __dirname and __filename
+
+It's not baked-in yet so don't use it for now
+
+
+---
+#### @color[#e49436](Modules Patterns) - ES6 modules
+
+```js
+//my-module.mjs
+const X = 2.222;
+const Ctor = function(lala){
+    this.lala = lala;
+}
+export { Ctor, X };
+
+//app.js
+import { X as constant, Ctor } from './my-module.mjs';
+console.log(constant, new Ctor('lala').lala);
+
+//node --experimental-modules .\my-module.mjs
+//>2.222 'lala'
+```
+
+---
+#### @color[#e49436](Console) - dir
+
+![console-dir](assets/images/node-intro/console/dir.png)
+
+---
+#### @color[#e49436](Console) - group
+
+- group increases indentation by 2 spaces
+- groupEnd decreases indentation by 2 spaces
+
+```js
+console.group('a');
+console.group('b');
+console.groupEnd();
+console.group('c');
+console.group('d', 'e');
+console.groupEnd()
+//output
+//a
+//  b
+//  c
+//    d e
+```
+
+---
+#### @color[#e49436](Console) - table
+
+```js
+console.table([
+        { id: 1, name: 'Shahar' }, 
+        { id: 2, name: 'Hanoch' },
+        { id: 3, name: 'Gaya' }]);
+//output
+//┌─────────┬────┬──────────┐
+//│ (index) │ id │   name   │
+//├─────────┼────┼──────────┤
+//│    0    │ 1  │ 'Shahar' │
+//│    1    │ 2  │ 'Hanoch' │
+//│    2    │ 3  │  'Gaya'  │
+//└─────────┴────┴──────────┘
+```
+
+---
+#### @color[#e49436](Console) - table
+
+```js
+function Person(fn, ln) {
+    this.firstName = fn; this.lastName = ln;
+}
+var grauman = {
+    mother: new Person("Hadassa", "Grauman"),
+    father: new Person("Shahar", "Grauman"),
+    daughter: new Person("Gaya", "Grauman"),
+};
+console.table(grauman);
+//output
+//┌──────────┬───────────┬───────────┐
+//│ (index)  │ firstName │ lastName  │
+//├──────────┼───────────┼───────────┤
+//│  mother  │ 'Hadassa' │ 'Grauman' │
+//│  father  │ 'Shahar'  │ 'Grauman' │
+//│ daughter │  'Gaya'   │ 'Grauman' │
+//└──────────┴───────────┴───────────┘
+```
+
+---
+#### @color[#e49436](Console) - time
+
+```js
+var i = 0;
+function long(){
+    let limit = i + 1E7;
+    for(; i < limit; i++){}
+    return i;
+}
+console.time('long'); //label
+console.timeLog('long', 'elapsed, value ', long());
+console.timeLog('long', 'elapsed, value ', long());
+console.timeEnd('long');
+//output
+//long: 32.468ms elapsed, value  10000000
+//long: 67.950ms elapsed, value  20000000
+//long: 69.131ms
+```
+
+---
+#### @color[#e49436](Console) - trace
+
+- Outputs the call stack trace
+
+![console-trace](assets/images/node-intro/console/trace.png)
+
+---
+#### @color[#e49436](Console) - Command Line Arguments
+
+Using *process.argv* - Array of the node execution, the file executed and the parameters
+
+Or we can install *minimist* with better tooling
+
+![console-arguments](assets/images/node-intro/console/arguments.png)
+
+---
+#### @color[#e49436](Console) - Colors
+
+Installing *chalk* can give us colors to the cmd
+
+![console-colors](assets/images/node-intro/console/colors.png)
+
+---
+#### @color[#e49436](Console) - Progress
+
+![console-progress](assets/images/node-intro/console/progress.png)
+
+---
+#### @color[#e49436](Node Internals)
+
+- Node can be split into 2 parts:
+  - The C++ core side (src directory)
+    - Reading a file, receive data from internet...
+  - The JS core side (lib directory)
+    - The API which we use, that interacts with the C++ side
+- libuv is in the heart of the C++ core
+
+---
+#### @color[#e49436](Node Internals)
+
+![node-architecture](assets/images/node-intro/architecture/node-architecture.png)
+
+---?image=assets/images/node-intro/libuv.png?position=center&size=60% 80%
+
+@transition[none]
+
+@snap[south-east]
+[libuv](https://github.com/libuv/libuv/blob/32cccbc9f00696a4d07fa3b56d8b94ecbebb94a7/src/win/core.c#L506)
+@snapend
+
+---
+#### @color[#e49436](Node Internals)
+
+We'll examine it by using the encryption library - *crypto*
+
+Using it's **pbkdf2** method to hash strings, mainly passwords
+
+---
+#### @color[#e49436](Node Internals) - Node JS API
+
+##### This is the JS API we're using
+
+![pbkdf2-js](assets/images/node-intro/architecture/pbkdf2-js.png)
+
+
+---
+#### @color[#e49436](Node Internals) - Node JS to CPP API
+
+##### This is the actualy CPP, no JS, code
+
+![pbkdf2-js](assets/images/node-intro/architecture/pbkdf2-js-enable-to-cpp.png)
+
+---
+#### @color[#e49436](Node Internals) - Node JS to CPP
+
+![node-js-to-cpp.png](assets/images/node-intro/architecture/node-js-to-cpp.png)
+
+
+---
+#### @color[#e49436](Node Internals) - Node JS vs. CPP
+
+So whenever we requires modules
+
+Those modules are mapped to the CPP side
+
+We actually delegating our JS code to the CPP code
+
+---
+#### @color[#e49436](EventEmitter)
+
+##### C++ Function implementation of a callback within the execution context
+
+![Function-cpp](assets/images/events/Function-cpp.png)
+
+---
+#### @color[#e49436](EventEmitter)
+
+Event emmiter is a fundamental node concept
+
+A lot of it's modules are built on top of this mechanism
+
+The idea is to enable rich Pub/Sub architecture
+
+Modules uses it to enable listeners get notified upon event
+
+---
+#### @color[#e49436](EventEmitter)
+
+##### Node C++ Event wrapper implementation (fs)
+
+![node-event-wrapper](assets/images/events/node-event-wrapper.png)
+
+---
+#### @color[#e49436](EventEmitter) - Ex - Pub/Sub
+
+- @size[0.6em](Create a module named *MyEvent* and expose object with 2 methods)
+  - @size[0.5em](*on* - will receive 2 arguments: type and listener. The string will be the type of the listeners)
+  - @size[0.5em](*emit* - will receive type and invoke all listeners of that type)
+- @size[0.6em](Users can require your module and register their listeners)
+  - @size[0.5em](For example: myEvent.on('data', myListenerFunc);
+- @size[0.6em](When emitting - invoke all listeners)
+  - @size[0.5em](For example: myEvent.emit('data')
+- @size[0.6em](Enable to pass arguments to the listeners)
+- Bonus @size[0.6em](implement *single* - a 1-time listener)
+
+---
+#### @color[#e49436](EventEmitter) - inherit
+
+util module has *inherits* method enabling target to get src inheritance
+
+```js
+const EventEmitter = require('events');
+const util = require('util');
+
+class MyPubSub {
+    //...
+}
+util.inherits(MyPubSub, EventEmitter);
+const emitter = new MyPubSub();
+
+emitter.on('msg', () => console.log('Hi event!'));
+emitter.emit('msg');
+```
+
+---
+#### @color[#e49436](EventEmitter) - inherit
+
+Now, with ES6, it is recommended to *extend* EventEmitter rather then using util.inherits
+
+```js
+const EventEmitter = require('events');
+
+class MyPubSub extends EventEmitter {
+    //...
+}
+const emitter = new MyPubSub();
+
+emitter.on('msg', () => console.log('Hi event!'));
+emitter.emit('msg');
+```
+
+---
+#### @color[#e49436](Event Loop)
+
+Each Node program has 1 thread running the Event Loop
+
+It's realy important to even partially understand this
+
+In order to write better code and cope with performance issues
+
+---
+#### @color[#e49436](Event Loop)
+
+![date-cpp](assets/images/eventloop/event-loop.png)
+
+
+---
+#### @color[#e49436](Event Loop) - node.cc
+
+![event-loop-node.cc](assets/images/eventloop/event-loop-node.cc.png)
+
+---
+#### @color[#e49436](Event Loop) - High Overview
+
 @ol
-- Block scoped variables (let, const)
-- Arrow functions (lambda)
-- Enhanced parameters (default values, rest)
-- Destructuring
-- Modules (Yet to be natively supported)
-- Classes syntax (‘Looks like’ OOP)
-- Iterators
-- Generators
-- Promises
-- and more...
+- @size[0.6em](The event loop is initialized)
+- @size[0.6em](Our code runs entirely and exits to the terminal, unless)
+- @size[0.6em](There are task that is need to be ran, in each loop *tick*):
+- @size[0.6em](Any pending timers)
+- @size[0.6em](Any pending OS task, For example: http server listening)
+- @size[0.6em](Any pending long running operations, For example: read file)
+- @size[0.6em](Each type of task is managed like in a queue array)
+- @size[0.6em](Event loop is paused before next *tick*)
 @olend
 
 ---
+#### @color[#e49436](Event Loop)
 
-### @color[#e49436](Variables)
-
-- var was used more than 20 years
-
-- Introduced scope issues
-
-- var is scoped to the function
-  - regardless of its declaration
-  - Hoisting mechanism
+![event-loop-tick](assets/images/eventloop/event-loop-tick.png)
 
 ---
+#### @color[#e49436](Event Loop) - High Overview
 
-- Primitives:
-  - number, string, boolean, object, undefined, null, symbol (es6)
-  - All the others considered as object types
-  - js is dynmaically typed
-
-```js
-var whoAmI;
-whoAmI = 17;
-whoAmI = false;
-whoAmI = "Shahar";
-whoAmI = { name: 'Shahar', age: 27 };
-```
-
----
-
-- == vs. ===
-  - == checks for value equality
-  - === behaves as == but with type check
-
-```js
-console.log('== vs. ===');
-console.log("0 == ''", 0 == ''); // true
-console.log("0 === ''", 0 === ''); // false
-console.log("0 == '0'", 0 == '0'); // true
-console.log("0 === '0'", 0 === '0'); // false
-console.log("false == '0'", false == '0'); // true
-console.log("false === '0'", false === '0'); // false
-console.log("true == 1", true == 1); // true
-console.log("true === 1", true === 1); // false
-console.log("null == undefined", null == undefined); // true
-console.log("null === undefined", null === undefined); // false
-```
+@ol
+- @size[0.6em](Node checks if any pending timers, setTimeout/setInterval, are ready to be called)
+- @size[0.6em](Node checks if any pending OS or long running tasks callbacks should be called)
+- @size[0.6em](Pause a little and continue if)
+  - @size[0.6em](New pending OS task is done)
+  - @size[0.6em](New long running task is done)
+  - @size[0.6em](a timer is complete)
+- @size[0.6em](Check pending timers, call any setImmediate)
+- @size[0.6em](Handle 'close' events, like readStream.on 'close')
+@olend
 
 ---
+#### @color[#e49436](Event Loop) - Single threaded
 
-### @color[#e49436](typeof operator)
-
-```js
-console.log('\ntypeof operator');
-
-console.log(typeof "lala");
-console.log(typeof '@');
-
-console.log(typeof 3);
-console.log(typeof 3.5);
-console.log(typeof Infinity);
-console.log(typeof NaN);
-
-console.log(typeof true);
-console.log(typeof false);
-
-console.log(typeof [1, 2, 3, 4]);
-console.log(typeof { name: 'Shahar', age: 34 });
-console.log(typeof /^[0-9]$/);
-console.log(typeof (new Date()));
-console.log(typeof null);
-
-console.log(typeof undefined);
-
-console.log(typeof function () { });
-
-console.log(typeof x === undefined ? 'x is undefined' : 'x is defined');
-console.log(x === undefined ? 'x is undefined' : 'x is defined');
-```
-
----
-
-### What can be sent to test for the output to be truthy?
-
-```js
-function test(x) {
-    return x != x;
-}
-```
-
----
-
-### @color[#e49436](var scope)
-
-```js
-
-for (var i = 1; i < 5; i++) {
-  console.log(i);
-}
-
-console.log(i); //?
-
-```
-
----
-
-### @color[#e49436](var scope - hoisting)
-
-var is raised to the top of its scope before execution
-
-```js
-//Hoisting equals headache :)
-
-function hoist() {
-    var ok = true;
-
-    if (ok) {
-        var notOK = false;
-        console.log(notOK);
-    }
-
-    console.log(ok, notOK);
-}
-
-hoist();
-
-```
-
----
-
-### @color[#e49436](var scope - hoisting)
-
-##### JS interpreter reorganizes the code and hoist notOK to the top of the function:
-
-```js
-function hoist(){
-    var notOK;
-    var ok = true;
-
-        if (ok) {
-        var notOK = false;
-        console.log(notOK);
-    }
-
-    console.log(ok, notOK);
-}
-
-hoist();
-```
-
-##### This is the reason it's available to the last console.log...
-
----
-
-### @color[#e49436](var scope - hoisting)
-
-```js
-function hoist2(){
-    console.log(i);
-    for (var i = 0; i < 5; i++) {
-        console.log(i);        
-    }
-    console.log(i);
-}
-
-hoist2();
-```
-
----
-
-### @color[#e49436](var scope - hoisting)
-
-```js
-function loopsi(){
-    var numbers = [];
-
-    for(var i = 0; i < 5; i++){
-        numbers.push(function () { return i; });
-    }
-
-    numbers.forEach(item => console.log(item()));
-}
-
-loopsi();
-```
 @ul
-- Because var is hoisted, all functions refer to the same variable!
+- Node is single threaded
+  - Is it?
+- The event loop runs in a single thread, that's true
+- But some of Node's libraries are NOT single threaded
+  - They run outside of the event loop
 @ulend
 
 ---
+#### @color[#e49436](Event Loop) - Single threaded
 
-### @color[#e49436](let - not hoisted)
+###### Let's check that out and get the feeling by using pbkdf2 hashing function
+
+###### This is a long running operation we can use for our testing
 
 ```js
-function loopsi2(){
-    var numbers = [];
+console.time('hash');
 
-    for(let i = 0; i < 5; i++){
-        numbers.push(function () { return i; });
+crypto.pbkdf2('password', 'nodejs', 1E5, 512, 'sha512', (err, key) => {
+    if(!err) {
+        console.log(key.toString('hex'));
+        console.timeEnd('hash');
     }
+})
+```
+###### It takes ~1.1 second. What happen if we'll run 2 pbkdf2 functions?
 
-    numbers.forEach(item => console.log(item()));
+---
+#### @color[#e49436](Event Loop) - Single threaded
+
+- If we run 2 pbkdf2 functions, it'll take little more than ~1.1
+- In my laptop I ran 4 pbkdf2 functions, and they totaly took ~1.5 seconds!
+- Running 5 though, took overall of ~2.4 seconds...
+- What does it mean?
+
+---
+#### @color[#e49436](Event Loop) - libuv Thread Pool
+
+@size[0.6em](The default amount of threads = 4)
+
+![libuv-threadpool](assets/images/eventloop/libuv-threadpool.png)
+
+@size[0.6em](This can be tuned by setting UV_THREADPOOL_SIZE)
+
+---
+#### @color[#e49436](Event Loop) - OS Async functions
+
+@size[0.6em](Not all internals uses thread pool)
+@size[0.6em](Things like http requests are delegated to the OS)
+
+@size[0.6em](Take this for example, it takes ~0.250ms)
+```js
+https.request('https://www.grauman.co.il/', response => {
+    response.on('data', cunk => {});
+    response.on('end', () => {
+        console.timeLog('http-request');
+    })
+}).end();
+```
+@size[0.6em](6 requests takes ~0.300ms... No thread pool usage...)
+
+---
+#### @color[#e49436](Event Loop) - OS Async functions
+
+- @size[0.6em](Node and libuv don't have any code for handling the low level http requests)
+- @size[0.6em](So libuv delegates to the underlying OS and waits for a signal)
+  - @size[0.5em](The OS actually does this job and decides whether or not to use threads)
+  - @size[0.5em](No blocking of our JS code)
+  - @size[0.5em](No Thread Pool usage in this case)
+
+---
+#### @color[#e49436](Event Loop) - Quick Summary
+
+@size[0.5em](Note that any required modules are executed as well)
+
+![quick-summary](assets/images/eventloop/quick-summary.png)
+
+---
+#### @color[#e49436](Event Loop) - Summary Ex
+
+So let's do a quick summarize exercise:
+
+BEFORE you run, try to understand what should be the output
+
+Create a small program with the following:
+
+@ol
+  - Get some page from the web
+  - Read some file from your HD
+  - Make 4 pbkdf2 calls 
+@olend
+
+---
+#### @color[#e49436](Event Loop) - Summary Ex
+
+
+- @size[0.4em](http will be done by the OS system events)
+- @size[0.4em](As soon as it done, it'll be delegated back)
+- @size[0.4em](Thread pool: 1 thread assigned to fs, 3 threads to pbkdf2)
+- @size[0.4em](fs does 2 roundtrips to the HD)
+  - @size[0.4em](It asks for some file statistics, like size)
+  - @size[0.4em](Then it reads the file)
+    - @size[0.4em](In between, the associated thread is freed)
+- @size[0.4em](The 4th pbkdf2 is assigned the free thread)
+  - @size[0.4em](All 4 threads assigned to pbkdf2)
+- @size[0.4em](1 of them finishes so it delegated back to us)
+- @size[0.4em](Then this free one is assigned to the fs, get the statistics and start reading the file because no other job is required)
+
+
+---
+#### @color[#e49436](Streams & Buffers) - Encoding
+
+Everything is binary data!
+
+Each character or symbol is represented by a number
+
+@color[#e49436](Character Set) is the way a character is assigned a number
+
+@color[#e49436](Character Encoding) is how much space we store that number
+
+---
+#### @color[#e49436](Streams & Buffers) - Encoding
+
+@color[#e49436](UTF-8) is the dominant encoding on the web
+
+It uses one byte (8 bits) for the first 128 code points
+
+And up to 4 bytes for other characters
+
+The first 128 Unicode code points are the @color[#e49436](ASCII) characters
+
+Which means that @color[#e49436](any ASCII text is also a UTF-8 text)
+
+---
+#### @color[#e49436](Streams & Buffers) - Encoding
+
+JavaScript handles well Character Sets like Unicode
+
+But up to recently, it lacks the ability to handle binary data
+
+This is where Node also expands the boundaries of JavaScript
+
+---
+#### @color[#e49436](Streams & Buffers) - Buffer
+
+A @color[#e49436](Buffer) is a temporary holding spot, limited size, for data
+
+Data that is being moved from one place to another
+
+---
+#### @color[#e49436](Streams & Buffers) - Stream
+
+A @color[#e49436](Stream) is a sequence of data made available over time
+
+Pieces of data that eventually combine into a whole
+
+And may be processed as it streamed
+
+Like stream a movie, instead of downloading it all
+
+---
+#### @color[#e49436](Streams & Buffers) - Buffer & Stream
+
+So as the streaming data flows
+
+It fills a buffer
+
+And then processed
+
+Untill the streaming is done
+
+Like the 'buffering' while watching a movie. It buffers some data, process it, and receive more data from the stream...
+
+---
+#### @color[#e49436](Streams & Buffers) - Stream
+
+Readable streams like fs.createReadStream, process.stdin
+
+Writable streams like fs.createWriteStream, process.stdout, console
+
+Duplex streams (Readable and Writable) like sockets
+
+Transform streams like gzip
+
+---
+#### @color[#e49436](Streams & Buffers) - Buffer
+
+@size[0.5em](chunks fill the buffer and the client eventually get the buffered data)
+
+![buffer-and-chunk](assets/images/files/buffer-and-chunk.png)
+
+
+---
+#### @color[#e49436](Streams & Buffers) - Buffer
+
+From the Node API docs
+
+![buffer-creation-node-api](assets/images/files/buffer-creation-node-api.png)
+
+
+---
+#### @color[#e49436](Streams & Buffers) - Typed Arrays
+
+Starting with ES6, JavaScript has Typed Arrays
+```js
+Int8Array();
+Uint8Array();
+Uint8ClampedArray();
+Int16Array();
+Uint16Array();
+Int32Array();
+Uint32Array();
+Float32Array();
+Float64Array();
+```
+@size[0.4em](Now JavaScript has mechanism for reading or manipulating streams of binary data)
+
+---
+#### @color[#e49436](Streams & Buffers) - Typed Arrays
+
+You rarely be using raw Buffers nor Typed Arrays
+
+They are being used by node, mainly with fs and http
+
+
+---
+#### @color[#e49436](Files) - fs module readFileSync
+
+We'll start by using readFileSync. It returns a Buffer 
+
+![readFileSync](assets/images/files/readFileSync.png)
+
+@size[0.4em](It's intentionaly named ...Sync, because it's blocking)
+
+---
+#### @color[#e49436](Files) - fs module readFile
+
+@size[0.5em](readFile, on the other hand, is async. You pass it a callback to be called when data has been fully read)
+
+![readFile](assets/images/files/readFile-fs-api.png)
+
+---
+#### @color[#e49436](Files) - fs module readFile
+
+```js
+fs.readFile('lorem-ipsum.txt', (err, data) => {
+    console.log(data); //<Buffer 4c 6f 72 ... >    
+    console.log(data.toString()); //Lorem inpsum...
+});
+```
+---
+#### @color[#e49436](Files) - fs module
+
+But what happens if the file is big?
+
+Although fs uses buffer asynchronously, it still consuming memory
+
+And what if many users are reading this file?
+
+You can end up consuming a lot of memory
+
+---
+#### @color[#e49436](Files) - Streams again
+
+Streams are a pattern that convert big operations into manageable chunks
+
+Data is usualy split into chunks and streamed
+
+A chunk is a piece of data being sent through a stream
+
+How does Stream actualy stream chunks?
+
+---
+#### @color[#e49436](Files) - Streams again
+
+![Stream](assets/images/files/Stream.png)
+
+---
+#### @color[#e49436](Files) - Stream types
+
+So every Stream *is* EventEmitter. It has the *on* and *emit* events
+
+We have several types of Streams such as 
+- Readable - reading only 
+- Writable - writing only
+- Duplex - read and write
+  - Transform - change the data as it's written
+
+---
+#### @color[#e49436](Files) - Streams types
+
+![readable-writable-streams](assets/images/files/readable-writable-streams.png)
+
+---
+#### @color[#e49436](Files) - ReadableStream
+
+Let's take for example the Readable stream.
+
+It inherits from Stream, which inherits from EventEmitter, making it able to emit or listen to events 
+
+@size[0.5em](But those streams are abstract) 
+
+@size[0.5em](Here is 1 place where ReadStream is created in fs:)
+```js
+function createReadStream(path, options) {
+  lazyLoadStreams();
+  return new ReadStream(path, options);
 }
-
-loopsi2();
 ```
 
 ---
-### @color[#e49436](let) and const
+#### @color[#e49436](Files) - ReadableStream
 
-- let and const was introduced in es 2015
-- let behaves similary to declarations in other languages
-- It's available ONLY inside the immediate surrounding block, 
-- From the declaration line until the end of the block
+```js
+const readable = fs.createReadStream('lorem-ipsum.txt');
+
+readable.on('data', chunk => {
+    console.log(chunk.length);
+});
+//-> 28585
+```
+
+@size[0.5em](The default buffer size is 64K, so if I read a larger file, let say 85K, then it'll be read in 2 chunks)
+```js
+//65536
+//20227
+```
+
 ---
+#### @color[#e49436](Files) - ReadableStream
 
-### let and @color[#e49436](const)
-
-- const is like let, but needs initialization right away
-- Can't be modified later on
-- If const is reference, it can't be assigned a new one
-- But we can modify the data it points to
+@size[0.5em](We can pass options like encoding and the buffer size)
+```js
+readable = fs.createReadStream('lorem-ipsum.txt', { 
+    encoding: 'utf8', 
+    highWaterMark: 16 * 1024 //16K
+}).on('data', chunk => {
+    console.log(chunk.length);
+});
+//16384
+//16384
+//16384
+//16384
+//16384
+//3843
+```
 
 ---
+#### @color[#e49436](Files) - Readable to WritableStream
 
-### @color[#e49436](functions)
-#### It's all about functions!
+@size[0.5em](So it's easy to write those chunk to a Writable Stream)
+
+```js
+const writable = fs.createWriteStream('output-lorem.txt');
+
+const readable = fs.createReadStream('lorem-ipsum.txt', { 
+    encoding: 'utf8', 
+    highWaterMark: 16 * 1024 //16K
+}).on('data', chunk => {
+    console.log(chunk.length);
+    writable.write(chunk);
+});
+```
+@size[0.5em](We can deal with a large files with relatively small buffers!)
+
+---
+#### @color[#e49436](Files) - Backpressure
+
+@size[0.6em](Writer signals when it's available to further consume the next chunk)
+
+@size[0.6em](What happens if the writer is slower than the reader?)
+
+@size[0.6em](Perhaps the writer is a Transform which process each chunk)
+
+@size[0.6em](This could lead the reader to keep storing the next datas, bloating the process memory)
+
+---
+#### @color[#e49436](Files) - Piping Streams
+
+@size[0.6em](We can pipe data from a Readable stream to a Writable stream)
+
+@size[0.6em](It is a connection we do between 2 streams)
+
+@size[0.6em](Reading from a Readable and piping to a Writable)
+
+@size[0.6em](If the Writable is also a Redable)
+
+@size[0.6em](We can continue piping)
+
+@size[0.6em](Piping handles the Backpressure!)
+
+---
+#### @color[#e49436](Files) - Piping Streams
+
+![Readable.prototype.pipe](assets/images/files/Readable.prototype.pipe.png)
+
+---
+#### @color[#e49436](Files) - Piping Streams
+
+```js
+const writable = fs.createWriteStream('output.txt');
+const readable = fs.createReadStream('file.txt', { 
+    encoding: 'utf8', 
+    highWaterMark: 16 * 1024 //16K
+});
+//When pipe is connected, the data is streaming
+readable.pipe(writable).on('close', () => {
+    console.log(writable.bytesWritten);
+});
+```
+---
+#### @color[#e49436](Files) - Piping Streams
+
+@size[0.5em](*process.stdin* is readable)
+@size[0.5em](*process.stdout* is writable)
+
+```js
+process.stdin.pipe(process.stdout);
+```
+
+@size[0.5em](the *request* of the http module is readable)
+@size[0.5em](the *response* of the http module is writable)
+
+---
+#### @color[#e49436](Files) - Piping & Transform
+
+```js
+const fs = require('fs'),
+      zlib = require('zlib');
+
+const gzip = zlib.createGzip();
+const writable = fs.createWriteStream('file.txt.gz');
+
+fs.createReadStream('file.txt')
+    .pipe(gzip)
+    .pipe(writable)
+    .on('close', () => console.log('Finished'));
+```
+
+---
+#### @color[#e49436](Files) - Piping & Transform
+
+3rd party libs such as *through2* or *highland* can simplify things
+
+through2 can be passed a function with the same signature as transform
+
+And it returns a Transform stream
+
+Which can be piped through
+
+---
+#### @color[#e49436](Files) - Piping & Transform
+
+![through2](assets/images/files/through2.png)
 
 @ul
-- Functions are objects
-- Function constructors
-- Can be assigned to a variable
-- Can be passed as an argument
-- Closure - Can be nested inside another function
-- Can get more/less arguments than declared
-- Can invoke itself (uh?!)
-- Lambda (Arrow functions)
+- Short Ex - Read the file and output 
+- Instead of: fun -> 😃, hard -> 😱, sun -> ☀️, gun -> 🔫
 @ulend
 
 ---
+#### @color[#e49436](Files) - Piping & Transform
 
-### @color[#e49436](functions)
-
-#### Functions are objects
+*highland* is more trickey, has a huge API, and needs some investigation at start
 
 ```js
-function imAnObject(){
-    console.log('Hi there' + imAnObject.whatsup);    
-}
+const fs = require('fs'),
+      highland = require('highland');
 
-imAnObject.whatsup = 'Whasssaaaa?';
-imAnObject();
+highland(fs.createReadStream('customers.json'))
+    .map(c => JSON.parse(c))
+    .flatten()
+    .filter(c => c.age > 20)
+    .each(c => console.log(c.id, c.name));
 ```
 
 ---
-### @color[#e49436](functions)
+#### @color[#e49436](Files) - Ex
 
-#### Function Expressions
+Write a program that print a directory content
 
-- JS functions are flexible structure, for example:
-- You can name a function as usual and assign it to a variable like so:
+The program will print all sub-directories as well the files
+
+![read-dir-recursive](assets/images/files/read-dir-recursive-ex.png)
+
+
+---
+#### @color[#e49436](Web Server) - HTTP, TCP/IP
+
+@size[0.7em](Protocol is an agreement between 2 sides of how to communicate)
+
+@size[0.5em](French and Spanish guys can talk in English)
+
+@color[#e49436](TCP) - @size[0.7em](Transmition Control Protocol - message is split into pieces)
+
+@color[#e49436](IP) - @size[0.7em](Sending those pieces to some network address)
+
+---?image=assets/images/http/TCP-IP.png?position=center&size=80% 80%
+
+@transition[none]
+
+---
+#### @color[#e49436](Web Server) - HTTP, TCP/IP
+
+@size[0.7em](OK, the packet sent to us at 150.1.120.0:3000 is here, what's now?)
+
+@size[0.7em](Which program should be receiving it?)
+
+@color[#e49436](Port) - @size[0.7em](A program is setup on some port)
+
+@size[0.7em](The OS then know who is 'listening' to that port)
+
+---
+#### @color[#e49436](Web Server) - HTTP, TCP/IP
+
+@size[0.7em](Now the program is recognized, Node in our case, what's now?)
+
+@color[#e49436](HTTP) - @size[0.7em](How data is structured when transferred over TCP/IP)
+
+@color[#e49436](Request & Response) - @size[0.7em](Defines the rules of construction)
+
+---
+#### @color[#e49436](Web Server) - HTTP, TCP/IP
+
+![http-request-details](assets/images/http/http-request-details.png)
+
+---
+#### @color[#e49436](Web Server) - HTTP, TCP/IP
+
+![Server-net-js](assets/images/http/Server-net-js.png)
+
+---
+#### @color[#e49436](Web Server) - Simple HTTP Server
+
+![createServer](assets/images/http/createServer.png)
+
+---
+#### @color[#e49436](Web Server) - Simple HTTP Server
 
 ```js
-function calc(num) {
-    return num * 2;
-}
+const http = require('http');
 
-//Function expression
-let calcF = calc;
+const server = http.createServer((req, res) => {
 
-console.log(calcF(3));
+    res.writeHead(200, { 'content-type': 'text/plain' });
+    res.end('Ahalan');
+});
+
+server.listen(3100, () => console.log('Listening on port 3100'));
+```
+---
+#### @color[#e49436](Web Server) - Simple HTTP Server
+
+![debug-request-headers](assets/images/http/debug-request-headers.png)
+
+---
+#### @color[#e49436](Web Server) - Simple HTTP Server
+
+It's damn simple!! 
+
+Few lines of code and you have a server
+
+So much is going on under the hood
+
+But abstracted from us, although, you can 'see' everything
+
+---
+#### @color[#e49436](Web Server) - Serving HTML
+
+```js
+const http = require('http'),
+      fs = require('fs');
+
+const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'content-type': 'text/html' });
+    fs.readFile('files/index.html', (err, html) => {
+        res.end(html);
+    });
+});
 ```
 
 ---
-### @color[#e49436](functions)
+#### @color[#e49436](Web Server) - Serving HTML Template
 
-#### Function statement vs. Expressions
+Let's make the h1 message more dynamic
+
+If the user goes to *localhost:3100/Shahar*
+
+We'll change the h1 to Ahalan Shahar
 
 ```js
-function calc(num) {
-    return num * 2;
-}
-
-let calcF = calc;
-
-console.log(calcF(3));
-console.log(calc(3));
+req.url //contains the '/Shahar...' 
+//You can also use
+require('querystring').parse
 ```
 
-```js
-let calcF2 = function calc2(num) {
-    return num * 3;
-}
+---?image=assets/images/http/ex-background-img.png
 
-console.log(calcF2(3));
-//console.log(calc2(2)); //Can be used no more 
+@transition[none]
+
+@snap[south-west]
+@color[#e49436](Quick Ex)
+<br>
+@color[#e49436](Serve some html with background image)
+@snapend
+
+
+---
+#### @color[#e49436](Web Server) - Serve JSON
+
+@size[0.7em](In order to return JSON response, use 'application/jaon' as Content-Type)
+
+@size[0.7em](Then serialize the object using JSON.parse/stringify)
+
+```js
+http.createServer(async (req, res) => {
+    res.writeHead(200, {'content-type': 'application/json'})
+    const customers = getCustomers();
+    //If customers is a json string
+    //Then use JSON.parse(content);
+    res.end(JSON.stringify(customers));
+})
 ```
 
 ---
-### @color[#e49436](functions)
+#### @color[#e49436](Web Server) - Performance
 
-#### Anonymous function
+What happen if we serve a large file?
 
 ```js
-const myFunc = function(x){
-    console.log(isNaN(x) ? 'Not a number' : `x is ${x}`);
-}
-
-myFunc();
-myFunc(8);
-myFunc('6t');
-myFunc(0x32);
+const server = http.createServer((req, res) => {
+    //...
+    fs.readFile('large-file', (err, file) => {
+        res.end(file);
+    });
+});
 ```
+
+Try now to stream the file instead of fully buffering it
 
 ---
-### @color[#e49436](functions)
+#### @color[#e49436](Web Server) - Performance
 
-#### function can be passed as argument
+Using streams can drastically improve the performance
 
 ```js
-function calcThis(x, func){
-    func(x);
-    console.log(`Raising x by 2: ${Math.pow(x,2)}`);       
-}
-
-calcThis(8, myFunc);
+const server = http.createServer((req, res) => {
+    //...
+    fs.createReadStream('large-file')
+      .pipe(res);
+    });
+});
+//Chunks chunks chunks
 ```
 
-#### Heavily used for callbacks
+If we were to change the content as it flows, we can build a custom stream
+
+Or use 3rd party as we saw
 
 ---
+#### @color[#e49436](Web Server) - Routing
 
-### @color[#e49436](functions)
+Routing is handling different 'paths' in our domain
 
-#### There is no overloading in JS
-
-```js
-function studentDetails(name, age, email) {
-    let details = 'No details!';
-
-    if (name != undefined) {
-        details = `Student Details:\nName: ${name}`;
-    }
-
-    if (age != undefined) {
-        details += `\nAge: ${age}`;
-    }
-
-    if (email != undefined) {
-        details += `\nEmail: ${email}`;
-    }
-
-    return details;
-}
-
-console.log('studentDetails1');
-console.log(studentDetails());
-console.log(studentDetails('Shahar'));
-console.log(studentDetails('Shahar', 27));
-console.log(studentDetails('Shahar', 27, 'info@grauman.co.il'));
-```
+- www.mysite.com
+- www.mysite.com/api
+- www.mysite.com/login
+- www.mysite.com/about
+- www.mysite.com/api/customers
+- www.mysite.com/api/customer/1021/orders?year=2017
 
 ---
-### @color[#e49436](functions)
+#### @color[#e49436](Web Server) - Routing
 
-##### It is common to pass an object containing the parameters
-##### As with configuration objects
+Routing can respond to various types of methods
 
-```js
-function studentDetails2(props) {
+GET, POST, PUT, DELETE...
 
-    if (!props) return 'No details!';
+We extract the segments from the url (/api/customers)
 
-    let details = '';
+And in case of POST, we get data in the body of the request
 
-    if (props.name != undefined) {
-        details = `Student Details:\nName: ${props.name}`;
-    }
-
-    if (props.age != undefined) {
-        details += `\nAge: ${props.age}`;
-    }
-
-    if (props.email != undefined) {
-        details += `\nEmail: ${props.email}`;
-    }
-
-    return details;
-}
-
-console.log('studentDetails2');
-console.log(studentDetails2());
-console.log(studentDetails2({ name: 'Shahar' }));
-console.log(studentDetails2({ name: 'Shahar', age: 27 }));
-console.log(studentDetails2({ name: 'Shahar', age: 27, email: 'info@grauman.co.il' }));
-
-```
+body is encapsulated as ReadableStream...
 
 ---
-### @color[#e49436](functions)
-
-#### Destructuring is a new feature of es6.
-##### (more on it later) but let's see a bit of it
+#### @color[#e49436](Web Server) - Routing
 
 ```js
-function studentDetails3({ name, age, email }) {
+const parse = require('querystring').parse;
 
-    let details = 'No details!';
+if(req.method === 'POST'){
+        let body = '';
+        req.on('data', chunk => {
+            body += chunk.toString();
+        });
 
-    if (name != undefined) {
-        details = `Student Details:\nName: ${name}`;
-    }
-
-    if (age != undefined) {
-        details += `\nAge: ${age}`;
-    }
-
-    if (email != undefined) {
-        details += `\nEmail: ${email}`;
-    }
-
-    return details;
-}
-
-//console.log(studentDetails3());
-console.log('studentDetails3');
-console.log(studentDetails3({ name: 'Shahar' }));
-console.log(studentDetails3({ age: 27, name: 'Shahar' }));
-console.log(studentDetails3({ email: 'info@grauman.co.il', age: 27, name: 'Shahar' }));
-```
-
----
-### @color[#e49436](functions)
-
-#### functions can be nested, so the inner has the scope of the outer.
-- Meaning, the inner has access to outer variables/parameters
-- This is called @color[#e49436](Closure)
-
-```js
-function outer(num) {
-    let num1 = 9;
-
-    function inner(x) {
-        console.log('inner', num + x + num1);
-        return x;
-    }
-
-    console.log('outer', inner(7));
-}
-
-outer(2);
-```
-
----
-### @color[#e49436](Closure)
-
-##### Functions maintain a lexical scoping of variables upon declaration
-##### It enables encapsulation
-
-```js
-function func2(){
-    let num = 42;
-
-    function square(){
-        return num * num;
-    }
-
-    return square;
-}
-
-let innerF = func2();
-
-console.log(innerF());
-```
-
----
-### @color[#e49436](Closure)
-
-```js
-function F(f) {
-  function G(g) {
-    function H(h) {
-      console.log(f + g + h);
-    }
-    H(3);
-  }
-  G(2);
-}
-F(1);
-```
-
----
-### @color[#e49436](Function's arguments object)
-
-Functions can be passed less/more arguments than declared
-
-```js
-function concat(separator) {
-   var result = '', 
-       i;
-
-   for (i = 1; i < arguments.length; i++) {
-      result += arguments[i] + separator;
-   }
-   
-   return result;
-}
-
-concat(', ', 'me', 'you', 'her');
-concat('; ', 'X', 'R', 'S', 'U');
-concat('. ', 'js', 'node', 'es6', 'web', 'fun');
-```
-
----
-### @color[#e49436](Default values)
-
-Functions can be passed less/more arguments than declared
-
-```js
-function multiply(a, b) {
-  b = typeof b !== 'undefined' ?  b : 1;
-
-  return a * b;
-}
-
-multiply(5);
-```
-```js
-function multiply (a, b = 2) {
-  return a * b;
-}
-multiply(5);
-```
----
-### @color[#e49436](Default values)
-
-```js
-function multiply (a, b = 2) {
-  return a * b;
-}
-
-function foo (num = 1, mul = multiply(num)) {
-  return [num, mul];
-}
-foo(); // [1, 2]
-foo(6); // [6, 12]
-```
----
-### @color[#e49436](Default values)
-
-@size[0.5em](Let's say we need to assign some default values to each of the parameters)
-```js
-function stam() { return 'lala'; }
-
-function omg(a, b, c, d, e, f, g) {
-  switch (arguments.length) {
-    case 0:
-      a = 1;
-    case 1:
-      b = 5;
-    case 2:
-      c = b;
-    case 3:
-      d = stam();
-    case 4:
-      e = this;
-    case 5:
-      f = arguments;
-    case 6:
-      g = this.num;
-    default:
-  }
-  //...
-  //Further processing
-}
-
-omg.call({ num: 101 });
-```
----
-### @color[#e49436](Default values)
-
-And here is with default values (smile):
-```js
-function notSoBad(a, b = 5, c = b, d = stam(), 
-                  e = this, f = arguments, g = this.num) {
-  //...
-  //Further processing
-}
-
-notSoBad.call({ num: 101 });
-```
-
----
-### @color[#e49436](Default values)
-
-Let's turn this to use default values
-
-```js
-function createElement (tag, config) {
-  tag = tag || 'div';
-  config = config || {};
-  
-  const element = document.createElement(tag);
-  const content = config.content || 'Default Content';
-  const text = document.createTextNode(content);
-  let classNames = config.classNames;
-  
-  if (classNames === undefined) {
-    classNames = ['module-text', 'default'];
-  }
-  
-  element.classList.add(...classNames);
-  element.appendChild(text);
-  
-  return element;
-}
-```
----
-
-```js
-function createElement (tag = 'div', {
-            content = 'Default Content',
-            classNames = ['module-text', 'special']
-          } = {}) {
-  const element = document.createElement(tag);
-  const text = document.createTextNode(content);
-  
-  element.classList.add(...classNames);
-  element.appendChild(text);
-  
-  return element;
-}
-```
-
-@size[0.5em](Not only we set the config parameter to empty object, we disect this parameter using *desctructuring* syntax, extracting content and classNames, with default values!)
-
----
-### @color[#e49436](Labmda) - Fat Arrow Functions
-
-- Allow cleaner syntax.
-- Preserve the 'this' context in which they operate in
-
-```js
-let add1 = function(x, y) {
-    return x + y;
-}
-
-console.log(add1(3,4));
-```
-```js
-let add2 = (x, y) => x + y;
-
-console.log(add2(3,4));
-```
-
----
-### @color[#e49436](Labmda) - Fat Arrow Functions
-
-```js
-var strings = [
-  'Lala',
-  'Wawa',
-  'Babala',
-  'Sababa'
-];
-
-var arr = strings.map(function(str) { return str.length; });
-console.log(arr);
-
-var arr2 = strings.map(str => str.length);
-console.log(arr2);
-```
-
----
-### @color[#e49436](IIFE) - Immediate Invoked Function Expression
-
-- Function can be self invoked. Yes. Why?
-- It can create closure out of it, making modules possible
-
-```js
-var res = (function () { 
-    var name = 'Shahar'; 
-    return name; 
-})(); 
-console.log(res);
-```
----
-### @color[#e49436](IIFE)
-
-```js
-var config = (function (){
-    //Get data from somewhere
-    var server = 'server-address',
-        database = 'database-name',
-        userid = 'username',
-        pwd = 'password';
-    
-    return {
-        getSQLConnectionString() {
-            return `Server=${server}; Database=${database};  User Id=${userid}; Password=${pwd}`;               
-        }
-        //more config stuff...
+        req.on('end', () => {
+            res.writeHead(200, {'content-type': 'application/json'});
+            res.end(JSON.stringify(parse(body)));    
+        });
     };
-})();
 ```
 
-Voila! - config is ready
-
 ---
-### @color[#e49436](IIFE)
+#### @color[#e49436](Web Server) - Routing
+
+Ex - Build a simple configurable router like so
 
 ```js
-var images = (function countImgs(element) {
-    if (element.nodeName.toLowerCase() === 'img') return 1;
-    
-    var count = 0;
-    for (var i = 0, child; child = element.childNodes[i]; i++) {
-        count += countImgs(child);
-    }
-    return count;
-})(document.body);
-```
-@ul
-- Invoking IIFE with argument
-- The name, countImgs, is neccessary here
-  - To be able to call it recursively
-  - Notice - the name can be called ONLY within the scope of the IIFE
-@ulend
-
----
-
-Remember this?
-
-```js
-function func(){
-    let funcs = [];
-
-    for(var i = 0; i < 5; i++) {
-        var res = function(){
-            console.log(i);
-        }         
-        funcs.push(res);
-    }
- 
-    funcs.forEach(f => f());
-}
-func();
-```
-
-- Short Ex - Fix the problem with:
-  - Closure
-  - IIFE
-
----
-
-Here is one solution
-
-```js
-function func(){
-    let funcs = [];
-
-    for(var i = 0; i < 5; i++) {
-        function outer(){
-            let num = i;
-            function res(){
-                console.log(num);
-            }
-            return res;
+const router = require('./custom-router');
+const server = http.createServer(async (req, res) => {
+    try {
+        await router.route(req, res);        
+    } catch (error) {
+        if(error instanceof NotFound){
+            res.writeHead(404); res.end(error.message);
         }
-        funcs.push(outer());
     }
- 
-    funcs.forEach(f => f());
-}
-func();
-```
----
-
-Here is the same solution using IIFE
-
-```js
-function func(){
-    let funcs = [];
-
-    for(var i = 0; i < 5; i++) {
-        funcs.push((function(){
-            let num = i;
-            function res(){
-                console.log(num);
-            }
-            return res;
-        })());        
-    }
- 
-    funcs.forEach((f, i) => f());
-}
-func();
-```
----
-The same, but passing parameter
-
-```js
-function func(){
-    var numbers = [];
-
-    for(var i = 0; i < 5; i++){
-        numbers.push((function(n){
-            return function () { console.log(n); }
-        })(i));
-    }
-
-    numbers.forEach(f => f());
-}
-
-func();
-```
-So *Closure* and *IIFE*. Got that?
-<br>
-Or just use *let* @fa[thumbs-o-up]
-
----
-#### Let's see what you've got for me:
-#### (1) What is the output of this?
-
-```js
-function doSomething(a) {
-    function doSomethingElse(a) {
-        return a - 1;
-    }
-    var b;
-    b = a + doSomethingElse(a * 2);
-    console.log(b * 3);
-}
-doSomething(2);
-```
-Solution:
-@ul
-- 15
-@ulend
-
----
-#### Let's see what you've got for me:
-#### (2) What is the output of this?
-
-```js
-function foo() {
-    function bar(a) {
-        i = 3;
-
-        console.log(a + i);
-    }
-    for (var i = 0; i < 10; i++) {
-        bar(i * 2);
-    }
-}
-foo();
-```
-Solution:
-@ul
-- Infinite loop! How we can fix that?
-@ulend
-
----
-#### Let's see what you've got for me:
-#### (3) What is the output of this?
-
-```js
-var a = 2;
-
-(function func(obj) {
-    var a = 3;
-    console.log(a);
-    console.log(obj.a);
-})(window);
-
-console.log(a);
-```
-Solution:
-@ul
-- 3, 2, 2
-@ulend
-
----
-#### Let's see what you've got for me:
-#### (4) What is the output of this?
-
-```js
-var a = 2;
-(function func(def) {
-    def(window);
-})(function (obj) {
-    var a = 3;
-    console.log(a); 
-    console.log(obj.a);
 });
-```
-Solution:
-@ul
-- 3, 2
-@ulend
-
----
-### Ex
-
-- @size[0.5em](Create a function for copy properties from one json object to the other, by flattening other object)
--  @size[0.5em](For example, you use person object with this structure:)
-
-```js
-const person = {
-    firstName: '',.
-    lastName: '',
-    age: 0,
-    email: ''
-}
-// And you get, from some api, this object:
-const otherPerson = {
-    fullName: {
-        firstName: 'Shahar',
-        lastName: 'Grauman'
-    },
-    age: 80,
-    email: 'info@grauman.co.il'
-}
-```
-
----
-### @color[#e49436](Function constructor)
-
-Functions can be used to construct objects
-
-```js
-function person(name, age, address = 'Some Address...'){
-    return {
-        name: name || 'john doe',
-        age: age || 0,
-        address,
-        getAddress: function () { return this.address; },
-        details: function(){
-            return `Person ${this.name} is ${this.age} years old, leaving in ${this.getAddress()}`;        
-        }
-    };
-}
-
-const me = person('Shahar', 27, 'Karkur');
-const anonymous = person();
-console.log(me.details(), anonymous.details());
-```
-
----
-### @color[#e49436](Function constructor)
-
-Although it's damn simple, the problem is each object contains a copy of the functions!
-<br>
-This can quickly lead to memory bloat
-<br>
-But this is not a constructor as we're familiared with
-<br>
-So we can use 'new'
-
----
-### @color[#e49436](Function constructor)
-
-- new Func(args) will create a new object
-- 'this' will reffer to the newly created object
-
-```js
-function Car(model){
-  this.model = model;
-  this.wheels = 4;  
-}
-
-var myCar = new Car('Volvo');
-console.log(`Car ${myCar.model} has ${myCar.wheels} wheels`);
-
-myCar.constructor.name //"Car"
-```
-
----
-### @color[#e49436](Function constructor)
-
-The this problem. Consider 'this' :)
-
-```js
-function Car(){
-  this.model;
-  this.wheels = 4;  
-  
-  setTimeout(function() {
-    this.model = 'BMW';
-  }, 2500);
-}
-
-var myCar = new Car();
-console.log(`Car ${myCar.model} has ${myCar.wheels} wheels`);
-```
-
----
-
-1- Using local variable to 'cache' the this reference for later use
-
-```js
-function Car(){
-  var self = this;  
-  self.model = 'Volvo';
-  
-  setTimeout(function() {
-    self.model = 'BMW';
-  }, 2500);
-}
-```
-2- With lambdas it's straight forward
-```js
-function Car(){
-  this.model = 'Volvo';
-  
-  setTimeout(() => {
-    this.model = 'BMW';
-  }, 2500);
-}
-```
----
-#### Understanding the @color[#e49436](this context) 
-
-```js
-function sayYourName() {
-    console.log(this.myName);
-}
-
-sayYourName();
-```
-- myName belongs to...
-- The global context
-
-```js
-myName = 'Shahar';
-sayYourName();
-```
----
-#### Understanding the @color[#e49436](this context) 
-
-Attaching outer function to behave like methods
-
-```js
-function sayYourName() {
-    console.log(this.myName);
-}
-const person = {
-    myName: 'Shahar',
-    sayYourName
-}
-
-person.sayYourName();
-```
-
----
-#### Understanding the @color[#e49436](this context) 
-
-- Use call/apply to set the 'this' object as the first argument
-- Pass arguments if necessary
-- call gets variadic arguments
-- apply gets arguments in array
-
-```js
-myName = 'Shahar'; //or global.myName = 'Shahar'
-sayYourName.call({ myName }, 'lala');
-sayYourName.apply(global, ['lala']);
-```
-
----
-#### Understanding the @color[#e49436](this context) 
-
-@color[#e49436](bind) the person context to the function for later invokation
-
-```js
-function sayYourName() {
-    console.log(this.myName);
-}
-
-const person = {
-    myName: 'Shahar'
-}
-
-const saySomething = sayYourName.bind(person);
-saySomething();
-```
-
----
-#### Understanding the @color[#e49436](this context) 
-
-```js
-const person = {
-    myName: 'Shahar'
-}
-
-person.saySomething = sayYourName;
-
-//now person is the context of saySomething
-person.saySomething();
-```
-
----
-
-### @color[#e49436](Prototypes) 
-
-#### All JavaScript objects inherit properties and methods from a prototype
-
-The *Object.prototype* is on the top of the **prototype inheritance chain**:
-
-- Array objects inherit from Array.prototype
-- Date objects inherit from Date.prototype
-- Car objects inherit from Car.prototype
-- All the above inherit from **Object.prototype**
-
----
-#### @color[#e49436](Prototypes) - Object.setPrototypeOf 
-
-```js
-function sayYourName() {
-    console.log(this.myName);
-}
-const person = {
-    myName: 'Shahar'
-}
-//Set the prototype of person
-Object.setPrototypeOf(person, {saySomething: sayYourName});
-person.saySomething();
-console.log(person);
-```
-
----
-### @color[#e49436](Prototypes)
-
-- So by setting the prototype, we're actually delegating the functionality to a higher object
-- If the current object doesn't have the method, it's being looked up the *'protorype chain'*
-
-```js
-const person = {
-    sayYourName
-}
-
-const shahar = {
-    myName: 'Shahar'
-}
-
-Object.setPrototypeOf(shahar, person);
-shahar.sayYourName();
-```
----
-### @color[#e49436](Prototype) chaining
-
-```js
-const person = {
-    sayYourName
-}
-const shahar = {
-    myName: 'Shahar'
-}
-const son = {
-    myName: 'Hanoch'
-}
-
-Object.setPrototypeOf(shahar, person);
-Object.setPrototypeOf(son, shahar);
-shahar.sayYourName();
-son.sayYourName();
-```
----
-### @color[#e49436](Prototype) chaining
-
-```js
-const person = { };
-
-const shahar = {
-    myName: 'Shahar',
-    sayYourName
-};
-
-Object.setPrototypeOf(shahar, person);
-
-//Now shahar has it too!
-person.stateYourName = function(){
-    console.log(`Please state your name: ${this.myName}`);
-}
-
-shahar.sayYourName();
-shahar.stateYourName();
-
-//Override by implement the same function down the chain
-
-person.sayYourName = function(){
-    console.log(`My name is: ${this.myName}`);
-}
-
-delete shahar.sayYourName;
-shahar.sayYourName();
-```
-
----
-### @color[#e49436](Prototype) - *new* keyword
-
-```js
-function Person(name, age){
-    this.name = name;
-    this.age = age;
-}
-
-let me = new Person('Shahar', 27);
-console.log(me.name, me.age);
-
-let him = new Person('Yeled', 4);
-```
-We can use prototype like so
-```js
-Person.prototype.details = function(){
-    console.log(`Name: ${this.name}, Age: ${this.age}`);
-}
-him.details();
-
-```
----
-### @color[#e49436](Prototype) - Object.create
-
-Create a new object, using an existing object as the prototype of the newly created object
-
-```js
-function Student(name, age, course){
-    Person.call(this, name, age);
-    this.course = course;
-}
-Student.prototype = Object.create(Person.prototype);
-```
-We 'reset back' the constructor because now it's Person
-```js
-Student.prototype.constructor = Student;
-```
-
----
-### @color[#e49436](Prototype) - Object.create
-
-```js
-let student = new Student('Ace', 25, 'JavaScript');
-student.details();
-
-Student.prototype.details = function(){
-    //Using delegation to parent
-    Person.prototype.details.call(this);
-    console.log(`Studying ${this.course}`);
-};
-
-student.details();
-```
----
-### @color[#e49436](Prototype) - Common practice
-
-properties will be defined in the constructor
-
-```js
-function Ctor(x, y){
-    //properties...    
-}
-```
-methods will be defined on the prototype
-```js
-Ctor.prototype.method1 = function() {};
-```
----
-### @color[#e49436](Prototype) - Shadowing
-
-Shadowing is like overriding:
-
-A.prototype.func,
-
-B inherited A's prototype
-
-Objects of B has func (from A.prototype)
-
-B.prototype added func as well
-
-Objects of B uses now the shadowing func
-
----
-### @color[#e49436](Prototype) - Shadowing
-
-```js
-var a = { a: 42 };
-var b = Object.create(a);
-a.a;
-b.a;
-a.hasOwnProperty('a');
-b.hasOwnProperty('a');
-b.a++;
-a.a;
-b.a;
-b.hasOwnProperty('a');
-```
-
----
-### @color[#e49436](Prototype)
-
-Short Ex:
-
-Make this work
-
-```js
-const arr = ['a','b','c','d','e','f'];
-arr.randomize();
-console.log(arr); //['b','d','a','c','f', 'e',]
-```
-
----
-### @color[#e49436](Prototype)
-
-```js
-Array.prototype.shuffle = function(){
-	for(let i = 0; i < this.length; i++){
-		let rand = parseInt(Math.random()*this.length);
-		let [a,b] = [this[i], this[rand]];
-		this[i] = b;
-		this[rand] = a;
-    }
-}
-```
-
----
-#### ES6 @color[#e49436](Classes) - a spoon of sugar
-
-```js
-class Person {
-  //Only 1 constructor is allowed
-  constructor(name, age) {
-    this.name = name;
-    this.age = age;
-    Person.counter++;
-  }
-  //getter
-  get details(){
-    return `${this.name}, ${this.age}`;
-  }
-  //Static methods can be defined inside the class
-  static Counter() { 
-    return Person.counter; 
-  }
-}
-//Static properties - must be defined outside 
-Person.counter = 0;
-```
----
-#### ES6 @color[#e49436](Classes) - inheritance
-
-```js
-class Student extends Person {
-  constructor(name, age, course){
-    //First line should call super ctor
-    super(name, age);
-    //Before accessing 'this'
-    this.course = course;
-  }
-  
-  //Override super method
-  get details() {
-    return `${super.details}, studying ${this.course}`;
-  }
-}
-```
-
----
-#### @color[#e49436](Callbacks) - *I'll call you back*
-
-Callbacks were here since the beginning
-
-```js
-try {
-  const data = getData();
-  const manipulated = manipulateData(data);
-  const result = finalize(manipulated);
-  console.log('Result: ' + result);
-} catch(err) {
-  failedCallback(err);
-}
-```
-
-We start off nicely, but time goes by and...
-
----
-#### @color[#e49436](Callbacks) - Callback Hell
-
-```js
-getData(function(data) {
-    manipulateData(data, function(manipulated) {
-        finalize(manipulated, function(result) {
-            console.log('Result: ' + result);
-    }, failedCallback);
-  }, failedCallback);
-}, failedCallback);
-
-```
-They were good till a point where nesting callbacks was hillarious
-
----
-### @color[#e49436](Promise) (preview)
-
-Promises let us chain those functions more easily
-
-```js
-getData().then(function(data) {
-  return manipulateData(data);
-})
-.then(function(manipulated) {
-  return finalize(manipulated);
-})
-.then(function(result) {
-  console.log('Result: ' + result);
-})
-.catch(failedCallback);
-```
----
-### @color[#e49436](Promise) (preview)
-
-We can even shorten this by using lambdas
-
-```js
-getData().then(data => manipulateData(data))
-	 .then(manipulated => finalize(manipulated))
-	 .then(result => console.log('Result: ' + result))
-	 .catch(faileCallback);
-```
-
----
-### @color[#e49436](Promise) - (preview)
-
-**async/await** let us use promises like synchronous coding
-
-```js
-async () => {
-  try {
-    const data = await getData();
-    const manipulated = await manipulateData(data);
-    const result = await finalize(manipulated);
-    console.log('Result: ' + result);
-  } catch(err) {
-    failedCallback(err);
-  }
-}
-```
----
-### @color[#e49436](Promise) - break it apart
-
-- Promise object is what its name implies
-  - A promise to complete at some later point in time
-- Promise can complete or fail
-- Promise may return a value
-
-```js
-const promise = new Promise((resolve, reject) => {
-  setTimeout(() => resolve('timed out'), 1000);
+router.get('/', (req, res) => {
+    res.writeHead(200, { 'content-type': 'text/html' });
+    fs.createReadStream('index.html', 'utf8').pipe(res);
 });
-console.log('Promise fired');
-promise.then(res => console.log(res));
-console.log('Promise done');
-```
----
-### @color[#e49436](Promise) - break it apart
-
-rejecting the promise usualy used when an error occur
-
-```js
-const promise = new Promise((resolve, reject) => {
-  setTimeout(() => reject('timed out'), 1000);
-});
-console.log('Promise fired');
-promise.then(res => console.log('Completed: ' + res), rej => console.log('Rejected: ' + rej));
-console.log('Promise done');
-```
----
-### @color[#e49436](Promise) - break it apart
-
-- If an error is thrown inside the promise
-  - It's automatically rejected
-  - And the return value is ignored
-
-```js
-const promise = new Promise((resolve, reject) => {
-  throw new Error('OMG!');
-  //Same as 
-  await Promise.reject(new Error("OMG!"));
-});
-console.log('Promise fired');
-promise
-  .then(res => console.log('Completed: ' + res), rej => console.log('Rejected: ' + rej))
-  .catch(err => console.log(err));
-console.log('Promise done');
-```
----
-### @color[#e49436](Promise) - async/await
-
-```js
-async function func() {
-  return 42;
-}
-```
-- The word @color[#e49436](async) means the function **always** returns a promise
-- If the code returns non-promise
-  - Then it's being wrapped into a *resolved promise* with that value (*return Promise.resolve(42)*)
-
-```js
-func().then(console.log); // 42
-```
----
-### @color[#e49436](Promise) - async/await
-
-- Inside *async* function we can call some promise
-- @color[#e49436](await) makes JS wait until that promise settles
-- @color[#e49436](await) can be used **only** inside *async* function
-
-```js
-async function func() {
-
-  const promise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve(42), 1000);
-  });
-
-  console.log('Promise done: ', await promise);
-}
-
-func();
-```
-
----
-### @color[#e49436](Promise) - async/await
-
-- await awaits thenable object
-- You can create your own object with then compatible function
-
-```js
-class Student {
-  constructor(name) {
-    this.name = name;
-  }
-  then(resolve, reject) {
-    setTimeout(() => resolve(`Student name: ${this.name}`), 500);
-  }
-};
-
-(async () => {
-  const result = await new Student('Shahar');
-  alert(result);
-})();
-```
-
----
-### @color[#e49436](Promise) - async/await
-
-Class method can by async as well
-
-```js
-class Student {
-  constructor(name) {
-    this.name = name;
-  }
-  async hold() {
-    return `Student name: ${this.name}`;
-    //Or return Promise.resolve(`Student name: ${this.name}`);
-    //Or return await some promise
-  }
-};
-
-new Student('Shahar')
-    .hold()
-    .then(console.log);
+router.post('/api/customer', (req, res) => { ... });
 
 ```
 
----
-### @color[#e49436](Promise) - async/await
-
-What's also great about this is *Error handling*: is so similar to synchronous coding!
-
-```js
-async () => {
-  try {
-    const response = await fetch('some url');
-    const user = await response.json();
-  } catch(err) {
-    //catches errors either of fetch or response.json
-    alert(err);
-  }
-}
-```
-```js
-async function func() {
-  const response = await fetch('bad url');
-  //...
-}
-// func() becomes a rejected promise
-func().catch(err => {});
-```
+---?image=assets/images/npm/npm.png
 
 ---
-### @color[#e49436](Promise) - async/await
+#### @color[#e49436](NPM) - Node Package Manager
 
-- @color[#e49436](Promise.all) waits for multiple promises to complete
-- @color[#e49436](Promise.race) waits for the first to complete
+NPM is the largest open source library
 
-```js
-const results = await Promise.all([fetch(url1), fetch(url2)]);
-//results is an array of promises results
-```
-```js
-const result = await Promise.race([fetch(url1), fetch(url2)]);
-//result will be the first evaluated value 
-```
+Currently over 700,000 packages!!
 
 ---
-### @color[#e49436](Promise) - Ex
+#### @color[#e49436](Node Part 1)
 
-- @size[0.5em](1 - Extract data from Github public repositories)
-- @size[0.5em](2 - https://api.github.com/repositories)
-- @size[0.5em](3 - Grab some github repositories and print for each one the following json:)
-- @size[0.5em](4 - Show all users' avatars images in the page)
-
-```js 
-{
-    id: 210, //repository id
- full_name: 'polanski/fred', 
- avatar_url: 'https://avatars0.githubusercontent.com/u/75?v=4', 
- html_url: 'https://github.com/fred'    
-}
-
-//Use fetch(url) which returns a Promise
-  fetch(url)
-  .then(res => res.json());
-}
-```
----
-### @color[#e49436](Generators)
-
-#### Generators enable us to pause the control flow and resume it when needed
-#### In contrast to regular procedural flow where flow is blocked until all data is constructed
-#### With generators, data can be consumed in chunks, with full control of the consumer
-
----
-### @color[#e49436](Generators)
-
-Let say we have an array of 100 users, and we're searching for user with id 105595.
-
-We can write function to retrieve'em all like so
-```js
-function getUsers(){
-  //Users from somewhere
-  const users = [{id:54520, name: 'Jack'}, {id:32021, name: 'Lori'}, {id:105595, name: 'Shahar'}, 
-                 {id:87547, name: 'Moses'}, {id:965412, name: 'Honos'}/*, ....*/];
-  return users;
-}
-
-for(let user of getUsers()){
-  if(user.id == 105595){
-    console.log(`Found userid ${user.id} - ${user.name}`);
-    break;
-  }
-}
-```
----
-### @color[#e49436](Generators)
-
-The thing is getUsers returns ALL the users, which could be large
-
-More than that, we can find what we're looking for much sooner than iterating over all the array
-
-@quote[I wish there was a better solution...]
-
----
-### @color[#e49436](Generators)
-
-```js
-function* getUsers(){
-  //Users from somewhere
-  const users = [{id:54520, name: 'Jack'}, {id:32021, name: 'Lori'}, {id:105595, name: 'Shahar'}, 
-                 {id:87547, name: 'Moses'}, {id:965412, name: 'Honos'}/*, ....*/];
-  
-  for(let user of users){
-    yield user;
-  }
-}
-
-for(let user of getUsers()){
-  if(user.id == 105595){
-    console.log(`Found userid ${user.id} - ${user.name}`);
-    break;
-  }
-}
-```
----
-### @color[#e49436](Generators)
-
-If we have an internal collection we don't wanna expose?
-
-We can use generator to encapsulate it
-
-And expose data via iterator+generator
-
-Iterator - Gives The ability to enumerate over a collection
-
----
-### @color[#e49436](Generators)
-
-```js
-class UsersAPI {
-  getNextQuantaUsersFromSomewhere(){
-    return [{id:54520, name: 'Jack'}, {id:32021, name: 'Lori'}, {id:105595, name: 'Shahar'}, {id:87547, name: 'Moses'}, {id:965412, name: 'Honos'}];
-  }
-  
-  *[Symbol.iterator](){
-    let quantaUsers = this.getNextQuantaUsersFromSomewhere();
-    for(let user of quantaUsers){      
-      yield user;
-      quantaUsers = this.getNextQuantaUsersFromSomewhere();
-    }
-  }
-}
-```
----
-### @color[#e49436](Generators)
-
-And the consumer can decide when to quit
-
-```js
-const users = new UsersAPI()
-
-for(let user of users){
-  if(user.id == 105595){
-    console.log(`Found userid ${user.id} - ${user.name}`);
-    break;
-  }
-}
-```
----
-### @color[#e49436](Generators) - Ex
-
-Convert this to generator
-
-```js
-function step (start, stop, by) {
-    const characters = [];
-    while (start < stop) {
-        characters.push(String.fromCharCode(start));
-        start += by;
-    }
-    return characters;
-}
-
-var steps = step(65, 91, 2);
-for (var i = 0; i < steps.length; i++) {
-    console.log(steps[i]); // A, C, E, G, ...
-}
-```
----
-### @color[#e49436](Higher-Order Functions)
-
-Functions that operate on other functions 
-
-Either by taking them as arguments 
-
-Or by returning them
-
----
-### @color[#e49436](Higher-Order Functions)
-
-Most common usages are, for example
-
-Functions that create new functions
-
-Function compositions
-
----
-### @color[#e49436](Higher-Order Functions)
-
-```js
-function gt(y) {
-  return x => x > y;
-}
-
-let gt100 = gt(100);
-
-console.log(gt100(101));
-```
----
-### @color[#e49436](Higher-Order Functions)
-
-We can 'wrap' functions for pre/post processing
-
-```js
-function beforeAfter(func) {
-  return (...args) => {
-    console.log(`calling ${func.name} with ${args}`);
-    let result = func(...args);
-    console.log(`${func.name} returned ${result}`);
-    return result;
-  };
-}
-beforeAfter(Math.sqrt)(64);
-```
----
-### @color[#e49436](Higher-Order Functions)
-
-```js
-function repeat(until, func) {
-  for (let i = 0; i < until; i++) {
-    func(i);
-  }
-}
-
-repeat(5, console.log);
-//Or
-repeat(5, i => console.log(`Next num is ${i}`));
-```
-
----
-### @color[#e49436](Higher-Order Functions)
-
-```js
-function repeat(until, func) {
-  for (let i = 0; i < until; i++) {
-    func(i);
-  }
-}
-
-function ifnot(condition, perform) {
-  if (!condition) perform();
-}
-
-repeat(5, x => {
-  ifnot(x % 2 == 1, () => {
-    console.log(x, "is even");
-  });
-});
-```
----
-### @color[#e49436](Higher-Order Functions)
-
-Let's think of a function that format currencies values
-
-For example: You feed it the symbol (Like '$'), The decimal seperator (Like ',') and the value to format, like 312090
-
-And it should format it to $3120,90
-
-Or if you send it '£', '.' and 1009 then -> £10.09
-
----
-### @color[#e49436](Higher-Order Functions)
-
-```js
-const formatCurrency = function(currencySymbol, decimalSeparator) {
-    return function(value) {
-        const wholePart = Math.floor(value/100);
-        let agorot = value % 100;        
-        return `${currencySymbol}${wholePart}
-                ${decimalSeparator}
-                ${(''+agorot).padStart(2,0)}`;
-    }
-}
- 
- getTashlum = formatCurrency('$', '.');
- 
- //Now we can use getTashlum to format values
-```
----
-### @color[#e49436](Higher-Order Functions)
-
-So basically we can combine any sort of logic to our demand
-
-Here is a simple array concatenation function
-
-```js
-function concat(arr1, arr2){
-	return [...arr1, ...arr2];
-}
-```
-
-Ex - Write flattenArr function getting jagged array 
-like [[1, 2, 3], [4, 5], [6]] 
-returning [1, 2, 3, 4, 5, 6]
-
-Use concat
+End Of Part 1
 
 ---?image=assets/images/grauman-at-experis.png
 
----
