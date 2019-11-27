@@ -4,10 +4,8 @@
 # Introduction
 
 Our Facebook Group: 
-GRAUMAN- Node.Js at Experis
+NodeJs@Experis
 
-WhatsApp:
-https://chat.whatsapp.com/HiWZtxYZU0WF0Q9geUFxYD
 
 Tools: 
 VSCode, Browser
